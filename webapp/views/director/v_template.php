@@ -15,6 +15,8 @@
         <link href="resources/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
               
         <script src="resources/js/jquery-2.1.1.min.js"></script>
+        <script src="resources/js/picker.date.js"></script>
+        
 		<script src="resources/js/ligth/js/lightbox-2.6.min.js"></script>
 		<link rel="stylesheet" href="resources/js/ligth/css/lightbox.css" media="screen"/>
 		
@@ -139,6 +141,7 @@
                             <ul class="treeview-menu">
                                 <li <?php if ($this->uri->segment(2) === 'agenda' || $this->uri->segment(2) ==='detalleEvento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/agenda"><i class="fa fa-angle-double-right"></i> Eventos registrados</a></li>                                                               
                                 <li <?php if ($this->uri->segment(2) === 'registro_evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/registro_evento"><i class="fa fa-angle-double-right"></i> Nuevo evento</a></li>                                                                                          
+                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                                                          
                             </ul>
                         </li>
                         

@@ -151,6 +151,20 @@ UNION
 		return $results->result_array();
 	} 
 	
+	
+	function getAllEventos(){
+		$this->sql="SELECT e.id_evento,  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin
+					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas
+					FROM evento e 
+					LEFT JOIN involucrados i on e.id_evento= i.id_evento
+					INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
+					INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+					LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
+					LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
+					WHERE  e.activo is true;";
+		$results = $this->db->query($this->sql);
+		return $results->result_array();
+	}
 	function getDelegacionInvolucradas($id_evento){
 		$this->sql="SELECT cd.id_delegacion, cd.delegacion
 					FROM involucrados i join cat_delegacion cd on i.id_delegacion= cd.id_delegacion

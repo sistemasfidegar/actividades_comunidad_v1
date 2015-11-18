@@ -243,22 +243,10 @@
 </script> 
 
 <script>
+   
 $().ready(function () {
-
-	$( document ).tooltip({
-	      position: {
-	        my: "right bottom-10",
-	        at: "right top",
-	        using: function( position, feedback ) {
-	          $( this ).css( position );
-	          $( "<div>" )
-	            .addClass( "arrow" )
-	            .addClass( feedback.vertical )
-	            .addClass( feedback.horizontal )
-	            .appendTo( this );
-	        }
-	      }
-	    });
+	
+	
 
 	 var rules_form = {
 		        rules: {
@@ -410,15 +398,18 @@ $().ready(function () {
         
     });
 
+
+/*
+	
 	 $(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
          defaultDate: "05/10/2015",
          autoclose: true
      });
+*/
 
-    
-
+	   
   
     	   
     	  
@@ -429,8 +420,7 @@ $().ready(function () {
 	 $("#noCoordinadores").numeric();
 	 $("#cantidad").numeric();
 
-		    
-    
+		
 
 
 	$("#registro").validate(rules_form);

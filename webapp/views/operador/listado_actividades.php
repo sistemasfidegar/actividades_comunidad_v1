@@ -7,6 +7,7 @@
     </ol>
 </section>
 <section class="content">
+
 <script>
 
 $(document).ready(function() {
@@ -45,6 +46,7 @@ echo "</pre>";
 									<td>PARTICIPANTES</td>
 									<td>SEDE</td>
 									<td>UBICACI&Oacute;N</td>
+									
 								</tr>
 								</thead>
 								
@@ -66,10 +68,7 @@ echo "</pre>";
 				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==2){echo 'Espacio Público <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==3){echo 'Museo <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==4){echo 'Escuela para adultos <br>'.$lu['lugar'];}}    ?></td>
 					            		<td> <?php if ($value['id_tipo_lugar']==1){echo '';}else {echo $lu['direccion'];}?></td>
 					            		<?php }?>
-				  
-				            		
-				            	
-								</tr>
+				  					</tr>
 						</tbody>	
 				</table>
             

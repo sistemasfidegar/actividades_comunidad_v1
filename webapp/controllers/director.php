@@ -40,7 +40,33 @@ class director extends CI_Controller {
          $datos['content'] = $this->load->view('director/v_index.php', null, true);
         $this->load->view('director/v_template.php', $datos, false);
     }
+    function listado() {
+    	 
+    	$aux=$this->m_catalogos->getAllEventos();
+    	$listado['lista']= $aux;
+    	$participantes= array();
+    	$lugar=array();
+    	 
+    	foreach ($aux as $dato){
+    		$lugar[$dato['id_evento']]=$this->m_catalogos->getLugar($dato['id_tipo_lugar'], $dato['id_lugar']);
+    	}
+    	 
+    	foreach ($aux as $dato){
+    		$participantes[$dato['id_evento']]=$this->m_catalogos->getDelegacionInvolucradas($dato['id_evento']);
+    	}
+    	$listado['participantes']=$participantes;
+    	$listado['lugar']=$lugar;
     
+    	 
+    	$datos['content'] = $this->load->view('director/listado.php',$listado, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    }
+    function BorrarEvento($id_evento){
+    	
+    	
+    	$datos['borrado']=$this->m_director->BorraEvento($id_evento);
+    	$this->listado();
+    }
     
     public function guardaEvento()
     {
@@ -687,55 +713,61 @@ class director extends CI_Controller {
     	$string = trim($string);
     
     	$string = str_replace(
-    			array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+    			array('Ã¡', 'Ã ', 'Ã¤', 'Ã¢', 'Âª', 'Ã�', 'Ã€', 'Ã‚', 'Ã„'),
     			array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
     			$string
     	);
     
     	$string = str_replace(
-    			array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+    			array('Ã©', 'Ã¨', 'Ã«', 'Ãª', 'Ã‰', 'Ãˆ', 'ÃŠ', 'Ã‹'),
     			array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
     			$string
     	);
     
     	$string = str_replace(
-    			array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+    			array('Ã­', 'Ã¬', 'Ã¯', 'Ã®', 'Ã�', 'ÃŒ', 'Ã�', 'ÃŽ'),
     			array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
     			$string
     	);
     
     	$string = str_replace(
-    			array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+    			array('Ã³', 'Ã²', 'Ã¶', 'Ã´', 'Ã“', 'Ã’', 'Ã–', 'Ã”'),
     			array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
     			$string
     	);
     
     	$string = str_replace(
-    			array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+    			array('Ãº', 'Ã¹', 'Ã¼', 'Ã»', 'Ãš', 'Ã™', 'Ã›', 'Ãœ'),
     			array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
     			$string
     	);
     
     	$string = str_replace(
-    			array('ñ', 'Ñ', 'ç', 'Ç'),
+    			array('Ã±', 'Ã‘', 'Ã§', 'Ã‡'),
     			array('n', 'N', 'c', 'C',),
     			$string
     	);
     
-    	//Esta parte se encarga de eliminar cualquier caracter extraño
+    	//Esta parte se encarga de eliminar cualquier caracter extraÃ±o
     	$string = str_replace(
-    			array("\\", "¨", "º", "-", "~",
+    			array("\\", "Â¨", "Âº", "-", "~",
     					"#", "@", "|", "!", "\"",
-    					"·", "$", "%", "&", "/",
-    					"(", ")", "?", "'", "¡",
-    					"¿", "[", "^", "`", "]",
-    					"+", "}", "{", "¨", "´",
+    					"Â·", "$", "%", "&", "/",
+    					"(", ")", "?", "'", "Â¡",
+    					"Â¿", "[", "^", "`", "]",
+    					"+", "}", "{", "Â¨", "Â´",
     					">", "< ", ";", ",", ":"),
     			'',
     			$string
     	);
     
     	return $string;
+    }
+    
+    function pruebas(){
+    	$datos['content'] = $this->load->view('director/pruebas.php',true, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    	
     }
     
 }
