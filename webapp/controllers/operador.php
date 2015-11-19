@@ -562,6 +562,8 @@ function eventoNuevo(){
     			echo "ZOCALO DF";
     		}
     	}
+    	
+    	/*
     	public function save_foto(){
     		$datos['id_evento']=(int)$this->input->post('id_evento');
     		$datos['id_usuario']=$this->id_usuario;
@@ -582,6 +584,67 @@ function eventoNuevo(){
 	    	
 	    		}
     		 
+    		}else {
+    			echo 'formato no valido';
+    		}
+    	}
+    	*/
+    	public function save_foto(){
+    		$datos['id_evento']=(int)$this->input->post('id_evento');
+    		$datos['id_usuario']=$this->id_usuario;
+    		 
+    		 
+    		$type = explode('.',$_FILES['archivo']['name']);
+    		$type = strtolower($type[count($type)-1]);//obtengo la extencion
+    		 
+    		if(in_array($type, array("jpg", "jpeg", "gif", "png"))){
+    	
+    			$uploaddir = 'resources/archivos/'.'foto'.$datos['id_evento'].'_'.rand(2,15).'.'.$type;
+    			$tmpimagen = $_FILES['archivo']['tmp_name'];
+    			$ancho_limite=640;
+    			 
+    	
+    			$imagen_origen=imagecreatefromjpeg($_FILES['archivo']['tmp_name']);
+    			$ancho=imagesx($imagen_origen);//saca ancho
+    			$alto=imagesy($imagen_origen);//saca alto
+    			 
+    			 
+    			//para saber si es una imagen horizontal
+    			 
+    			if ($ancho>$alto){
+    				$ancho_o=$ancho_limite;
+    				$alto_o=intval(($ancho_limite*$alto)/$ancho);
+    			}else{//es vertical
+    				$alto_o=$ancho_limite;
+    				$ancho_o=intval($ancho_limite*$ancho/$alto);
+    			}
+    	
+    			if ($type=='jpg' || $type=='jpeg'){
+    				$viejaimagen =imagecreatefromjpeg($tmpimagen);
+    			}
+    			if ($type=='gif'){
+    				$viejaimagen=imagecreatefromgif($tmpimagen);
+    			}
+    			if($type=='png'){
+    				$viejaimagen=imagecreatefrompng($tmpimagen);
+    			}
+    			 
+    	
+    			$nuevaimagen= imagecreatetruecolor($ancho_o, $alto_o);//crea imagen con nuevas dimesiones
+    			imagecopyresized($nuevaimagen,$viejaimagen, 0, 0, 0,0,$ancho_o, $alto_o,$ancho,$alto);
+    	
+    			if ($type=='jpg' || $type=='jpeg'){
+    				imagejpeg($nuevaimagen,$uploaddir);
+    			}
+    			if ($type=='gif'){
+    				imagegif($nuevaimagen,$uploaddir);
+    			}
+    			if($type=='png'){
+    				imagepng($nuevaimagen,$uploaddir);
+    			}
+    			$datos['ruta_archivo']=$uploaddir;
+    			$r=$this->m_operador->guardaImagen($datos);
+    			    	
     		}else {
     			echo 'formato no valido';
     		}

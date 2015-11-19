@@ -15,12 +15,26 @@ class M_director extends MY_Model {
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
+    ///////////////borrar
     function BorraEvento($id_evento){
     	$this->sql="update evento set activo=false where id_evento=$id_evento;";
     	//$this->sql="DELETE FROM evento WHERE id_evento=$id_evento;";
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
+    function BorraResultado($id_evento){
+    	$this->sql="update resultado set activo=false where id_evento=$id_evento;";
+    	//$this->sql="DELETE FROM resultado where id_evento=$id_evento;";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function BorraFoto($id_evento){
+    	$this->sql="update archivo set activo=false where id_evento=$id_evento;";
+    	//$this->sql="DELETE FROM archivo where id_evento=$id_evento;";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    ////////////////////
     function getSedeRespectiva($id_sede)
     {
     	if($id_sede == 1)

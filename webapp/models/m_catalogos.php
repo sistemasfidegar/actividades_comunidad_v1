@@ -193,7 +193,7 @@ UNION
 					LEFT JOIN cat_museos cm on cm.id_museo= e.id_lugar
 					LEFT  JOIN usuario um  on um.id_usuario=e.id_usuario_modifica
 					
-					where e.id_evento=$id_evento;";
+					where e.id_evento=$id_evento and e.activo is true;";
 		$results= $this->db->query($this->sql);
 		return $results->result_array();
 	}
