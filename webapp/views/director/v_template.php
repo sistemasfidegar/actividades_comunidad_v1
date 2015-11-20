@@ -15,7 +15,7 @@
         <link href="resources/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
               
         <script src="resources/js/jquery-2.1.1.min.js"></script>
-        <script src="resources/js/picker.date.js"></script>
+     
         
 		<script src="resources/js/ligth/js/lightbox-2.6.min.js"></script>
 		<link rel="stylesheet" href="resources/js/ligth/css/lightbox.css" media="screen"/>

@@ -672,12 +672,12 @@ $().ready(function () {
         	<legend>Información del evento</legend>
                 <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
    			     	<div class="box-body">
-   			     	
+   			     	 <!-- 
    			     		<div class="form-group">
 			            	<label>Tipo de evento:</label>
 			            	<input type="text" name="id_tipo" id="id_tipo" value="Delegacional" class="form-control"/>
 				        </div>
-			          <!--    
+			            
 			            <div class="form-group">
 			            	<label>Persona que reporta la actividad:</label>
 				            <select name="id_responsable" id="id_responsable" class="form-control">
@@ -706,7 +706,21 @@ $().ready(function () {
 						            <?php }?>		            
 				            </select>
 				        </div>
-			            
+			             <div class="form-group">
+			            	<label>Tipo actividad:</label>
+				            <select name="id_actividad" id="id_actividad" class="form-control" >
+			            		<option value="0">[Seleccionar]</option>
+					            <?php foreach ($actividad as $value){
+					            	$selected="";
+					            	if(in_array($dato['tipo_actividad'],$value))
+					            		$selected="selected";
+					            	?>
+				            	<option value="<?php echo $value['id_tipo_actividad'];?>" <?php echo $selected;?>><?php echo $value['tipo_actividad']; ?></option>				                  
+				            <?php }?>	
+					            				            
+			            	</select>
+			            	</div>
+			            	
 			            <div class="form-group">
 			            	<label>Coordinación Interinstitucional:</label>
 				            

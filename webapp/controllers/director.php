@@ -75,6 +75,7 @@ class director extends CI_Controller {
 
     	$data['id_usuario_registra'] = $this->id_usuario;
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
+    	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = (int) $this->input->post('id_responsable');
     	
     	$aux=$this->m_director->getDelUsuario($data['id_responsable']);
@@ -154,6 +155,7 @@ class director extends CI_Controller {
      	    	    	    	 
     	$data['id_usuario_registra'] = $this->id_usuario;
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
+    	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = (int) $this->input->post('id_responsable');
     	 
     	$aux=$this->m_director->getDelUsuario($data['id_responsable']);
@@ -262,7 +264,7 @@ class director extends CI_Controller {
  		$datos['coordinacion']=$this->m_catalogos->getCoordinacion();
  		$datos['delegaciones'] = $this->m_director->getCatDelegaciones();
  		$datos['logistica'] = $this->m_catalogos->getLogistica();
- 		
+ 		$datos['actividad'] = $this->m_catalogos->getActividad();
        	$aux = $this->m_catalogos->getOperador($id_evento);       	       	
     	$datos['dato'] = $aux[0];
     	
@@ -285,7 +287,7 @@ class director extends CI_Controller {
     	$data['delegaciones'] = $this->m_catalogos->getDelegacion();
     	$data['responsable'] = $this->m_catalogos->getResponsable();
     	$data['logistica'] = $this->m_catalogos->getLogistica();
-     	
+     	$data['actividad']=$this->m_catalogos->getActividad();
     	$datos['content'] = $this->load->view('director/form_nuevo_evento.php', $data, true);
     	$this->load->view('director/v_template.php', $datos, false);
     }

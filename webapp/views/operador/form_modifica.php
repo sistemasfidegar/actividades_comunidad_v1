@@ -658,13 +658,13 @@ $().ready(function () {
         	<legend>Información del evento</legend>
                 <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
    			     	<div class="box-body">
-   			     	
+   			     	<!--
    			     		<div class="form-group">
 			            	<label>Tipo de evento:</label>
 			            	<input type="text" name="id_tipo" id="id_tipo" value="<?php echo $dato['nivel'];?>" class="form-control" readonly/>
 				            
 			            </div>
-			            
+			          -->  
 			            <div class="form-group">
 			            	<label>Delegación que reporta la actividad:</label>
 				            <input type="text"  name="nombre_delegacion" id="nombre_delegacion" value="<?php echo $dato['delegacion'];?>" class="form-control" readonly/>
@@ -675,7 +675,10 @@ $().ready(function () {
 			            	<label>Eje temático:</label>
 			            	<input type="text" name="id_eje" id="id_eje" value="<?php echo $dato['eje_tematico'];?>" class="form-control" readonly/>
 				        </div>
-			            
+			            <div class="form-group">
+			            	<label>Tipo actividad:</label>
+				            <input type="text" name="id_coordinacion" id="id_coordinacion" value="<?php echo $dato['tipo_actividad'];?>" class="form-control" readonly/>
+				        </div>
 			            <div class="form-group">
 			            	<label>Coordinación Interinstitucional:</label>
 				            <input type="text" name="id_coordinacion" id="id_coordinacion" value="<?php echo $dato['coordinacion'];?>" class="form-control" readonly/>
@@ -888,21 +891,21 @@ $().ready(function () {
 			        	
 			              <div class="row">
 		            	
-			            	<div class="col-md-2">
+			            	<div class="col-md-3">
 				              <label>Asistentes:</label>
 					          <input type="text" name="Asistentes" id="Asistentes" value="<?php echo $resultado['no_asistentes']?>" class="form-control"/>
 				            </div>
-				             <div class="col-md-2">
+				             <div class="col-md-3">
 				              <label>Coordinadores:</label>
 					          <input type="text" name="Coordinadores" id="Coordinadores" value="<?php echo $resultado['no_coordinadores']?>" class="form-control"/>
 				            </div>
-				            <div class="col-md-2">
+				            <div class="col-md-3">
 				              <label>Promotores:</label>
 					          <input type="text" name="Promotores" id="Promotores" value="<?php echo $resultado['no_promotores']?>" class="form-control"/>
 				            </div>
 				            
 				            <div class="col-md-3">
-			            		<label>No. Validaciones:</label>
+			            		<label>No.Validaciones:</label>
 				        		<input type="text" name="noValidado" id="noValidado" value="<?php echo $resultado['no_validado']?>" class="form-control"/>
 			        		</div>	   
 			              					            			            							

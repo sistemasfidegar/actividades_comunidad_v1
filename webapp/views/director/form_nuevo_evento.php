@@ -399,7 +399,7 @@ $().ready(function () {
     });
 
 
-/*
+
 	
 	 $(".dateP").datepicker({
          language: 'es',
@@ -407,7 +407,7 @@ $().ready(function () {
          defaultDate: "05/10/2015",
          autoclose: true
      });
-*/
+
 
 	   
   
@@ -536,7 +536,7 @@ $().ready(function () {
 					            				            
 			            	</select>
 			            </div>
-			            
+			           
 			            <div class="form-group">
 			            	<label>Persona que reporta la actividad:</label>
 				            <select name="id_responsable" id="id_responsable" class="form-control">
@@ -556,7 +556,16 @@ $().ready(function () {
 						            <?php }?>		            
 				            </select>
 			            </div>
-			            
+			             <div class="form-group">
+			            	<label>Tipo actividad:</label>
+				            <select name="id_actividad" id="id_actividad" class="form-control" >
+			            		<option value="0">[Seleccionar]</option>
+					            <?php foreach ($actividad as $value){	?>
+				            	<option value="<?php echo $value['id_tipo_actividad'];?>"><?php echo $value['tipo_actividad']; ?></option>				                  
+				            <?php }?>	
+					            				            
+			            	</select>
+			            </div>
 			            <div class="form-group">
 			            	<label>Coordinación Interinstitucional:</label>
 				            <select name="id_coordinacion" id="id_coordinacion" class="form-control" >

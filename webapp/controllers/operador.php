@@ -68,7 +68,7 @@ function modifica($id_evento)
     	$datos['dato'] = $aux[0];
     	$aux1=$this->m_operador->getDelegacionEvento($id_evento);
     	$datos['delegacion_evento']=$aux1;
-    	
+    	$datos['actividad'] = $this->m_catalogos->getActividad();
     	$aux1=$this->m_operador->usRegistroEvento($id_evento);
     	$datos['usuario_registro']=$aux1[0]['id_usuario_registra'];
     
@@ -148,6 +148,7 @@ public function updateEvento() {
     	$data['id_usuario_registra'] = $this->id_usuario;
     	$data['id_usuario']=$this->id_usuario;
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
+    	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] =  $this->id_usuario;
     
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
@@ -247,6 +248,7 @@ public function guardaEvento() {
     	
     	$data['id_usuario_registra'] = $this->id_usuario;
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
+    	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = $this->id_usuario;
     	 
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
@@ -363,6 +365,7 @@ function eventoNuevo(){
     	$data['delegaciones'] = $this->m_catalogos->getDelegacion();
     	$data['responsable'] = $this->m_catalogos->getResponsable();
     	$data['logistica'] = $this->m_catalogos->getLogistica();
+    	$data['actividad'] = $this->m_catalogos->getActividad();
     	$data['content'] = $this->load->view('operador/form_nuevo_evento.php', $data, true);
     	$this->load->view('operador/v_template.php', $data, false);
     }
@@ -603,48 +606,64 @@ function eventoNuevo(){
     			$tmpimagen = $_FILES['archivo']['tmp_name'];
     			$ancho_limite=640;
     			 
-    	
-    			$imagen_origen=imagecreatefromjpeg($_FILES['archivo']['tmp_name']);
+    			if ($type=='jpg' || $type=='jpeg'){
+    				$imagen_origen=imagecreatefromjpeg($_FILES['archivo']['tmp_name']);
+    			}
+    			if ($type=='gif'){
+    				$imagen_origen=imagecreatefromgif($_FILES['archivo']['tmp_name']);
+    			}
+    			if($type=='png'){
+    				$imagen_origen=imagecreatefrompng($_FILES['archivo']['tmp_name']);
+    			}
+    			
     			$ancho=imagesx($imagen_origen);//saca ancho
     			$alto=imagesy($imagen_origen);//saca alto
     			 
-    			 
-    			//para saber si es una imagen horizontal
-    			 
-    			if ($ancho>$alto){
-    				$ancho_o=$ancho_limite;
-    				$alto_o=intval(($ancho_limite*$alto)/$ancho);
-    			}else{//es vertical
-    				$alto_o=$ancho_limite;
-    				$ancho_o=intval($ancho_limite*$ancho/$alto);
-    			}
-    	
-    			if ($type=='jpg' || $type=='jpeg'){
-    				$viejaimagen =imagecreatefromjpeg($tmpimagen);
-    			}
-    			if ($type=='gif'){
-    				$viejaimagen=imagecreatefromgif($tmpimagen);
-    			}
-    			if($type=='png'){
-    				$viejaimagen=imagecreatefrompng($tmpimagen);
-    			}
-    			 
-    	
-    			$nuevaimagen= imagecreatetruecolor($ancho_o, $alto_o);//crea imagen con nuevas dimesiones
-    			imagecopyresized($nuevaimagen,$viejaimagen, 0, 0, 0,0,$ancho_o, $alto_o,$ancho,$alto);
-    	
-    			if ($type=='jpg' || $type=='jpeg'){
-    				imagejpeg($nuevaimagen,$uploaddir);
-    			}
-    			if ($type=='gif'){
-    				imagegif($nuevaimagen,$uploaddir);
-    			}
-    			if($type=='png'){
-    				imagepng($nuevaimagen,$uploaddir);
-    			}
-    			$datos['ruta_archivo']=$uploaddir;
-    			$r=$this->m_operador->guardaImagen($datos);
-    			    	
+    			 if ($ancho_limite <= $ancho){
+	    			//para saber si es una imagen horizontal
+	    			 
+	    			if ($ancho>$alto){
+	    				$ancho_o=$ancho_limite;
+	    				$alto_o=intval(($ancho_limite*$alto)/$ancho);
+	    			}else{//es vertical
+	    				$alto_o=$ancho_limite;
+	    				$ancho_o=intval($ancho_limite*$ancho/$alto);
+	    			}
+	    	
+	    			if ($type=='jpg' || $type=='jpeg'){
+	    				$viejaimagen =imagecreatefromjpeg($tmpimagen);
+	    			}
+	    			if ($type=='gif'){
+	    				$viejaimagen=imagecreatefromgif($tmpimagen);
+	    			}
+	    			if($type=='png'){
+	    				$viejaimagen=imagecreatefrompng($tmpimagen);
+	    			}
+	    			 
+	    	
+	    			$nuevaimagen= imagecreatetruecolor($ancho_o, $alto_o);//crea imagen con nuevas dimesiones
+	    			imagecopyresized($nuevaimagen,$viejaimagen, 0, 0, 0,0,$ancho_o, $alto_o,$ancho,$alto);
+	    	
+	    			if ($type=='jpg' || $type=='jpeg'){
+	    				imagejpeg($nuevaimagen,$uploaddir);
+	    			}
+	    			if ($type=='gif'){
+	    				imagegif($nuevaimagen,$uploaddir);
+	    			}
+	    			if($type=='png'){
+	    				imagepng($nuevaimagen,$uploaddir);
+	    			}
+	    			$datos['ruta_archivo']=$uploaddir;
+	    			$r=$this->m_operador->guardaImagen($datos);
+    			 }
+    			 else 
+    			 {
+    			 	if(move_uploaded_file($tmpimagen, $uploaddir))
+    			 	{
+    			 		$datos['ruta_archivo']=$uploaddir;
+    			 		$r=$this->m_operador->guardaImagen($datos);
+    			 	}
+    			 }		    	
     		}else {
     			echo 'formato no valido';
     		}

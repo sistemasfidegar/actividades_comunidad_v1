@@ -34,7 +34,11 @@ class M_catalogos extends MY_Model{
 		return $results->result_array();
 	}
 	
-	
+	function getActividad(){
+		$this->sql="select id_tipo_actividad, tipo_actividad from tipo_actividad where activo is true order by tipo_actividad;";
+		$results = $this->db->query($this->sql);
+		return $results->result_array();
+	}
 	function getLogistica(){
 		$this->sql = "SELECT id_logistica, logistica FROM logistica WHERE activo is true order by logistica;";
 		$results = $this->db->query($this->sql);
@@ -178,7 +182,7 @@ UNION
 	{
 		$this->sql="SELECT d.id_delegacion, d.delegacion, ce.eje_tematico, n.nivel, co.coordinacion, e.id_evento, s.seriada, 
 					to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.descripcion, e.horario, 
-					e.no_asistentes, e.no_coordinadores, e.num_horas, e.no_promotores, e.fecha_registro, e.id_evento,e.id_tipo_lugar, e.id_lugar,
+					e.no_asistentes, e.no_coordinadores, e.num_horas, e.no_promotores, e.fecha_registro, e.id_evento,e.id_tipo_lugar, e.id_lugar, a.id_tipo_actividad, a.tipo_actividad,
 					e.id_responsable, ur.usuario,ep.espacio_publico, cp.plantel, e.id_tipo_evento, e.id_seriada, cm.museo, ea.escuela,e.latitud,e.longitud  	
 					FROM evento e 
 					INNER JOIN cat_delegacion d ON e.id_delegacion = d.id_delegacion
@@ -186,6 +190,7 @@ UNION
 					INNER JOIN cat_nivel n ON n.id_nivel = e.id_tipo_evento
 					INNER JOIN usuario ur  on ur.id_usuario= e.id_responsable
 					INNER JOIN cat_coordinacion co on co.id_coordinacion = e.id_coordinacion
+					INNER JOIN tipo_actividad a on e.id_actividad=a.id_tipo_actividad
 					inner join seriada s on e.id_seriada= s.id_seriada
 					LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 					LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
