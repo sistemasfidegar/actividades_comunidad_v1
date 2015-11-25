@@ -132,7 +132,7 @@ jQuery(document).ready(function(){
 </script>
 
 <section class="content-header">
-   <h1>Reporte Mensual</h1>                    
+   <h1>Reporte Trimestral</h1>                    
 </section>
 
 <section class="content">
@@ -154,7 +154,8 @@ jQuery(document).ready(function(){
 									        <option value="3">Por espacio público</option>
 									        <option value="4">Por planteles</option>
 									        <option value="5">Por museos</option>
-									        <option value="6">Por escuela de adultos mayores</option>					            				           
+									        <option value="6">Por escuela de adultos mayores</option>	
+									        <option value="7">Tipo actividad</option>				            				           
 						            	</select>
 						            </div>
 					            </div>
@@ -209,49 +210,67 @@ jQuery(document).ready(function(){
 						<p align="right"><img src="resources/images/btn_excel.png" class="botonExcel" style="cursor:pointer;" title="De click aquí para descargar en formato .xls"/></p>
 						<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
 					</form>
-									<?php 
+					<?php 
 						if(isset($id_tipo_reporte) && $id_tipo_reporte==1)
 						{
-						?>
+							/*
+							 
+							 echo "<pre>";
+							 print_r($datos);
+							 echo "</pre>";
+						 */
+					?>
 							<table width="100%" border="1" id="Exportar_a_Excel" >
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td colspan="13" align="center">
+									<td colspan="19" align="center">
 									INFORME GENERAL TRIMESTRAL<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
 																
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td width="25%">
+									<td width="20%">
 									DELEGACIÓN
 									</td>
-									<td width="18%" colspan="3">
+									<td width="13%" colspan="3">
 									NO. DE ACTIVIDADES
 									</td>
-									<td width="18%" colspan="3">
+									<td width="13%" colspan="3">
 									NO. DE VALIDACIONES
 									</td>
-									<td width="18%" colspan="3">
+									<td width="13%" colspan="3">
 									NO. DE COORDINADORES
 									</td>
-									<td width="18%" colspan="3">
+									<td width="13%" colspan="3">
 									NO. DE PROMOTORES
+									</td>
+									<td width="13%" colspan="3">
+									ASISTENTES ESP.
+									</td>
+									<td width="13%" colspan="3">
+									ASISTENTES TOT.
 									</td>
 								</tr>
 								<tr bgcolor="#3F7788" align="center" style="font-weight:bold;" >
 								    <td></td>
-								    <td align="center" width="6%">01</td>
-								    <td align="center" width="6%">02</td>
-									<td align="center" width="6%">03</td>
-									<td align="center" width="6%">01</td>
-								    <td align="center" width="6%">02</td>
-									<td align="center" width="6%">03</td>
-									<td align="center" width="6%">01</td>
-								    <td align="center" width="6%">02</td>
-									<td align="center" width="6%">03</td>
-									<td align="center" width="6%">01</td>
-								    <td align="center" width="6%">02</td>
-									<td align="center" width="6%">03</td>
+								    <td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
+									<td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
+									<td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
+									<td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
+									<td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
+									<td align="center" width="4%">01</td>
+								    <td align="center" width="4%">02</td>
+									<td align="center" width="4%">03</td>
 								</tr>
 							<?php
 							$tact = 0;
@@ -288,7 +307,7 @@ jQuery(document).ready(function(){
 								else {
 									$tc1=0; $tc2=0; $tc3=0;
 								}
-								if (isset($datos[$row['id_delegacion']]['promotores1']) && isset($datos[$row['id_delegacion']]['promotores3']) && isset($datos[$row['id_delegacion']]['promotores3'])){
+								if (isset($datos[$row['id_delegacion']]['promotores1']) && isset($datos[$row['id_delegacion']]['promotores2']) && isset($datos[$row['id_delegacion']]['promotores3'])){
 									$tp1 = $datos[$row['id_delegacion']]['promotores1'];
 									$tp2 = $datos[$row['id_delegacion']]['promotores2'];
 									$tp3 = $datos[$row['id_delegacion']]['promotores3'];
@@ -296,11 +315,37 @@ jQuery(document).ready(function(){
 								{
 								 $tp1=0; $tp2=0; $tp3=0;	
 								}
-								$tact += $td1 + $td2 + $td3;
-								$tval += $tv1 + $tv2 + $tv3;
+								if (isset($datos[$row['id_delegacion']]['esperados1']) && isset($datos[$row['id_delegacion']]['esperados2']) && isset($datos[$row['id_delegacion']]['esperados3'])){
+									$te1 = $datos[$row['id_delegacion']]['esperados1'];
+									$te2 = $datos[$row['id_delegacion']]['esperados2'];
+									$te3 = $datos[$row['id_delegacion']]['esperados3'];
+								}
+								else
+								{
+									$te1 = 0;
+									$te2 = 0;
+									$te3 = 0;
+								}
+								
+								
+								if (isset($datos[$row['id_delegacion']]['Asistentes1']) && isset($datos[$row['id_delegacion']]['Asistentes2']) && isset($datos[$row['id_delegacion']]['Asistentes3'])){
+									$ta1 = $datos[$row['id_delegacion']]['Asistentes1'];
+									$ta2 = $datos[$row['id_delegacion']]['Asistentes2'];
+									$ta3 = $datos[$row['id_delegacion']]['Asistentes3'];
+								}
+								else 
+								{
+									$ta1 = 0;
+									$ta2 = 0;
+									$ta3 = 0;
+								}
+								
+								$tact  += $td1 + $td2 + $td3;
+								$tval  += $tv1 + $tv2 + $tv3;
 								$tcoor += $tc1 + $tc2 + $tc3;
 								$tprom += $tp1 + $tp2 + $tp3;
-								
+								$tesp += $te1 + $te2 + $te3;
+								$tasis += $ta1 + $ta2 + $ta3;
 								$color ='#A5D5E2';
 								if($r%2==0)
 									$color ='#D2EAF1';
@@ -310,10 +355,12 @@ jQuery(document).ready(function(){
 								echo '<td>'.$td1.'</td><td>'.$td2.'</td><td>'.$td3.'</td>';
 								echo '<td>'.$tv1.'</td><td>'.$tv2.'</td><td>'.$tv3.'</td>';
 								echo '<td>'.$tc1.'</td><td>'.$tc2.'</td><td>'.$tc3.'</td>';
-								echo '<td>'.$tp1.'</td><td>'.$tp2.'</td><td>'.$tp3.'</td></tr>';
+								echo '<td>'.$tp1.'</td><td>'.$tp2.'</td><td>'.$tp3.'</td>';
+								echo '<td>'.$te1.'</td><td>'.$te2.'</td><td>'.$te3.'</td>';
+								echo '<td>'.$ta1.'</td><td>'.$ta2.'</td><td>'.$ta3.'</td></tr>';
 								$r++;
 							}	
-							echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan="3">'.$tact.'</td><td colspan="3">'.$tval.'</td><td colspan="3">'.$tcoor.'</td><td colspan="3">'.$tprom.'</td></tr>';
+							echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan="3">'.$tact.'</td><td colspan="3">'.$tval.'</td><td colspan="3">'.$tcoor.'</td><td colspan="3">'.$tprom.'</td><td colspan="3">'.$tesp.'</td><td colspan="3">'.$tasis.'</td></tr>';
 							
 							?>							
 							</table>																								
@@ -326,7 +373,7 @@ jQuery(document).ready(function(){
 							<table width="100%" border="1"  id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
 									<td colspan="22" align="center" >
-									INFORME GENERAL TRIMESTRAL :ESPACIOS PUBLICOS<br />
+									INFORME GENERAL TRIMESTRAL :EJE TEMÁTICO<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
@@ -599,27 +646,37 @@ jQuery(document).ready(function(){
 						
 							<table width="100%" border="1"  id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td colspan="5" align="center" >
+									<td colspan="10" align="center" >
 									INFORME GENERAL TRIMESTRAL :ESPACIOS PUBLICOS<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;" >
-									<th width="60%">
+									<th width="40%">
 									
 									</th>
+									<td width="20%" colspan="3">
+									ASISTENTES ESP.
+									</td>
+									<td width="20%" colspan="3">
+									ASISTENTES TOT.
+									</td>
 									<td width="20%" colspan="3" align="center" >
 									NO. DE VALIDACIONES
 									
 									</td>
-									<td width="10%" align="center" rowspan="2">
-									TOTAL
-									</td>
+									
 									
 							 	</tr>
 							 	<tr bgcolor="#3F7788" align="center" style="font-weight:bold; font-size:18px;">
 								    <td></td>
 								    <td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
 								    <td align="center">02</td>
 									<td align="center">03</td>
 									
@@ -638,7 +695,7 @@ jQuery(document).ready(function(){
 							 		$cdel='#67A6BA';
 							 		$delegacion = $row['delegacion'];
 							 	
-							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="5">'.$delegacion.'</td></td></tr>';
+							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="10">'.$delegacion.'</td></td></tr>';
 							 		foreach ($espacios as $esp)
 							 		{
 							 			$color ='#A5D5E2';
@@ -647,7 +704,45 @@ jQuery(document).ready(function(){
 							 		
 							 			if ($esp['id_delegacion']==$row['id_delegacion']){
 							 				echo '<tr bgcolor="'.$color.'"><td align="left" style="padding-left:5px;">'.$esp['espacio_publico'].'</td>';
-								 			
+							 				
+							 				if((isset($datos[$esp['id_espacio_publico']]['esperado1'])) && ($datos[$esp['id_espacio_publico']]['esperado1']!= 0)){
+							 					$esp1+= $datos[$esp['id_espacio_publico']]['esperado1'];
+							 					$te1+=$esp1;
+							 				}
+							 				else
+							 					$esp1=0;
+							 				if((isset($datos[$esp['id_espacio_publico']]['esperado2'])) && ($datos[$esp['id_espacio_publico']]['esperado2']!= 0)){
+							 					$esp2+= $datos[$esp['id_espacio_publico']]['esperado2'];
+							 					$te2+=$esp2;
+							 				}
+							 				else
+							 					$esp2=0;
+							 				if((isset($datos[$esp['id_espacio_publico']]['esperado3'])) && ($datos[$esp['id_espacio_publico']]['esperado3']!= 0)){
+							 					$esp3+= $datos[$esp['id_espacio_publico']]['esperado3'];
+							 					$te3+=$esp3;
+							 				}
+							 				else
+							 					$esp3=0;
+							 					
+							 				if((isset($datos[$esp['id_espacio_publico']]['asistente1'])) && ($datos[$esp['id_espacio_publico']]['asistente1']!= 0)){
+							 					$as1+= $datos[$esp['id_espacio_publico']]['asistente1'];
+							 					$ta1+=$as1;
+							 				}
+							 				else
+							 					$as1=0;
+							 				if((isset($datos[$esp['id_espacio_publico']]['asistente2'])) && ($datos[$esp['id_espacio_publico']]['asistente2']!= 0)){
+							 					$as2+= $datos[$esp['id_espacio_publico']]['asistente2'];
+							 					$ta2+=$as2;
+							 				}
+							 				else
+							 					$as2=0;
+							 				if((isset($datos[$esp['id_espacio_publico']]['asistente3'])) && ($datos[$esp['id_espacio_publico']]['asistente3']!= 0)){
+							 					$as3+= $datos[$esp['id_espacio_publico']]['asistente3'];
+							 					$ta3+=$as3;
+							 				}
+							 				else
+							 					$as3=0;
+							 					
 								 				if((isset($datos[$esp['id_espacio_publico']]['validado1'])) && ($datos[$esp['id_espacio_publico']]['validado1']!= 0))
 								 				{
 								 					$valor += $datos[$esp['id_espacio_publico']]['validado1'];
@@ -670,16 +765,18 @@ jQuery(document).ready(function(){
 								 				}
 								 				else $valor3=0;
 								 				
-								 				$total=$valor+$valor2+$valor3;
+								 			
 								 				
-											echo'<td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td><td  style="background: #3F7788; font-weight:bold;">'.$total.'</td>';
+											echo'<td>'.$esp1.'</td><td>'.$esp2.'</td><td>'.$esp3.'</td><td>'.$as1.'</td><td>'.$as2.'</td><td>'.$as3.'</td><td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td>';
 											
 										}
 							 			$r++;
 							 		}
 							 	}
-							 	
-							 	echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$t1.'</td><td>'.$t2.'</td><td>'.$t3.'</td><td style="border-right: 1px solid #ffffff;  border-bottom:1px solid #ffffff; ">&nbsp;</td></tr>';
+							 	$t=$t1+$t2+$t3;
+							 	$te=$te1+$te2+$te3;
+							 	$ta=$ta1+$ta2+$ta3;
+							 	echo '<tr style="font-weight:bold;"><td  style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan=3>'.$te.'</td><td colspan=3>'.$ta.'</td><td colspan=3>'.$t.'</td></tr>';
 							 		
 							 	
 							 	?>
@@ -692,27 +789,36 @@ jQuery(document).ready(function(){
 						
 							<table width="100%" border="1"  id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold;  font-size:18px;">
-									<td colspan="5" align="center" >
+									<td colspan="10" align="center" >
 									INFORME GENERAL TRIMESTRAL: PLANTELES<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold;   font-size:18px;" >
-									<th width="60%">
+									<th width="45%">
 									
 									</th>
-									<td width="20%" colspan="3" align="center" >
+									<td width="18%" colspan="3">
+									ASISTENTES ESP.
+									</td>
+									<td width="18%" colspan="3">
+									ASISTENTES TOT.
+									</td>
+									<td width="18%" colspan="3" align="center" >
 									NO. DE VALIDACIONES
 									
-									</td>
-									<td width="10%" align="center" rowspan="2">
-									TOTAL
 									</td>
 									
 							 	</tr>
 							 	<tr bgcolor="#3F7788" align="center"   style="font-weight:bold;   font-size:18px;" >
 								    <td></td>
 								    <td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
 								    <td align="center">02</td>
 									<td align="center">03</td>
 									
@@ -731,7 +837,7 @@ jQuery(document).ready(function(){
 							 		$cdel='#67A6BA';
 							 		$delegacion = $row['delegacion'];
 							 	
-							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="5">'.$delegacion.'</td></td></tr>';
+							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="10">'.$delegacion.'</td></td></tr>';
 							 		foreach ($planteles as $plan)
 							 		{
 							 			$color ='#A5D5E2';
@@ -740,13 +846,53 @@ jQuery(document).ready(function(){
 							 		
 							 			if ($plan['id_delegacion']==$row['id_delegacion']){
 							 				echo '<tr bgcolor="'.$color.'"><td align="left" style="padding-left:5px;">'.$plan['plantel'].'</td>';
-								 			
+								 				
+								 				if((isset($datos[$plan['id_plantel']]['esperado1'])) && ($datos[$plan['id_plantel']]['esperado1']!= 0))
+								 				{
+								 					$esp1 += $datos[$plan['id_plantel']]['esperado1'];
+								 					$te1+=$esp1;
+								 				}
+								 				else
+								 					$esp1=0;
+								 				if((isset($datos[$plan['id_plantel']]['esperado2'])) && ($datos[$plan['id_plantel']]['esperado2']!= 0))
+								 				{
+								 					$esp2 += $datos[$plan['id_plantel']]['esperado2'];
+								 					$te2+=$esp2;
+								 				}
+								 				else
+								 					$esp2=0;
+								 				if((isset($datos[$plan['id_plantel']]['esperado3'])) && ($datos[$plan['id_plantel']]['esperado3']!= 0))
+								 				{
+								 					$esp3 += $datos[$plan['id_plantel']]['esperado3'];
+								 					$te3+=$esp3;
+								 				}
+								 				else
+								 					$esp3=0;
+								 				if((isset($datos[$plan['id_plantel']]['asistente1'])) && ($datos[$plan['id_plantel']]['asistente1']!= 0))
+								 				{
+								 					$as1 += $datos[$plan['id_plantel']]['asistente1'];
+								 					$ta1+=$as1;
+								 				}
+								 				else
+								 					$as1=0;
+								 				if((isset($datos[$plan['id_plantel']]['asistente2'])) && ($datos[$plan['id_plantel']]['asistente2']!= 0))
+								 				{
+								 					$as2 += $datos[$plan['id_plantel']]['asistente2'];
+								 					$ta2+=$as2;
+								 				}
+								 				else
+								 					$as2=0;
+								 				if((isset($datos[$plan['id_plantel']]['asistente3'])) && ($datos[$plan['id_plantel']]['asistente3']!= 0))
+								 				{
+								 					$as3 += $datos[$plan['id_plantel']]['asistente3'];
+								 					$ta3+=$as3;
+								 				}
+								 				else
+								 					$as3=0;
 								 				if((isset($datos[$plan['id_plantel']]['validado1'])) && ($datos[$plan['id_plantel']]['validado1']!= 0))
 								 				{
 								 					$valor += $datos[$plan['id_plantel']]['validado1'];
-								 					
 								 					$t1+=$valor;
-								 					
 								 				}
 								 				else
 								 					$valor=0;
@@ -765,21 +911,22 @@ jQuery(document).ready(function(){
 								 				}
 								 				else $valor3=0;
 								 				
-								 				$total=$valor+$valor2+$valor3;
-								 				
-											echo'<td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td><td  style="background: #3F7788; font-weight:bold;">'.$total.'</td>';
+											echo'<td>'.$esp1.'</td><td>'.$esp2.'</td><td>'.$esp3.'</td><td>'.$as1.'</td><td>'.$as2.'</td><td>'.$as3.'</td><td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td>';
 											
 										}
 							 			$r++;
 							 		}
 							 	}
+							 	$t=$t1+$t2+$t3;
+							 	$te=$te1+$te2+$te3;
+							 	$ta=$ta1+$ta2+$ta3;
+							 	echo '<tr style="font-weight:bold;"><td  style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan=3>'.$te.'</td><td colspan=3>'.$ta.'</td><td colspan=3>'.$t.'</td></tr>';
 							 	
-							 	echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$t1.'</td><td>'.$t2.'</td><td>'.$t3.'</td><td style="border-right: 1px solid #ffffff;  border-bottom:1px solid #ffffff; ">&nbsp;</td></tr>';
 							 	
 							 		
 							 	
 							 	?>
-							 							
+							 	</table>						
    			     		<?php }
    			     		if(isset($id_tipo_reporte) && $id_tipo_reporte==5)
 						{
@@ -788,27 +935,36 @@ jQuery(document).ready(function(){
 						
 							<table width="100%" border="1" id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td colspan="5" align="center" >
+									<td colspan="10" align="center" >
 									INFORME GENERAL TRIMESTRAL: MUSEOS<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;" >
-									<th width="60%">
+									<th width="40%">
 									
 									</th>
+									<td width="20%" colspan="3">
+									ASISTENTES ESP.
+									</td>
+									<td width="20%" colspan="3">
+									ASISTENTES TOT.
+									</td>
 									<td width="20%" colspan="3" align="center" >
 									NO. DE VALIDACIONES
 									
 									</td>
-									<td width="10%" align="center" rowspan="2">
-									TOTAL
-									</td>
-									
+																		
 							 	</tr>
 							 	<tr bgcolor="#3F7788" align="center" >
 								    <td></td>
 								    <td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
 								    <td align="center">02</td>
 									<td align="center">03</td>
 									
@@ -827,7 +983,7 @@ jQuery(document).ready(function(){
 							 		$cdel='#67A6BA';
 							 		$delegacion = $row['delegacion'];
 							 	
-							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="5">'.$delegacion.'</td></td></tr>';
+							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="10">'.$delegacion.'</td></td></tr>';
 							 		foreach ($museos as $mus)
 							 		{
 							 			$color ='#A5D5E2';
@@ -836,7 +992,49 @@ jQuery(document).ready(function(){
 							 		
 							 			if ($mus['id_delegacion']==$row['id_delegacion']){
 							 				echo '<tr bgcolor="'.$color.'"><td align="left" style="padding-left:5px;">'.$mus['museo'].'</td>';
-								 			
+								 				if((isset($datos[$mus['id_museo']]['esperado1'])) && ($datos[$mus['id_museo']]['esperado1']!= 0))
+								 				{
+								 					$esp1 += $datos[$mus['id_museo']]['esperado1'];
+								 					$te1+=$esp1;
+								 				}
+								 				else
+								 					$esp1=0;
+								 				if((isset($datos[$mus['id_museo']]['esperado2'])) && ($datos[$mus['id_museo']]['esperado2']!= 0))
+								 				{
+								 					$esp2 += $datos[$mus['id_museo']]['esperado2'];
+								 					$te2+=$esp2;
+								 				}
+								 				else
+								 					$esp2=0;
+								 				if((isset($datos[$mus['id_museo']]['esperado3'])) && ($datos[$mus['id_museo']]['esperado3']!= 0))
+								 				{
+								 					$esp3 += $datos[$mus['id_museo']]['esperado3'];
+								 					$te3+=$esp3;
+								 				}
+								 				else
+								 					$esp3=0;
+								 				if((isset($datos[$mus['id_museo']]['asistente1'])) && ($datos[$mus['id_museo']]['asistente1']!= 0))
+								 				{
+								 					$as1 += $datos[$mus['id_museo']]['asistente1'];
+								 					$ta1+=$as1;
+								 				}
+								 				else
+								 					$as1=0;
+								 				if((isset($datos[$mus['id_museo']]['asistente2'])) && ($datos[$mus['id_museo']]['asistente2']!= 0))
+								 				{
+								 					$as2 += $datos[$mus['id_museo']]['asistente2'];
+								 					$ta2+=$as2;
+								 				}
+								 				else
+								 					$as2=0;
+								 				if((isset($datos[$mus['id_museo']]['asistente3'])) && ($datos[$mus['id_museo']]['asistente3']!= 0))
+								 				{
+								 					$as3 += $datos[$mus['id_museo']]['asistente3'];
+								 					$ta3+=$as3;
+								 				}
+								 				else
+								 					$as3=0;
+								 				
 								 				if((isset($datos[$mus['id_museo']]['validado1'])) && ($datos[$mus['id_museo']]['validado1']!= 0))
 								 				{
 								 					$valor += $datos[$mus['id_museo']]['validado1'];
@@ -861,14 +1059,17 @@ jQuery(document).ready(function(){
 								 				
 								 				$total=$valor+$valor2+$valor3;
 								 				
-											echo'<td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td><td  style="background: #3F7788; font-weight:bold;">'.$total.'</td>';
+											echo'<td>'.$esp1.'</td><td>'.$esp2.'</td><td>'.$esp3.'</td><td>'.$as1.'</td><td>'.$as2.'</td><td>'.$as3.'</td><td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td>';
 											
 										}
 							 			$r++;
 							 		}
 							 	}
+							 	$t=$t1+$t2+$t3;
+							 	$te=$te1+$te2+$te3;
+							 	$ta=$ta1+$ta2+$ta3;
+							 	echo '<tr style="font-weight:bold;"><td  style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan=3>'.$te.'</td><td colspan=3>'.$ta.'</td><td colspan=3>'.$t.'</td></tr>';
 							 	
-							 	echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$t1.'</td><td>'.$t2.'</td><td>'.$t3.'</td><td style="border-right: 1px solid #ffffff;  border-bottom:1px solid #ffffff; ">&nbsp;</td></tr>';
 							 	?>
 							 							
    			     		<?php }
@@ -879,27 +1080,36 @@ jQuery(document).ready(function(){
 						
 							<table width="100%" border="1"  id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td colspan="5" align="center" >
+									<td colspan="10" align="center" >
 									INFORME GENERAL TRIMESTRAL: ESCUELA ADULTOS MAYORES<br />
 									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
 									</td>
 								</tr>
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;" >
-									<th width="60%">
+									<th width="40%">
 									
 									</th>
+									<td width="20%" colspan="3">
+									ASISTENTES ESP.
+									</td>
+									<td width="20%" colspan="3">
+									ASISTENTES TOT.
+									</td>
 									<td width="20%" colspan="3" align="center" >
 									NO. DE VALIDACIONES
 									
-									</td>
-									<td width="10%" align="center" rowspan="2">
-									TOTAL
 									</td>
 									
 							 	</tr>
 							 	<tr bgcolor="#3F7788" align="center" >
 								    <td></td>
 								    <td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
 								    <td align="center">02</td>
 									<td align="center">03</td>
 									
@@ -918,7 +1128,7 @@ jQuery(document).ready(function(){
 							 		$cdel='#67A6BA';
 							 		$delegacion = $row['delegacion'];
 							 	
-							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="5">'.$delegacion.'</td></td></tr>';
+							 		echo '<tr bgcolor="'.$cdel.'" ><td align="left" style="padding-left:5px; font-weight:bold;" colspan="10">'.$delegacion.'</td></td></tr>';
 							 		foreach ($escuelas as $esc)
 							 		{
 							 			$color ='#A5D5E2';
@@ -927,12 +1137,52 @@ jQuery(document).ready(function(){
 							 		
 							 			if ($esc['id_delegacion']==$row['id_delegacion']){
 							 				echo '<tr bgcolor="'.$color.'"><td align="left" style="padding-left:5px;">'.$esc['escuela'].'</td>';
-								 			
+							 				if((isset($datos[$esc['id_escuela_adulto']]['esperado1'])) && ($datos[$esc['id_escuela_adulto']]['esperado1']!= 0))
+							 				{
+							 					$esp1 += $datos[$esc['id_escuela_adulto']]['esperado1'];
+							 					$te1+=$esp1;
+							 				}
+							 				else
+							 					$esp1=0;
+							 				if((isset($datos[$esc['id_escuela_adulto']]['esperado2'])) && ($datos[$esc['id_escuela_adulto']]['esperado2']!= 0))
+							 				{
+							 					$esp2 += $datos[$esc['id_escuela_adulto']]['esperado2'];
+							 					$te2+=$esp2;
+							 				}
+							 				else
+							 					$esp2=0;
+							 				if((isset($datos[$esc['id_escuela_adulto']]['esperado3'])) && ($datos[$esc['id_escuela_adulto']]['esperado3']!= 0))
+							 				{
+							 					$esp3 += $datos[$esc['id_escuela_adulto']]['esperado3'];
+							 					$te3+=$esp3;
+							 				}
+							 				else
+							 					$esp3=0;
+							 				if((isset($datos[$esc['id_escuela_adulto']]['asistente1'])) && ($datos[$esc['id_escuela_adulto']]['asistente1']!= 0))
+							 				{
+							 					$as1 += $datos[$esc['id_escuela_adulto']]['asistente1'];
+							 					$ta1+=$as1;
+							 				}
+							 				else
+							 					$as1=0;
+							 				if((isset($datos[$esc['id_escuela_adulto']]['asistente2'])) && ($datos[$esc['id_escuela_adulto']]['asistente2']!= 0))
+							 				{
+							 					$as2 += $datos[$esc['id_escuela_adulto']]['asistente2'];
+							 					$ta2+=$as2;
+							 				}
+							 				else
+							 					$as2=0;
+							 				if((isset($datos[$esc['id_escuela_adulto']]['asistente3'])) && ($datos[$esc['id_escuela_adulto']]['asistente3']!= 0))
+							 				{
+							 					$as3 += $datos[$esc['id_escuela_adulto']]['asistente3'];
+							 					$ta3+=$as3;
+							 				}
+							 				else
+							 					$as3=0;
 								 				if((isset($datos[$esc['id_escuela_adulto']]['validado1'])) && ($datos[$esc['id_escuela_adulto']]['validado1']!= 0))
 								 				{
 								 					$valor += $datos[$esc['id_escuela_adulto']]['validado1'];
 								 					$t1+=$valor;
-								 					
 								 				}
 								 				else
 								 					$valor=0;
@@ -953,18 +1203,190 @@ jQuery(document).ready(function(){
 								 				
 								 				$total=$valor+$valor2+$valor3;
 								 				
-											echo'<td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td><td  style="background: #3F7788; font-weight:bold;">'.$total.'</td>';
+											echo'<td>'.$esp1.'</td><td>'.$esp2.'</td><td>'.$esp3.'</td><td>'.$as1.'</td><td>'.$as2.'</td><td>'.$as3.'</td><td>'.$valor.'</td><td>'.$valor2.'</td><td>'.$valor3.'</td>';
 											
 										}
 							 			$r++;
 							 		}
 							 	}
-							 	
-							 	echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$t1.'</td><td>'.$t2.'</td><td>'.$t3.'</td><td style="border-right: 1px solid #ffffff;  border-bottom:1px solid #ffffff; ">&nbsp;</td></tr>';
+							 	$t=$t1+$t2+$t3;
+							 	$te=$te1+$te2+$te3;
+							 	$ta=$ta1+$ta2+$ta3;
+							 	echo '<tr style="font-weight:bold;"><td  style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td colspan=3>'.$te.'</td><td colspan=3>'.$ta.'</td><td colspan=3>'.$t.'</td></tr>';
 							 	
 							 	?>
 							 							
-   			     		<?php } ?>
+   			     <?php  }
+   			     		if(isset($id_tipo_reporte) && $id_tipo_reporte==7)
+						{
+							?>
+						
+							<table width="100%" border="1"  id="Exportar_a_Excel">
+								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
+									<td colspan="11" align="center" >
+									INFORME GENERAL TRIMESTRAL: TIPO ACTIVIDAD<br />
+									<?php echo getMesesTrimestreLetra($trimestre);?> DE <?php echo $anio;?>
+									</td>
+								</tr>
+								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:14px;" >
+									<td width="20%" rowspan="2" >EJE TEMÁTICO</td>
+									<td width="20%" rowspan="2">TIPO ACTIVIDAD</td>
+									<td width="20%" align="center" colspan="3">ACTIVIDADES</td>
+									<td width="20%" align="center" colspan="3">#ASISTETES E.</td>
+									<td width="20%" align="center" colspan="3">#ASISTETES R.</td>
+									
+							 	</tr>
+							 	<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:12px;">
+							 		
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+									<td align="center">01</td>
+								    <td align="center">02</td>
+									<td align="center">03</td>
+							 	</tr>
+							 	
+						<?php 
+							$r=0;
+							$mes1=0;
+							$mes2=0;
+							$mes3=0;
+							foreach ($eje as $row){
+								$color ='#A5D5E2';
+							 			if($r%2==0)
+							 				$color ='#D2EAF1';
+							 	$r++;
+								$eje = $row['eje_tematico'];
+									
+								echo '<tr bgcolor="'.$color.'" ><td align="left" style="padding-left:5px; font-weight:bold; border-bottom: thin solid;" >'.$eje.'</td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									
+									if ($row['id_eje']==$act['id_eje']){
+											
+										echo '<li>'.$act['tipo_actividad'].'</li>';
+									}
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Actmes1']['id_tipo_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Actmes1']['val'] != 0 ){
+										$mes1=$cuenta[$act['id_actividad']]['Actmes1']['val'];
+										echo '<li>'.$mes1.'</li>';	
+									}
+									else
+										echo '<li>0</li>';
+							
+								
+								}	 
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Actmes2']['id_tipo_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Actmes2']['val'] != 0 ){
+										$mes2=$cuenta[$act['id_actividad']]['Actmes2']['val'];
+										echo '<li>'.$mes2.'</li>';
+									}
+									else
+										echo '<li>0</li>';
+								  $t2+=$mes2;
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Actmes3']['id_tipo_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Actmes3']['val'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Actmes3']['val'].'</li>';
+										
+									else
+										echo '<li>0</li>';
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Asismes1']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Asismes1']['esperados'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes1']['esperados'].'</li>';
+								
+									else
+										
+										echo '<li>0</li>';
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if($cuenta[$act['id_actividad']]['Asismes2']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Asismes2']['esperados'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes2']['esperados'].'</li>';
+									else
+										echo '<li>0</li>';
+									
+								}
+								
+								$r++;
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Asismes3']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Asismes3']['esperados'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes3']['esperados'].'</li>';
+								
+									else
+										echo '<li>0</li>';
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Asismes1']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Asismes1']['no_asistentes'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes1']['no_asistentes'].'</li>';
+								
+									else
+										echo '<li>0</li>';
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Asismes2']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Asismes2']['no_asistentes'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes2']['no_asistentes'].'</li>';
+								
+									else
+										echo '<li>0</li>';
+								
+								}
+								
+								echo '</ul></td>';
+								echo '<td align="left"  style="padding-left:0px;"><ul style="list-style-type:none">';
+								foreach ($actividad[$row['id_eje']] as $act){
+									if ($cuenta[$act['id_actividad']]['Asismes3']['id_actividad'] == $act['id_actividad'] && $cuenta[$act['id_actividad']]['Actmes3']['no_asistentes'] != 0 )
+										echo '<li>'.$cuenta[$act['id_actividad']]['Asismes3']['no_asistentes'].'</li>';
+								
+									else
+										echo '<li>0</li>';
+								
+								}
+								$r++;
+								echo '</ul></td></tr>';
+								
+							}
+							echo '<tr style="font-weight:bold;"><td colspan=2 style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;"></td><td colspan=3>'.$sumaAct['suma'].'</td><td colspan=3>'.$sumaEsp['suma'].'</td><td colspan=3>'.$sumaReal['suma'].'</td></tr>';
+						?>
+							 	
+							 	
+							 		
+							</table>
+					<?php }?>	
+					
    			     	</div>
    			     </div>
    			 </div>

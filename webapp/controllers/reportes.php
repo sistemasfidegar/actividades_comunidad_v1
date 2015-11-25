@@ -440,7 +440,9 @@ class reportes extends CI_Controller {
     
     public function generaTrimestral()
     {    	 
-    	$data['id_tipo_reporte'] = (int)$this->input->post('id_tipo_reporte');
+      
+     
+     	$data['id_tipo_reporte'] = (int)$this->input->post('id_tipo_reporte');
     	$data['anio'] = (int)$this->input->post('anio');
     	$data['trimestre'] = $this->input->post('trimestre');
     	$meses = getMesesTrimestre($data['trimestre']);
@@ -457,8 +459,10 @@ class reportes extends CI_Controller {
     	if($data['trimestre']==4){
     		$i=10; $j=11; $k=12;
     	} 
-    	 
+    		
+    	
     	//TOTALES
+    	
     	if($data['id_tipo_reporte']==1)
     	{
     		$auxdel = $this->m_reportes->getDelegaciones();
@@ -481,6 +485,14 @@ class reportes extends CI_Controller {
     			$valores[$del['id_delegacion']]['promotores2'] = 0;
     			$valores[$del['id_delegacion']]['promotores3'] = 0;
     			
+    			$valores[$del['id_delegacion']]['Asistentes1'] = 0;
+    			$valores[$del['id_delegacion']]['Asistentes2'] = 0;
+    			$valores[$del['id_delegacion']]['Asistentes3'] = 0;
+    			
+    			$valores[$del['id_delegacion']]['esperados1'] =0;
+    			$valores[$del['id_delegacion']]['esperados2'] =0;
+    			$valores[$del['id_delegacion']]['esperados3'] =0;
+    			
 	    		$aux = $this->m_reportes->getTotalActividadesxTrimestre($del['id_delegacion'],$i, $data['anio']);
 	    		if ($aux!= null)
 	    			$valores[$del['id_delegacion']]['actividad1'] = $aux[0]['total'];
@@ -498,12 +510,17 @@ class reportes extends CI_Controller {
 	    		{
 	    			if($r[0]['validados']!="")
 	    				$valores[$del['id_delegacion']]['validaciones1'] = $r[0]['validados'];
-	    		
+	    			
+	    			if($r[0]['asist']!="")
+	    				$valores[$del['id_delegacion']]['Asistentes1'] = $r[0]['asist'];
+	    			
 	    			if($r[0]['coord']!="")
 	    				$valores[$del['id_delegacion']]['coordinadores1'] = $r[0]['coord'];
 	    		
 	    			if($r[0]['prom']!="")
 	    				$valores[$del['id_delegacion']]['promotores1'] = $r[0]['prom'];
+	    			if($r[0]['esperados']!="")
+	    				$valores[$del['id_delegacion']]['esperados1'] = $r[0]['esperados'];
 	    		}
 	    		$r = $this->m_reportes->getTotalesxTrimestre($del['id_delegacion'], $j, $data['anio']);
 	    		
@@ -512,11 +529,16 @@ class reportes extends CI_Controller {
 	    			if($r[0]['validados']!="")
 	    				$valores[$del['id_delegacion']]['validaciones2'] = $r[0]['validados'];
 	    		
+	    			if($r[0]['asist']!="")
+	    				$valores[$del['id_delegacion']]['Asistentes2'] = $r[0]['asist'];
+	    			
 	    			if($r[0]['coord']!="")
 	    				$valores[$del['id_delegacion']]['coordinadores2'] = $r[0]['coord'];
 	    		
 	    			if($r[0]['prom']!="")
 	    				$valores[$del['id_delegacion']]['promotores2'] = $r[0]['prom'];
+	    			if($r[0]['esperados']!="")
+	    				$valores[$del['id_delegacion']]['esperados2'] = $r[0]['esperados'];
 	    		}
 	    		$r = $this->m_reportes->getTotalesxTrimestre($del['id_delegacion'], $k, $data['anio']);
 	    		
@@ -524,12 +546,17 @@ class reportes extends CI_Controller {
 	    		{
 	    			if($r[0]['validados']!="")
 	    				$valores[$del['id_delegacion']]['validaciones3'] = $r[0]['validados'];
-	    		
+	    			
+	    			if($r[0]['asist']!="")
+	    				$valores[$del['id_delegacion']]['Asistentes3'] = $r[0]['asist'];
+	    			
 	    			if($r[0]['coord']!="")
 	    				$valores[$del['id_delegacion']]['coordinadores3'] = $r[0]['coord'];
 	    		
 	    			if($r[0]['prom']!="")
 	    				$valores[$del['id_delegacion']]['promotores3'] = $r[0]['prom'];
+	    			if($r[0]['esperados']!="")
+	    				$valores[$del['id_delegacion']]['esperados2'] = $r[0]['esperados'];
 	    		}
     		
     		}
@@ -654,24 +681,44 @@ class reportes extends CI_Controller {
     			$valores[$row['id_espacio_publico']]['validado2'] = 0;
     			$valores[$row['id_espacio_publico']]['validado3'] = 0;
     			
+    			$valores[$row['id_espacio_publico']]['asistente1'] = 0;
+    			$valores[$row['id_espacio_publico']]['asistente2'] = 0;
+    			$valores[$row['id_espacio_publico']]['asistente3'] = 0;
     			
+    			$valores[$row['id_espacio_publico']]['esperado1'] = 0;
+    			$valores[$row['id_espacio_publico']]['esperado2'] = 0;
+    			$valores[$row['id_espacio_publico']]['esperado3'] = 0;
     			
     			$r = $this->m_reportes->getEspaciosxTrimestre($row['id_espacio_publico'],$i, $data['anio']);
     			if($r!=null)
     			{
-    				$valores[$row['id_espacio_publico']]['validado1'] = $r[0]['val'];
+    				
+    					$valores[$row['id_espacio_publico']]['validado1'] = $r[0]['val'];
+    				
+    					$valores[$row['id_espacio_publico']]['esperado1'] = $r[0]['esperados'];
+    					$valores[$row['id_espacio_publico']]['asistente1'] = $r[0]['asis'];
     			}
     			
     			$r = $this->m_reportes->getEspaciosxTrimestre($row['id_espacio_publico'],$j, $data['anio']);
     			if($r!= null)
     			{
-    				$valores[$row['id_espacio_publico']]['validado2'] = $r[0]['val'];
+    				
+    					$valores[$row['id_espacio_publico']]['validado2'] = $r[0]['val'];
+    				
+    					$valores[$row['id_espacio_publico']]['esperado2'] = $r[0]['esperados'];
+    				
+    					$valores[$row['id_espacio_publico']]['asistente2'] = $r[0]['asis'];
     			}
     			
     			$r = $this->m_reportes->getEspaciosxTrimestre($row['id_espacio_publico'],$k, $data['anio']);
     			if($r!=null)
     			{
-    				$valores[$row['id_espacio_publico']]['validado3'] = $r[0]['val'];
+    				
+	    				$valores[$row['id_espacio_publico']]['validado3'] = $r[0]['val'];
+    				
+	    				$valores[$row['id_espacio_publico']]['esperado3'] = $r[0]['esperados'];
+    				
+	    				$valores[$row['id_espacio_publico']]['asistente3'] = $r[0]['asis'];
     			}
     			
     		}
@@ -691,24 +738,36 @@ class reportes extends CI_Controller {
     			$valores[$row['id_plantel']]['validado2'] = 0;
     			$valores[$row['id_plantel']]['validado3'] = 0;
     			 
-    			 
+    			$valores[$row['id_plantel']]['esperado1'] = 0;
+    			$valores[$row['id_plantel']]['esperado2'] = 0;
+    			$valores[$row['id_plantel']]['esperado3'] = 0;
+    			
+    			$valores[$row['id_plantel']]['asistente1'] = 0;
+    			$valores[$row['id_plantel']]['asistente2'] = 0;
+    			$valores[$row['id_plantel']]['asistente3'] = 0;
     			 
     			$r = $this->m_reportes->getPlantelxTrimestre($row['id_plantel'],$i, $data['anio']);
     			if($r!=null)
     			{
     				$valores[$row['id_plantel']]['validado1'] = $r[0]['val'];
+    				$valores[$row['id_plantel']]['esperado1'] = $r[0]['esperados'];
+    				$valores[$row['id_plantel']]['asistente1'] = $r[0]['asis'];
     			}
     			 
     			$r = $this->m_reportes->getPlantelxTrimestre($row['id_plantel'],$j, $data['anio']);
     			if($r!= null)
     			{
     				$valores[$row['id_plantel']]['validado2'] = $r[0]['val'];
+    				$valores[$row['id_plantel']]['esperado2'] = $r[0]['esperados'];
+    				$valores[$row['id_plantel']]['asistente2'] = $r[0]['asis'];
     			}
     			 
     			$r = $this->m_reportes->getPlantelxTrimestre($row['id_plantel'],$k, $data['anio']);
     			if($r!=null)
     			{
     				$valores[$row['id_plantel']]['validado3'] = $r[0]['val'];
+    				$valores[$row['id_plantel']]['esperado3'] = $r[0]['esperados'];
+    				$valores[$row['id_plantel']]['asistente3'] = $r[0]['asis'];
     			}
     			 
     		}
@@ -727,25 +786,38 @@ class reportes extends CI_Controller {
     			$valores[$row['id_museo']]['validado1'] = 0;
     			$valores[$row['id_museo']]['validado2'] = 0;
     			$valores[$row['id_museo']]['validado3'] = 0;
+
+    			$valores[$row['id_museo']]['esperado1'] = 0;
+    			$valores[$row['id_museo']]['esperado2'] = 0;
+    			$valores[$row['id_museo']]['esperado3'] = 0;
     			 
+    			$valores[$row['id_museo']]['asistente1'] = 0;
+    			$valores[$row['id_museo']]['asistente2'] = 0;
+    			$valores[$row['id_museo']]['asistente3'] = 0;
     			 
     			 
     			$r = $this->m_reportes->getMuseoxTrimestre($row['id_museo'],$i, $data['anio']);
     			if($r!=null)
     			{
     				$valores[$row['id_museo']]['validado1'] = $r[0]['val'];
+    				$valores[$row['id_museo']]['esperado1'] = $r[0]['esperados'];
+    				$valores[$row['id_museo']]['asistente1'] = $r[0]['asis'];
     			}
     			 
     			$r = $this->m_reportes->getMuseoxTrimestre($row['id_museo'],$j, $data['anio']);
     			if($r!= null)
     			{
     				$valores[$row['id_museo']]['validado2'] = $r[0]['val'];
+    				$valores[$row['id_museo']]['esperado2'] = $r[0]['esperados'];
+    				$valores[$row['id_museo']]['asistente2'] = $r[0]['asis'];
     			}
     			 
     			$r = $this->m_reportes->getMuseoxTrimestre($row['id_museo'],$k, $data['anio']);
     			if($r!=null)
     			{
     				$valores[$row['id_museo']]['validado3'] = $r[0]['val'];
+    				$valores[$row['id_museo']]['esperado3'] = $r[0]['esperados'];
+    				$valores[$row['id_museo']]['asistente3'] = $r[0]['asis'];
     			}
     			 
     		}
@@ -763,6 +835,14 @@ class reportes extends CI_Controller {
     			$valores[$row['id_escuela_adulto']]['validado1'] = 0;
     			$valores[$row['id_escuela_adulto']]['validado2'] = 0;
     			$valores[$row['id_escuela_adulto']]['validado3'] = 0;
+    			
+    			$valores[$row['id_escuela_adulto']]['esperado1'] = 0;
+    			$valores[$row['id_escuela_adulto']]['esperado2'] = 0;
+    			$valores[$row['id_escuela_adulto']]['esperado3'] = 0;
+    			 
+    			$valores[$row['id_escuela_adulto']]['asistente1'] = 0;
+    			$valores[$row['id_escuela_adulto']]['asistente2'] = 0;
+    			$valores[$row['id_escuela_adulto']]['asistente3'] = 0;
     	
     	
     	
@@ -770,26 +850,88 @@ class reportes extends CI_Controller {
     			if($r!=null)
     			{
     				$valores[$row['id_escuela_adulto']]['validado1'] = $r[0]['val'];
+    				$valores[$row['id_escuela_adulto']]['esperado1'] = $r[0]['esperados'];
+    				$valores[$row['id_escuela_adulto']]['asistente1'] = $r[0]['asis'];
+    				
     			}
     	
     			$r = $this->m_reportes->getEscuelaxTrimestre($row['id_escuela_adulto'],$j, $data['anio']);
     			if($r!= null)
     			{
     				$valores[$row['id_escuela_adulto']]['validado2'] = $r[0]['val'];
+    				$valores[$row['id_escuela_adulto']]['esperado2'] = $r[0]['esperados'];
+    				$valores[$row['id_escuela_adulto']]['asistente2'] = $r[0]['asis'];
     			}
     	
     			$r = $this->m_reportes->getEscuelaxTrimestre($row['id_escuela_adulto'],$k, $data['anio']);
     			if($r!=null)
     			{
     				$valores[$row['id_escuela_adulto']]['validado3'] = $r[0]['val'];
+    				$valores[$row['id_escuela_adulto']]['esperado3'] = $r[0]['esperados'];
+    				$valores[$row['id_escuela_adulto']]['asistente3'] = $r[0]['asis'];
     			}
     	
     		}
     		$data['datos'] = $valores;
     	}
     	
-    
-    
+    	if($data['id_tipo_reporte']==7)
+    	{
+    		$auxeje= $this->m_catalogos->getEjeTematico();
+    		$data['eje']=$auxeje;
+    		$auxact=$this->m_catalogos->getActividad();
+    		$actividad = array();
+    		foreach ($auxeje as $row){
+    				
+    			$valores[$row['id_eje']]=$this->m_reportes->getLineaxTrimestre($row['id_eje'],$meses,$data['anio']);
+    			 
+    		}
+    		foreach ($auxact as $row){
+    			$actividad[$row['id_tipo_actividad']]['Actmes1']=0;
+    			$actividad[$row['id_tipo_actividad']]['Actmes2']=0;
+    			$actividad[$row['id_tipo_actividad']]['Actmes3']=0;
+    			 
+    			$aux=$this->m_reportes->getActividadxTrimestre($row['id_tipo_actividad'],$i,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Actmes1']=$aux[0];
+    			 
+    			$aux=$this->m_reportes->getActividadxTrimestre($row['id_tipo_actividad'],$j,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Actmes2']=$aux[0];
+    			 
+    			$aux=$this->m_reportes->getActividadxTrimestre($row['id_tipo_actividad'],$k,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Actmes3']=$aux[0];
+    	
+    		}
+    		foreach ($auxact as $row){
+    			$actividad[$row['id_tipo_actividad']]['Asismes1']=0;
+    			$actividad[$row['id_tipo_actividad']]['Asismes2']=0;
+    			$actividad[$row['id_tipo_actividad']]['Asismes3']=0;
+    			 
+    			 
+    			$aux=$this->m_reportes->getAsistentesxTrimestre($row['id_tipo_actividad'],$i,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Asismes1']=$aux[0];
+    			$aux=$this->m_reportes->getAsistentesxTrimestre($row['id_tipo_actividad'],$j,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Asismes2']=$aux[0];
+    			$aux=$this->m_reportes->getAsistentesxTrimestre($row['id_tipo_actividad'],$k,$data['anio']);
+    			if ($aux != null)
+    				$actividad[$row['id_tipo_actividad']]['Asismes3']=$aux[0];
+    		}
+    		$aux=$this->m_reportes->getNoActividades($meses,$data['anio']);
+    		$data['sumaAct']=$aux[0];
+    		$aux=$this->m_reportes->getNoEsperados($meses,$data['anio']);
+    		$data['sumaEsp']=$aux[0];
+    		$aux=$this->m_reportes->getNoReales($meses,$data['anio']);
+    		$data['sumaReal']=$aux[0];
+    		$data['cuenta']=$actividad;
+    		$data['actividad'] =$valores;
+    		 
+    	}
+    	
+   
     
     	$datos['content'] = $this->load->view('reportes/v_trimestral.php', $data, true);
     	$this->load->view('director/v_template.php', $datos, false);

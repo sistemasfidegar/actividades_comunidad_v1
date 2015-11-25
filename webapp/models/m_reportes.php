@@ -8,10 +8,12 @@ class M_reportes extends MY_Model {
     
     function getTotalesxTrimestre($id_delegacion, $meses, $anio)
     {
-    	$this->sql = "select sum(no_asistentes) asist, sum(no_coordinadores) coord, sum(no_promotores) prom, sum(no_validado) validados
-				    	from resultado
-				    	where activo is TRUE
-				    	and id_evento in (
+    	$this->sql = "select sum(r.no_asistentes) asist, sum(r.no_coordinadores) coord, sum(r.no_promotores) prom, 
+    						sum(r.no_validado) validados, sum(e.no_asistentes) as esperados
+				    	from resultado r
+				    	inner join evento e on r.id_evento=e.id_evento
+				    	where r.activo is TRUE
+				    	and r.id_evento in (
 					    	select id_evento
 					    	from evento
 					    	where id_delegacion = $id_delegacion
@@ -297,7 +299,7 @@ class M_reportes extends MY_Model {
     	return $results->result_array();
     }
     function getEspaciosxTrimestre($id_espacio, $inicio, $anio){
-    	$this->sql="select sum(r.no_validado) as val, e.id_delegacion
+    	$this->sql="select sum(r.no_validado) as val, sum(r.no_asistentes) as asis, sum(e.no_asistentes) as esperados, e.id_delegacion
 						from evento e
 						inner join resultado r on r.id_evento=e.id_evento
 						inner join cat_espacio_publico ep on ep.id_espacio_publico=e.id_lugar
@@ -310,7 +312,7 @@ class M_reportes extends MY_Model {
     	return $results->result_array();
     }
     function getPlantelxTrimestre($id_plantel, $inicio, $anio){
-    	$this->sql="select sum(r.no_validado) as val, e.id_delegacion
+    	$this->sql="select sum(r.no_validado) as val,sum(r.no_asistentes) as asis, sum(e.no_asistentes) as esperados, e.id_delegacion
 						from evento e
 						inner join resultado r on r.id_evento=e.id_evento
 						inner join cat_plantel cp on cp.id_plantel=e.id_lugar
@@ -323,7 +325,7 @@ class M_reportes extends MY_Model {
     	return $results->result_array();
     }
     function getMuseoxTrimestre($id_museo, $inicio,$anio){
-    	$this->sql="select sum(r.no_validado) as val, e.id_delegacion
+    	$this->sql="select sum(r.no_validado) as val,sum(r.no_asistentes) as asis, sum(e.no_asistentes) as esperados, e.id_delegacion
 						from evento e
 						inner join resultado r on r.id_evento=e.id_evento
 						inner join cat_museos m on m.id_museo=e.id_lugar
@@ -339,7 +341,7 @@ class M_reportes extends MY_Model {
     	
     }
     function  getEscuelaxTrimestre($id_escuela, $inicio,$anio){
-    	$this->sql="select sum(r.no_validado) as val, e.id_delegacion
+    	$this->sql="select sum(r.no_validado) as val,sum(r.no_asistentes) as asis, sum(e.no_asistentes) as esperados, e.id_delegacion
     	from evento e
     	inner join resultado r on r.id_evento=e.id_evento
     	inner join cat_escuelasadultosm ce on ce.id_escuela_adulto=e.id_lugar
@@ -352,5 +354,72 @@ class M_reportes extends MY_Model {
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
+    function getLineaxTrimestre($id_eje,$inicio,$anio){
+    	$this->sql="select DISTINCT(ta.tipo_actividad), e.id_actividad, e.id_eje 
+					from evento e
+					INNER JOIN tipo_actividad ta on ta.id_tipo_actividad=e.id_actividad
+					where e.id_eje=$id_eje
+					and TO_CHAR(FECHA_INICIO,'MM') IN ($inicio)
+    				and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio'
+    				order by e.id_eje, e.id_actividad;";
+    				
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function getActividadxTrimestre($id_actividad,$inicio,$anio){
+    	$this->sql="SELECT count(*) as val, e.id_eje, ta.id_tipo_actividad
+					FROM evento e 
+					INNER JOIN tipo_actividad ta on ta.id_tipo_actividad=e.id_actividad
+					
+					where e.id_actividad = $id_actividad
+					
+					and TO_CHAR(FECHA_INICIO,'MM') = '$inicio'
+					and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio'
+    				
+    				group by e.id_eje, ta.id_tipo_actividad;
+    				";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function getAsistentesxTrimestre($id_actividad,$inicio,$anio){
+    	$this->sql="select sum(DISTINCT(e.no_asistentes)) as esperados, sum(DISTINCT(r.no_asistentes)) as no_asistentes, e.id_actividad, e.id_eje
+    			 	from evento e
+    			 	inner join resultado r on r.id_evento=e.id_evento
+    				where e.id_actividad = $id_actividad
+					
+					and TO_CHAR(FECHA_INICIO,'MM') = '$inicio'
+					and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio'
+    				GROUP BY e.id_actividad, e.id_eje;";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function getNoEsperados($inicio, $anio){
+    	$this->sql="select SUM(DISTINCT(no_asistentes)) as suma
+    			 	from evento 
+    				where 
+					TO_CHAR(FECHA_INICIO,'MM') in ($inicio)
+					AND TO_CHAR(FECHA_INICIO,'YYYY') = '$anio';";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function getNoReales($inicio, $anio){
+    	$this->sql="select SUM(DISTINCT(r.no_asistentes)) as suma
+    			 	from evento e
+					inner join resultado r on r.id_evento=e.id_evento
+    				where 
+					TO_CHAR(FECHA_INICIO,'MM') in ($inicio)
+					AND TO_CHAR(FECHA_INICIO,'YYYY') = '$anio';";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    	
+    }
+    function getNoActividades($inicio, $anio){
+    	$this->sql="select count(*) as suma from evento 
+					where TO_CHAR(FECHA_INICIO,'MM') in ($inicio)
+					and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio';";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    
 }   
 ?>
