@@ -118,13 +118,13 @@ $().ready(function () {
 	
 	$("#guardar").click(function ()
 			{ 
-				 if($('#nuevoMuseo').valid())
+				 if($('#nuevActividad').valid())
 						     {
 								 $.blockUI({message: 'Procesando por favor espere...'});
 					             $.ajax({
 					                 type: 'POST',
-					                 url: $('#nuevoMuseo').attr("action"),
-					                 data: $('#nuevoMuseo').serialize(),
+					                 url: $('#nuevActividad').attr("action"),
+					                 data: $('#nuevActividad').serialize(),
 					                 success: function (data) {
 
 					                     $.unblockUI();
@@ -143,7 +143,7 @@ $().ready(function () {
 					                          	},
 					                          	function(isConfirm){
 					                          	  if (isConfirm) {
-					                          		irA('index.php/director/cat_museo');
+					                          		irA('index.php/director/tipo_actividad');
 					                          	  } 
 					                          	});
 					                     }
@@ -162,7 +162,7 @@ $().ready(function () {
 					                         	},
 					                         	function(isConfirm){
 					                         	  if (isConfirm) {
-					                         		 irA('index.php/director/cat_museo');
+					                         		 irA('index.php/director/tipo_actividad');
 					                         	  } 
 					                         	});
 					                     }
@@ -176,7 +176,6 @@ $().ready(function () {
 function irA(uri) {
     window.location.href = '<?php echo base_url(); ?>' + uri;
 }
-
 </script>
 <div class="box">     
         <div class="box-body table-responsive">
@@ -188,47 +187,24 @@ function irA(uri) {
    
 	
 			<div class="" style="width:90%">
-			    <form action="index.php/director/updateCatalogo/" name="nuevoMuseo" method="post" id="nuevoMuseo">
+			    <form action="index.php/director/updateCatalogo/" name="nuevActividad" method="post" id="nuevActividad">
 			        <table id="form_coo" border="0">
 			            <tr>
-			                <td colspan="1" style="text-align:right;">Museo:</td>
+			                <td colspan="1" style="text-align:right;">Actividad</td>
 			                <td colspan="2" style="text-align:left;">                   
-			                    <input id="museo" name="museo" class="textbox_insert" type="text" style="width: 97%;" value="<?php echo $busca['museo'];?>"/></td>
-							 	<input id="id_museo" name="id_museo" class="textbox_insert" type="hidden" style="width: 97%;" value="<?php echo $busca['id_museo'];?>"/></td>
-							 	<input id="update" name="update" type="hidden" style="width: 97%;" value="museo"/></td>
+			                    <input id="tipo_actividad" name="tipo_actividad" class="textbox_insert" type="text" style="width: 97%;" value="<?php echo $actividad['tipo_actividad'];?>"/></td>
+							 	<input id="id_tipo_actividad" name="id_tipo_actividad" class="textbox_insert" type="hidden" style="width: 97%;" value="<?php echo $actividad['id_tipo_actividad'];?>"/></td>
+							 	<input id="update" name="update" type="hidden" style="width: 97%;" value="tipo_actividad"/></td>
 		            		</td>
 			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
 			            </tr>
-			           <tr>
-			                <td colspan="1" style="text-align:right;">Direccion:</td>
-			                <td colspan="2" style="text-align:left;">                   
-			                    <input id="direccion" name="direccion" class="textbox_insert" type="text" style="width: 97%;" value="<?php echo $busca['direccion'];?>"/></td>
-							</td>
-			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
-			            </tr>
-			           <tr>
-			                <td colspan="1" style="text-align:right;">Delegación:</td>
-			                <td colspan="2" style="text-align:left;">                   
-			                    <select name="delegacion" id="delegacion" class="form-control"  size="6">			            		
-							            <?php foreach ($delegaciones as $value){
-							            	$selected="";
-							            	if(in_array($value['id_delegacion'],$busca))
-							            		$selected="selected";
-							            	
-							            	?>
-							            
-						            	<option value="<?php echo $value['id_delegacion'];?>" <?php echo $selected;?> ><?php echo $value['delegacion']; ?></option>				                  
-						            <?php }?>				            
-				            	</select>
-							</td>
-			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
-			            </tr>
+			           
 			            <tr><td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 			           
 			            <tr>    
 			            	<td colspan="4" style="text-align:right; "> 
 			            	  <button id="guardar" name="guardar" type="button" class="btn btn-small btn-custom">Guardar</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                       
-			                  <button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/cat_museo')">Cancelar</button>
+			                  <button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/tipo_actividad')">Cancelar</button>
 			                                                                                                    
 			                </td>  
 			               <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

@@ -282,6 +282,29 @@ function insertCoordinacion($data){
 		 
 		 
 	}
+	function get_tipo_actividad(){
+		$this->sql="select * from cat_tipo_actividad  where activo is true;";
+		$results = $this->db->query($this->sql);
+		return $results->result_array();
+	}
+	function insertActividad($data){
+		$this->sql="insert into cat_tipo_actividad (id_tipo_actividad,tipo_actividad, activo) values (default,:actividad,'t');";
+		$this->bindParameters($data);
+		$results = $this->db->query($this->sql, array(1));
+		return 1;
+	}
+	function getUnActividad($id){
+		$this->sql="select * from cat_tipo_actividad where id_tipo_actividad=$id;";
+		$results = $this->db->query($this->sql);
+		return $results->result_array();
+		
+	}
+	function updateActividad($data){
+		$this->sql="update cat_tipo_actividad set tipo_actividad=:actividad where id_tipo_actividad=:id_actividad;";
+		$this->bindParameters($data);
+		$results = $this->db->query($this->sql, array(1));
+		return 1;
+	}
 }
 
 ?>

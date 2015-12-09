@@ -173,10 +173,11 @@ $().ready(function () {
 					     });
 
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
+	
 					});
+function irA(uri) {
+    window.location.href = '<?php echo base_url(); ?>' + uri;
+}
 
 </script>
 <div class="box">     

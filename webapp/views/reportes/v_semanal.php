@@ -180,7 +180,7 @@ jQuery(document).ready(function(){
 								        <option value="3">Por espacio público</option>
 								        <option value="4">Por planteles</option>
 								        <option value="5">Por museos</option>
-								        <option value="6">Por Escuela de Adultos Mayores</option>
+								    <!--<option value="6">Por Escuela de Adultos Mayores</option> -->
 							            				            
 					            	</select>
 					            </div>
@@ -302,13 +302,13 @@ jQuery(document).ready(function(){
 						?>
 							<table width="100%" border="1" id="Exportar_a_Excel">
 								<tr height="70px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td colspan="8" align="center">
+									<td colspan="9" align="center">
 										INFORME GENERAL SEMANAL: EJES TEMATICOS<br />
 										DEL  LUNES <?php echo $fecha_inicio;?>  AL  DOMINGO <?php echo $fecha_fin;?>
 									</td>
 								</tr>
 								<tr height="40px" bgcolor="#3F7788" style="font-weight:bold; font-size:18px;">
-									<td width="25%">
+									<td width="20%">
 									
 									</td>
 									
@@ -332,6 +332,9 @@ jQuery(document).ready(function(){
 									</td>
 									<td width="10%">
 									SALUD
+									</td>
+									<td width="5%">
+									TOTAL
 									</td>
 								</tr>
 								<?php 
@@ -413,14 +416,15 @@ jQuery(document).ready(function(){
 								}
 								else
 									$salud=0;
-								echo '<td>'.$arte.'</td><td>'.$ciencia.'</td><td>'.$deporte.'</td><td>'.$economia.'</td><td>'.$ambiente.'</td><td>'.$participacion.'</td><td>'.$salud.'</td></tr>';	
+								$tdel=$arte+$ciencia+$deporte+$economia+$ambiente+$participacion+$salud;
+								echo '<td>'.$arte.'</td><td>'.$ciencia.'</td><td>'.$deporte.'</td><td>'.$economia.'</td><td>'.$ambiente.'</td><td>'.$participacion.'</td><td>'.$salud.'</td><td>'.$tdel.'</td></tr>';	
 								
 								$r++;
 								
-								
+								$tt=$tdel+$tarte+$tciencia+$tdeporte+$teconomia+$tambiente+$tparticipacion+$tsalud;
 							}
 							
-							echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$tarte.'</td><td>'.$tciencia.'</td><td>'.$tdeporte.'</td><td>'.$teconomia.'</td><td>'.$tambiente.'</td><td>'.$tparticipacion.'</td><td>'.$tsalud.'</td></tr>';
+							echo '<tr style="font-weight:bold;"><td style="border-left: 1px solid #ffffff; border-bottom:1px solid #ffffff;">&nbsp;</td><td>'.$tarte.'</td><td>'.$tciencia.'</td><td>'.$tdeporte.'</td><td>'.$teconomia.'</td><td>'.$tambiente.'</td><td>'.$tparticipacion.'</td><td>'.$tsalud.'</td><td>'.$tt.'</td></tr>';
 								
 						}
 						if(isset($id_tipo_reporte) && $id_tipo_reporte==4)

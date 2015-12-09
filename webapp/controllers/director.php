@@ -547,7 +547,19 @@ class director extends CI_Controller {
     	$datos['content'] = $this->load->view('director/catalogo_museo.php', $data, true);
     	$this->load->view('director/v_template.php', $datos, false);
     }
-	
+    public function tipo_actividad(){
+    
+    	$data['tipo_actividad']=$this->m_director->get_tipo_actividad();
+    	
+    	$datos['content'] = $this->load->view('director/catalogo_tipo_actividad_lista.php', $data, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    }
+    function buscaActividad($id_actividad){
+    	$aux=$this->m_director->getUnActividad($id_actividad);
+    	$data['actividad']=$aux[0];
+    	$datos['content'] = $this->load->view('director/catalogo_tipo_actividad.php', $data, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    }
     public function guardaCatalogo(){
     
     	$datos['tipo']=$this->input->post('tipo');
@@ -585,6 +597,11 @@ class director extends CI_Controller {
     		$cat['direccion']=$this->input->post('direccion');
     		$cat['delegacion']=(int)$this->input->post('delegacion');
     		$res=$this->m_director->insertMuseo($cat);
+    	}
+    	elseif ($datos['tipo']=='actividad'){
+    		$cat['actividad']=$this->input->post('actividad');
+    		$res=$this->m_director->insertActividad($cat);
+    		
     	}
     
     
@@ -643,6 +660,12 @@ class director extends CI_Controller {
     		$cat['direccion']=$this->input->post('direccion');
     		$cat['id_museo']=(int)$this->input->post('id_museo');
     		$res= $this->m_director->updateMuseo($cat);
+    	}
+    	elseif ($datos['update']=='tipo_actividad'){
+    		$cat['actividad']=$this->input->post('tipo_actividad');
+    		$cat['id_actividad']=$this->input->post('id_tipo_actividad');
+    		$res=$this->m_director->updateActividad($cat);
+    	
     	}
     
     	if ($res == 1){

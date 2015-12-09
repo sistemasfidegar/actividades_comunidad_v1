@@ -172,11 +172,10 @@ $().ready(function () {
 
 					     });
 
-
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
 					});
+function irA(uri) {
+    window.location.href = '<?php echo base_url(); ?>' + uri;
+}
 
 </script>
 <div class="box">     
@@ -228,7 +227,7 @@ $().ready(function () {
 			            <tr>    
 			            	<td colspan="4" style="text-align:right; "> 
 			            	  <button id="guardar" name="guardar" type="button" class="btn btn-small btn-custom">Guardar</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                       
-			                  <button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/cat_escuela')">Cancelar</button>
+			                  <button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/cat_escAdultos')">Cancelar</button>
 			                                                                                                    
 			                </td>  
 			               <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

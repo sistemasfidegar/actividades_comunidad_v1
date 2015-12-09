@@ -1,4 +1,6 @@
 
+
+
 <style>
 .btn-custom {
   background-color: hsl(312, 80%, 43%) !important;
@@ -94,7 +96,7 @@
         color: #ff0000;   
         margin:0;
         display: inline;
-        font-size: 9px !important;
+        font-size: 15px !important;
         font-weight:lighter;
 
     }
@@ -107,29 +109,44 @@
         float: left;
     }
     textarea.error {
-        border: 1px dotted red; 
+        border: 15px dotted red; 
     }
     /****************************/
 
 </style>
+
 <script>
 $().ready(function () {
 
+	function irA(uri) {
+	    window.location.href = '<?php echo base_url(); ?>' + uri;
+	}
+	$('#nuevo').click(function(evento) {
+		$('#desliza').fadeToggle(1000);
+	});
+
+    $("#nuevaActividad").validate(
+ 	{
+ 	 	rules: {   nombre_eje: "required"},
+        messages: { nombre_eje: "Campo obligatorio"},
+        ignore: ":not(:visible),:disabled"
+    });
 	
 	$("#guardar").click(function ()
 			{ 
-				 if($('#nuevoMuseo').valid())
+				 if($('#nuevaActividad').valid())
 						     {
 								 $.blockUI({message: 'Procesando por favor espere...'});
 					             $.ajax({
 					                 type: 'POST',
-					                 url: $('#nuevoMuseo').attr("action"),
-					                 data: $('#nuevoMuseo').serialize(),
+					                 url: $('#nuevaActividad').attr("action"),
+					                 data: $('#nuevaActividad').serialize(),
 					                 success: function (data) {
 
 					                     $.unblockUI();
 					                     if(data === 'ok')
 					                     {
+					                    		                                            
 					                    	 swal({
 					                          	  title: "¡Registro exitoso!",
 					                          	  text: "",
@@ -143,7 +160,7 @@ $().ready(function () {
 					                          	},
 					                          	function(isConfirm){
 					                          	  if (isConfirm) {
-					                          		irA('index.php/director/cat_museo');
+					                          		irA('index.php/director/tipo_actividad');
 					                          	  } 
 					                          	});
 					                     }
@@ -162,7 +179,7 @@ $().ready(function () {
 					                         	},
 					                         	function(isConfirm){
 					                         	  if (isConfirm) {
-					                         		 irA('index.php/director/cat_museo');
+					                         		 irA('index.php/director/tipo_actividad');
 					                         	  } 
 					                         	});
 					                     }
@@ -172,69 +189,75 @@ $().ready(function () {
 
 					     });
 
+
 					});
-function irA(uri) {
-    window.location.href = '<?php echo base_url(); ?>' + uri;
-}
+
+			
+
+
 
 </script>
-<div class="box">     
-        <div class="box-body table-responsive">
-        <div class="pad20" style="text-align:left; width:90%;">
-			   
-					&nbsp;&nbsp;&nbsp;<img src="resources/images/catalogo.png" />
-			   	<br /><br />
-			</div>
-   
-	
-			<div class="" style="width:90%">
-			    <form action="index.php/director/updateCatalogo/" name="nuevoMuseo" method="post" id="nuevoMuseo">
-			        <table id="form_coo" border="0">
-			            <tr>
-			                <td colspan="1" style="text-align:right;">Museo:</td>
-			                <td colspan="2" style="text-align:left;">                   
-			                    <input id="museo" name="museo" class="textbox_insert" type="text" style="width: 97%;" value="<?php echo $busca['museo'];?>"/></td>
-							 	<input id="id_museo" name="id_museo" class="textbox_insert" type="hidden" style="width: 97%;" value="<?php echo $busca['id_museo'];?>"/></td>
-							 	<input id="update" name="update" type="hidden" style="width: 97%;" value="museo"/></td>
-		            		</td>
-			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
-			            </tr>
-			           <tr>
-			                <td colspan="1" style="text-align:right;">Direccion:</td>
-			                <td colspan="2" style="text-align:left;">                   
-			                    <input id="direccion" name="direccion" class="textbox_insert" type="text" style="width: 97%;" value="<?php echo $busca['direccion'];?>"/></td>
-							</td>
-			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
-			            </tr>
-			           <tr>
-			                <td colspan="1" style="text-align:right;">Delegación:</td>
-			                <td colspan="2" style="text-align:left;">                   
-			                    <select name="delegacion" id="delegacion" class="form-control"  size="6">			            		
-							            <?php foreach ($delegaciones as $value){
-							            	$selected="";
-							            	if(in_array($value['id_delegacion'],$busca))
-							            		$selected="selected";
-							            	
-							            	?>
-							            
-						            	<option value="<?php echo $value['id_delegacion'];?>" <?php echo $selected;?> ><?php echo $value['delegacion']; ?></option>				                  
-						            <?php }?>				            
-				            	</select>
-							</td>
-			                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
-			            </tr>
-			            <tr><td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-			           
-			            <tr>    
-			            	<td colspan="4" style="text-align:right; "> 
-			            	  <button id="guardar" name="guardar" type="button" class="btn btn-small btn-custom">Guardar</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                       
-			                  <button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/cat_museo')">Cancelar</button>
-			                                                                                                    
-			                </td>  
-			               <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			            </tr>                
-					</table>
-			    </form>
-			</div>
+<section class="content-header">
+    <h1> Coordinaciones</h1>   
+    
+</section>
+
+<section class="content">
+	<div class="pad20" style="text-align:right; width:98%;">
+	   <input class="btn btn-small btn-custom" type="button" name="nuevo" id="nuevo" value="Agregar">
 	</div>
+
+	<div id="desliza" class="box box-solid box-success" style="display:none;width:100%;">
+		<form action="index.php/director/guardaCatalogo/" name="nuevaActividad" method="post" id="nuevaActividad">
+		     <table id="form_coo" border="0">
+	 				<tr><td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>			            
+			        <tr>
+			            <td colspan="1" style="text-align:right;">Actividad:</td>
+			            <td colspan="2" style="text-align:left;">
+			            	<input id="actividad" name="actividad" class="textbox_insert" type="text" style="width: 97%;" value="" />
+			            	<input id="tipo" name="tipo"  type="hidden" value="actividad"/>
+			            </td>
+		                <td colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>                 
+		            </tr>
+		            <tr>    
+			           	<td colspan="4" style="text-align:right; ">                           
+			                <button id="guardar" name="guardar" type="button" class="btn btn-large ">Guardar</button>
+			            </td>  
+			        </tr>                
+			</table>
+		</form>
+	</div>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
+ 					          
+            		<table id ="Ejes" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="min-width:612px; width:100%;"> <!-- table-hover table-condensed -->
+            			<thead style="font-size:13px;">
+							<tr bgcolor="#808080">
+								<th>#</th>
+								<th>Tipo Actividad</th>
+								
+							</tr>
+						</thead>
+			        	<tbody style="font-size:12px;">
+			  
+			        	<?php 
+			        		$i=0;
+							 foreach ($tipo_actividad as $data){
+							$i++;
+						?>
+							<tr onClick="location.href='index.php/director/buscaActividad/<?php echo $data['id_tipo_actividad']?>'" style="cursor:pointer;">
+								<td><?php echo $i?></td>
+								<td><?php echo $data['tipo_actividad']?></td>
+									
+	    	 				<?php }?>
+				  			</tr>
+						</tbody>	
+					</table>
+            </div>
+        </div>
+     </div>
+</section>
 

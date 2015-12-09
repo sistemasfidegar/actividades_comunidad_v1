@@ -154,7 +154,7 @@ jQuery(document).ready(function(){
 									        <option value="3">Por espacio público</option>
 									        <option value="4">Por planteles</option>
 									        <option value="5">Por museos</option>
-									        <option value="6">Por escuela de adultos mayores</option>	
+									   <!-- <option value="6">Por escuela de adultos mayores</option> -->	
 									        <option value="7">Tipo actividad</option>				            				           
 						            	</select>
 						            </div>
@@ -403,6 +403,7 @@ jQuery(document).ready(function(){
 									<td width="10%" colspan="3">
 									SALUD
 									</td>
+									
 								</tr>
 								<tr bgcolor="#3F7788" align="center" style="font-weight:bold;">
 								    <td></td>

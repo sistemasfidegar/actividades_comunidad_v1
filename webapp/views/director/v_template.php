@@ -159,7 +159,7 @@
                         </li>    
                         
                         
-                        <?php $catalogos = array('cat_eje','cat_museo','cat_logistica','cat_coordinacion','cat_escAdultos','cat_espacio_publico');?>
+                        <?php $catalogos = array('cat_eje','cat_museo','cat_logistica','cat_coordinacion','cat_escAdultos','cat_espacio_publico','tipo_actividad');?>
                          <li class="treeview <?php if(in_array($this->uri->segment(2), $catalogos)){echo "active";} ?>">
                             <a href="<?php echo base_url(); ?>director/index">
                                 <i class="fa fa-list"></i>
@@ -172,11 +172,10 @@
                                 <li <?php if ($this->uri->segment(2) === 'cat_logistica') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_logistica"><i class="fa fa-angle-double-right"></i> Logística</a></li>
                                 <li <?php if ($this->uri->segment(2) === 'cat_coordinacion') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_coordinacion"><i class="fa fa-angle-double-right"></i> Coordinaciones</a></li>
                                 <li <?php if ($this->uri->segment(2) === 'cat_escAdultos') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_escAdultos"><i class="fa fa-angle-double-right"></i> Escuela Adultos</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'cat_espacio_publico') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_espacio_publico"><i class="fa fa-angle-double-right"></i> Espacio Publico</a></li>                                                              
-                                                                                             
-                                                                                                                                                                                   
-                            </ul>
-                        </li>  
+                                <li <?php if ($this->uri->segment(2) === 'cat_espacio_publico') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_espacio_publico"><i class="fa fa-angle-double-right"></i> Espacio Publico</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'tipo_actividad') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/tipo_actividad"><i class="fa fa-angle-double-right"></i>Tipo Actividad</a></li>                                                              
+							</ul>
+                         </li>  
 
                     </ul>
                 </section>
