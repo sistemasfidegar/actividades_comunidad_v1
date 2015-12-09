@@ -161,7 +161,7 @@ jQuery(document).ready(function(){
 <?php // echo "<PRE>"; var_dump($datos); echo "</PRE>";?>
 <section class="content">
 
- 		<form id="filtros" name="filtros" method="post" action="reportes/generaSemanal">
+ 		<form id="filtros" name="filtros" method="post" action="index.php/reportes/generaSemanal">
  		 		 		
 		<div class="row">        	
         	<div class="col-md-12">

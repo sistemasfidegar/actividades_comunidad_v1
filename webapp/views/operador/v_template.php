@@ -100,7 +100,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="<?php echo base_url(); ?>main/salir" class="btn btn-default btn-flat">Salir</a>
+                                        <a href="<?php echo base_url(); ?>index.php/main/salir" class="btn btn-default btn-flat">Salir</a>
                                     </div>
                                 </li>
                             </ul>
@@ -129,7 +129,7 @@
                     <ul class="sidebar-menu">
 
                         <li>                                               
-                            <a href="<?php echo base_url(); ?>operador/index">
+                            <a href="<?php echo base_url(); ?>index.php/operador/index">
                                 <i class="fa fa-home"></i>
                                 <span style="font-weight:bold;">Inicio</span>                                
                             </a>                            
@@ -137,14 +137,14 @@
 
                       
                         <li class="treeview active">
-                            <a href="<?php echo base_url(); ?>operador/index">
+                            <a href="<?php echo base_url(); ?>index.php/operador/index">
                                 <i class="fa fa-list-ul"></i>
                                 <span style="font-weight:bold;">Actividades</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>operador/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                               
-                            	<li <?php if ($this->uri->segment(2) === 'Agregar Evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>operador/eventoNuevo"><i class="fa fa-angle-double-right"></i> Agregar Evento</a></li>                                                               
+                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/operador/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                               
+                            	<li <?php if ($this->uri->segment(2) === 'Agregar Evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/operador/eventoNuevo"><i class="fa fa-angle-double-right"></i> Agregar Evento</a></li>                                                               
                            </ul>
                         </li>   
 

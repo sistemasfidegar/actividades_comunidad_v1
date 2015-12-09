@@ -415,9 +415,7 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
+	
 
 	$("#id_tipo").change(function ()
 	{
@@ -605,6 +603,9 @@ $().ready(function () {
 
 });
 
+function irA(uri) {
+        window.location.href = '<?php echo base_url(); ?>' + uri;
+    }
 </script>
 <?php ?>
 <section class="content">
@@ -935,7 +936,8 @@ $().ready(function () {
 		       <input name="id_evento" id="id_evento" value="<?php echo $dato['id_evento'];?>" class="form-control" type="hidden"/>
 		       <input name="update" id="update" value="1" class="form-control" type="hidden"/>
 		       <div class="box-footer" style="text-align: right;" >
-     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>
+     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;
+					<button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/agenda')">Cancelar</button>
      		   </div>
     	 	</div>
 	 	</div>

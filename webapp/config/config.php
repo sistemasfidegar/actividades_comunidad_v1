@@ -18,7 +18,7 @@ if (!defined('BASEPATH'))
   |
  */
 $config['base_url'] = '';
-$config['base_url'] = 'http://localhost/actividades_comunidad_v1/';
+
 
 /*
   |--------------------------------------------------------------------------
@@ -30,8 +30,8 @@ $config['base_url'] = 'http://localhost/actividades_comunidad_v1/';
   | variable so that it is blank.
   |
  */
-//$config['index_page'] = 'index.php';
-$config['index_page'] = '';
+
+$config['index_page'] = 'index.php';
 
 /*
   |--------------------------------------------------------------------------

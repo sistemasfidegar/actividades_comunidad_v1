@@ -317,9 +317,7 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
+	
 
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
@@ -410,7 +408,7 @@ $().ready(function () {
 
 
 	   
-  
+	
     	   
     	  
 
@@ -421,7 +419,6 @@ $().ready(function () {
 	 $("#cantidad").numeric();
 
 		
-
 
 	$("#registro").validate(rules_form);
 
@@ -513,6 +510,11 @@ $().ready(function () {
 
 
 });
+
+
+function irA(uri) {
+        window.location.href = '<?php echo base_url(); ?>' + uri;
+    }
 </script>
 
 <section class="content">
@@ -742,7 +744,8 @@ $().ready(function () {
 		         
 		          <br />
 		         <div class="box-footer" style="text-align: right;" >
-     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>
+     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;
+					<button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/director/agenda')">Cancelar</button>
      			</div>
 	          </div>
 	       </div>

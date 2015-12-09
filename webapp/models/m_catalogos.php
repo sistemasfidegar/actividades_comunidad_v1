@@ -35,7 +35,7 @@ class M_catalogos extends MY_Model{
 	}
 	
 	function getActividad(){
-		$this->sql="select id_tipo_actividad, tipo_actividad from tipo_actividad where activo is true order by tipo_actividad;";
+		$this->sql="select id_tipo_actividad, tipo_actividad from cat_tipo_actividad where activo is true order by tipo_actividad;";
 		$results = $this->db->query($this->sql);
 		return $results->result_array();
 	}
@@ -190,7 +190,7 @@ UNION
 					INNER JOIN cat_nivel n ON n.id_nivel = e.id_tipo_evento
 					INNER JOIN usuario ur  on ur.id_usuario= e.id_responsable
 					INNER JOIN cat_coordinacion co on co.id_coordinacion = e.id_coordinacion
-					INNER JOIN tipo_actividad a on e.id_actividad=a.id_tipo_actividad
+					INNER JOIN cat_tipo_actividad a on e.id_actividad=a.id_tipo_actividad
 					inner join seriada s on e.id_seriada= s.id_seriada
 					LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 					LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar

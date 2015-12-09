@@ -30,8 +30,8 @@
 $(document).ready(function() {
     $('#dtUsuarios').DataTable({
     	"columnDefs": [
-                       {"searchable": false, "targets": [1]},
-                       {"sortable": false, "targets": [1]}
+                       {"searchable": false, "targets": [0, 1, 2,3,4,5,6]},
+                       {"sortable": false, "targets": [0, 1, 2,3,4,5,6]}
                    ]
 
     });
@@ -150,7 +150,7 @@ echo "</pre>";
 					            		
 					            		
 					            			
-					            		<td><a href='director/BorrarEvento/<?php echo $value['id_evento']?>'" ><img src="resources/images/tache.png" border="0" /></a> </td>
+					            		<td align="center"><a href='index.php/director/BorrarEvento/<?php echo $value['id_evento']?>'" ><img src="resources/images/tache.png" border="0" /></a> </td>
 					            		
 										<?php }?>
 				            	</form>

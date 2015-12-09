@@ -13,8 +13,8 @@
 $(document).ready(function() {
     $('#dtUsuarios').DataTable({
     	"columnDefs": [
-                       {"searchable": false, "targets": [1]},
-                       {"sortable": false, "targets": [1]}
+                       {"searchable": true},
+                       {"sortable": true}
                    ]
 
     });
@@ -34,7 +34,7 @@ echo "</pre>";
         <!-- left column -->
         <div class="col-md-12">
             <!-- general form elements -->
-            <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
+            <div class="box box-solid box-success" style="width:100%; text-align:left !important; min-height:260px; height:100%;">
  					<div>DELEGACIÓN  </div>           
             		<table id ="dtUsuarios" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
             			<thead style="font-size:13px;">
@@ -45,15 +45,14 @@ echo "</pre>";
 									<td width="95px">DELEGACIÓN</td>
 									<td>PARTICIPANTES</td>
 									<td>SEDE</td>
-									<td>UBICACI&Oacute;N</td>
-									
+									<td>UBICACI&Oacute;N</td>									
 								</tr>
 								</thead>
 								
 			        			<tbody style="font-size:12px;">
 															
 									<?php foreach ($lista as $value){?>
-									<tr onClick="location.href='operador/modifica/<?php echo $value['id_evento']?>'" style="cursor:pointer;">
+									<tr onClick="location.href='index.php/operador/modifica/<?php echo $value['id_evento']?>'" style="cursor:pointer;">
 										<td><?php echo $value['descripcion']?></td>
 										<td><?php echo $value['inicio']?></td>
 										<td><?php echo $value['coordinacion']?></td>

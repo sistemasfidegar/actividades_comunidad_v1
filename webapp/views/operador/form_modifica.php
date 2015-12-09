@@ -450,9 +450,7 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
+
 
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
@@ -585,7 +583,7 @@ $().ready(function () {
                           	},
                           	function(isConfirm){
                           	  if (isConfirm) {
-                          		irA('operador/listado');
+                          		irA('index.php/operador/listado');
                           	  } 
                           	});
                      }
@@ -604,7 +602,7 @@ $().ready(function () {
                          	},
                          	function(isConfirm){
                          	  if (isConfirm) {
-                         		 irA('operador/listado');
+                         		 irA('index.php/operador/listado');
                          	  } 
                          	});
                      }
@@ -644,13 +642,18 @@ $().ready(function () {
 
 
 });
+
+
+	function irA(uri) {
+        window.location.href = '<?php echo base_url(); ?>' + uri;
+    }
 </script>
 
 <section class="content">
 <h1> ACTIVIDAD EN COMUNIDAD <?php  ?></h1> 
 
  		
-	<form id="registro" action="operador/guardarActividad" method="post">
+	<form id="registro" action="index.php/operador/guardarActividad" method="post">
 		<input type="hidden" name="latbox" id="latbox" value="<?php echo $dato['latitud'];?>" />
  		<input type="hidden" name="lonbox" id="lonbox" value="<?php echo $dato['longitud'];?>" />
 		<div class="row">        	
@@ -916,7 +919,8 @@ $().ready(function () {
 		       <br/>
 		       <input name="id_evento" id="id_evento" value="<?php echo $dato['id_evento'];?>" class="form-control" type="hidden"/>
 		         <div class="box-footer" style="text-align: right;" >
-     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>
+     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;
+					<button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/operador/listado')">Cancelar</button>
      		   </div>
     	 	</div>
 	 	</div>

@@ -136,7 +136,7 @@ jQuery(document).ready(function(){
 </section>
 
 <section class="content">
-<form id="filtros" name="filtros" method="post" action="reportes/generaTrimestral">
+<form id="filtros" name="filtros" method="post" action="index.php/reportes/generaTrimestral">
 	<div class="row">        	
         	<div class="col-md-12">
         		<div class="box box-solid box-success" style="text-align:left !important;  height:100%;">

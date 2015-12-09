@@ -540,10 +540,14 @@ $().ready(function () {
 
 
 });
+
+function irA(uri) {
+        window.location.href = '<?php echo base_url(); ?>' + uri;
+    }
 </script>
 <section class="content">
 
- 		<form id="registro" name="registro" method="post" action="operador/guardaEvento">
+ 		<form id="registro" name="registro" method="post" action="index.php/operador/guardaEvento">
  		<input type="hidden" name="latbox" id="latbox" value="19.432571529390096" />
  		<input type="hidden" name="lonbox" id="lonbox" value="-99.13318316931151" />
  		
@@ -754,7 +758,8 @@ $().ready(function () {
 		         
 		          <br />
 		         <div class="box-footer" style="text-align: right;" >
-     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>
+     				<button id="guardar" name="guardar" type="button" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;
+					<button id="cancelar" name="cancelar" type="button" class="btn btn-small" onclick="irA('index.php/operador/listado')">Cancelar</button>
      			</div>
 	          </div>
 	       </div>

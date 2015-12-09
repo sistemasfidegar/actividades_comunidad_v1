@@ -102,7 +102,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <a href="<?php echo base_url(); ?>main/salir" class="btn btn-default btn-flat">Salir</a>
+                                        <a href="<?php echo base_url(); ?>index.php/main/salir" class="btn btn-default btn-flat">Salir</a>
                                     </div>
                                 </li>
                             </ul>
@@ -133,47 +133,47 @@
                        
                       
                         <li class="treeview active">
-                            <a href="<?php echo base_url(); ?>director/index">
+                            <a href="<?php echo base_url(); ?>index.php/director/index">
                                 <i class="fa fa-calendar"></i>
                                 <span style="font-weight:bold;">Agenda</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li <?php if ($this->uri->segment(2) === 'agenda' || $this->uri->segment(2) ==='detalleEvento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/agenda"><i class="fa fa-angle-double-right"></i> Eventos registrados</a></li>                                                               
-                                <li <?php if ($this->uri->segment(2) === 'registro_evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/registro_evento"><i class="fa fa-angle-double-right"></i> Nuevo evento</a></li>                                                                                          
-                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                                                          
+                                <li <?php if ($this->uri->segment(2) === 'agenda' || $this->uri->segment(2) ==='detalleEvento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/agenda"><i class="fa fa-angle-double-right"></i> Eventos registrados</a></li>                                                               
+                                <li <?php if ($this->uri->segment(2) === 'registro_evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/registro_evento"><i class="fa fa-angle-double-right"></i> Nuevo evento</a></li>                                                                                          
+                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                                                          
                             </ul>
                         </li>
                         
                          <li class="treeview active">
-                            <a href="<?php echo base_url(); ?>director/index">
+                            <a href="<?php echo base_url(); ?>index.php/director/index">
                                 <i class="fa fa-file-text-o"></i>
                                 <span style="font-weight:bold;">Reportes</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li <?php if ($this->uri->segment(2) === 'generaSemanal') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>reportes/generaSemanal"><i class="fa fa-angle-double-right"></i> Semanal</a></li>                                                               
-                                <li <?php if ($this->uri->segment(2) === 'generaMensual') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>reportes/generaMensual"><i class="fa fa-angle-double-right"></i> Mensual</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'generaTrimestral') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>reportes/generaTrimestral"><i class="fa fa-angle-double-right"></i> Trimestral</a></li>                                                                                                                                               
+                                <li <?php if ($this->uri->segment(2) === 'generaSemanal') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaSemanal"><i class="fa fa-angle-double-right"></i> Semanal</a></li>                                                               
+                                <li <?php if ($this->uri->segment(2) === 'generaMensual') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaMensual"><i class="fa fa-angle-double-right"></i> Mensual</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'generaTrimestral') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaTrimestral"><i class="fa fa-angle-double-right"></i> Trimestral</a></li>                                                                                                                                               
                             </ul>
                         </li>    
                         
                         
                         <?php $catalogos = array('cat_eje','cat_museo','cat_logistica','cat_coordinacion','cat_escAdultos','cat_espacio_publico','tipo_actividad');?>
                          <li class="treeview <?php if(in_array($this->uri->segment(2), $catalogos)){echo "active";} ?>">
-                            <a href="<?php echo base_url(); ?>director/index">
+                            <a href="<?php echo base_url(); ?>index.php/director/index">
                                 <i class="fa fa-list"></i>
                                 <span style="font-weight:bold;">Catálogos</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                               <!--    <li <?php if ($this->uri->segment(2) === 'cat_eje') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_eje"><i class="fa fa-angle-double-right"></i> Ejes</a></li>-->                                                               
-                                <li <?php if ($this->uri->segment(2) === 'cat_museo') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_museo"><i class="fa fa-angle-double-right"></i>Museo</a></li> 
-                                <li <?php if ($this->uri->segment(2) === 'cat_logistica') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_logistica"><i class="fa fa-angle-double-right"></i> Logística</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'cat_coordinacion') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_coordinacion"><i class="fa fa-angle-double-right"></i> Coordinaciones</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'cat_escAdultos') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_escAdultos"><i class="fa fa-angle-double-right"></i> Escuela Adultos</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'cat_espacio_publico') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/cat_espacio_publico"><i class="fa fa-angle-double-right"></i> Espacio Publico</a></li>
-                                <li <?php if ($this->uri->segment(2) === 'tipo_actividad') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>director/tipo_actividad"><i class="fa fa-angle-double-right"></i>Tipo Actividad</a></li>                                                              
+                                <li <?php if ($this->uri->segment(2) === 'cat_museo') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/cat_museo"><i class="fa fa-angle-double-right"></i>Museo</a></li> 
+                                <li <?php if ($this->uri->segment(2) === 'cat_logistica') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/cat_logistica"><i class="fa fa-angle-double-right"></i> Logística</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'cat_coordinacion') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/cat_coordinacion"><i class="fa fa-angle-double-right"></i> Coordinaciones</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'cat_escAdultos') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/cat_escAdultos"><i class="fa fa-angle-double-right"></i> Escuela Adultos</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'cat_espacio_publico') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/cat_espacio_publico"><i class="fa fa-angle-double-right"></i> Espacio Publico</a></li>
+                                <li <?php if ($this->uri->segment(2) === 'tipo_actividad') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/tipo_actividad"><i class="fa fa-angle-double-right"></i>Tipo Actividad</a></li>                                                              
 							</ul>
                          </li>  
 

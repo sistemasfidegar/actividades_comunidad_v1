@@ -1,48 +1,46 @@
 /*
 Navicat PGSQL Data Transfer
 
-Source Server         : Plantilla
-Source Server Version : 90401
+Source Server         : postgres@192.168.200.15
+Source Server Version : 90310
 Source Host           : localhost:5432
-Source Database       : actividades
+Source Database       : actividades_comunidad
 Source Schema         : public
 
 Target Server Type    : PGSQL
-Target Server Version : 90401
+Target Server Version : 90310
 File Encoding         : 65001
 
-Date: 2015-11-25 14:06:44
+Date: 2015-12-08 20:36:12
 */
 
 
 -- ----------------------------
 -- Sequence structure for archivo_id_archivo_seq
 -- ----------------------------
-DROP SEQUENCE "public"."archivo_id_archivo_seq";
+--DROP SEQUENCE "public"."archivo_id_archivo_seq";
 CREATE SEQUENCE "public"."archivo_id_archivo_seq"
  INCREMENT 1
  MINVALUE 1
  MAXVALUE 9223372036854775807
- START 44
+ START 1
  CACHE 1;
-SELECT setval('"public"."archivo_id_archivo_seq"', 44, true);
 
 -- ----------------------------
 -- Sequence structure for bitacora_accesos_id_bitacora_seq
 -- ----------------------------
-DROP SEQUENCE "public"."bitacora_accesos_id_bitacora_seq";
+--DROP SEQUENCE "public"."bitacora_accesos_id_bitacora_seq";
 CREATE SEQUENCE "public"."bitacora_accesos_id_bitacora_seq"
  INCREMENT 1
  MINVALUE 1
  MAXVALUE 9223372036854775807
- START 238
+ START 1
  CACHE 1;
-SELECT setval('"public"."bitacora_accesos_id_bitacora_seq"', 238, true);
 
 -- ----------------------------
 -- Sequence structure for cat_coordinacion_id_coordinacion_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_coordinacion_id_coordinacion_seq";
+--DROP SEQUENCE "public"."cat_coordinacion_id_coordinacion_seq";
 CREATE SEQUENCE "public"."cat_coordinacion_id_coordinacion_seq"
  INCREMENT 1
  MINVALUE 1
@@ -54,7 +52,7 @@ SELECT setval('"public"."cat_coordinacion_id_coordinacion_seq"', 60, true);
 -- ----------------------------
 -- Sequence structure for cat_eje_id_eje_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_eje_id_eje_seq";
+--DROP SEQUENCE "public"."cat_eje_id_eje_seq";
 CREATE SEQUENCE "public"."cat_eje_id_eje_seq"
  INCREMENT 1
  MINVALUE 1
@@ -66,7 +64,7 @@ SELECT setval('"public"."cat_eje_id_eje_seq"', 8, true);
 -- ----------------------------
 -- Sequence structure for cat_escuelasadultosm_id_escuela_adulto_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_escuelasadultosm_id_escuela_adulto_seq";
+--DROP SEQUENCE "public"."cat_escuelasadultosm_id_escuela_adulto_seq";
 CREATE SEQUENCE "public"."cat_escuelasadultosm_id_escuela_adulto_seq"
  INCREMENT 1
  MINVALUE 1
@@ -78,7 +76,7 @@ SELECT setval('"public"."cat_escuelasadultosm_id_escuela_adulto_seq"', 131, true
 -- ----------------------------
 -- Sequence structure for cat_espacio_publico_id_espacio_publico_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_espacio_publico_id_espacio_publico_seq";
+--DROP SEQUENCE "public"."cat_espacio_publico_id_espacio_publico_seq";
 CREATE SEQUENCE "public"."cat_espacio_publico_id_espacio_publico_seq"
  INCREMENT 1
  MINVALUE 1
@@ -90,7 +88,7 @@ SELECT setval('"public"."cat_espacio_publico_id_espacio_publico_seq"', 222, true
 -- ----------------------------
 -- Sequence structure for cat_institucion_id_institucion_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_institucion_id_institucion_seq";
+--DROP SEQUENCE "public"."cat_institucion_id_institucion_seq";
 CREATE SEQUENCE "public"."cat_institucion_id_institucion_seq"
  INCREMENT 1
  MINVALUE 1
@@ -101,7 +99,7 @@ CREATE SEQUENCE "public"."cat_institucion_id_institucion_seq"
 -- ----------------------------
 -- Sequence structure for cat_museos_id_museo_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_museos_id_museo_seq";
+--DROP SEQUENCE "public"."cat_museos_id_museo_seq";
 CREATE SEQUENCE "public"."cat_museos_id_museo_seq"
  INCREMENT 1
  MINVALUE 1
@@ -113,7 +111,7 @@ SELECT setval('"public"."cat_museos_id_museo_seq"', 56, true);
 -- ----------------------------
 -- Sequence structure for cat_nivel_id_nivel_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_nivel_id_nivel_seq";
+--DROP SEQUENCE "public"."cat_nivel_id_nivel_seq";
 CREATE SEQUENCE "public"."cat_nivel_id_nivel_seq"
  INCREMENT 1
  MINVALUE 1
@@ -124,7 +122,7 @@ CREATE SEQUENCE "public"."cat_nivel_id_nivel_seq"
 -- ----------------------------
 -- Sequence structure for cat_perfil_id_perfil_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_perfil_id_perfil_seq";
+--DROP SEQUENCE "public"."cat_perfil_id_perfil_seq";
 CREATE SEQUENCE "public"."cat_perfil_id_perfil_seq"
  INCREMENT 1
  MINVALUE 1
@@ -136,7 +134,7 @@ SELECT setval('"public"."cat_perfil_id_perfil_seq"', 3, true);
 -- ----------------------------
 -- Sequence structure for cat_plantel_id_plantel_seq
 -- ----------------------------
-DROP SEQUENCE "public"."cat_plantel_id_plantel_seq";
+--DROP SEQUENCE "public"."cat_plantel_id_plantel_seq";
 CREATE SEQUENCE "public"."cat_plantel_id_plantel_seq"
  INCREMENT 1
  MINVALUE 1
@@ -146,21 +144,32 @@ CREATE SEQUENCE "public"."cat_plantel_id_plantel_seq"
 SELECT setval('"public"."cat_plantel_id_plantel_seq"', 272, true);
 
 -- ----------------------------
+-- Sequence structure for cat_tipo_actividad_id_tipo_actividad_seq
+-- ----------------------------
+--DROP SEQUENCE "public"."cat_tipo_actividad_id_tipo_actividad_seq";
+CREATE SEQUENCE "public"."cat_tipo_actividad_id_tipo_actividad_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 26
+ CACHE 1;
+SELECT setval('"public"."cat_tipo_actividad_id_tipo_actividad_seq"', 26, true);
+
+-- ----------------------------
 -- Sequence structure for evento_id_evento_seq
 -- ----------------------------
-DROP SEQUENCE "public"."evento_id_evento_seq";
+--DROP SEQUENCE "public"."evento_id_evento_seq";
 CREATE SEQUENCE "public"."evento_id_evento_seq"
  INCREMENT 1
  MINVALUE 1
  MAXVALUE 9223372036854775807
- START 19
+ START 1
  CACHE 1;
-SELECT setval('"public"."evento_id_evento_seq"', 19, true);
 
 -- ----------------------------
 -- Sequence structure for logistica_id_logistica_seq
 -- ----------------------------
-DROP SEQUENCE "public"."logistica_id_logistica_seq";
+--DROP SEQUENCE "public"."logistica_id_logistica_seq";
 CREATE SEQUENCE "public"."logistica_id_logistica_seq"
  INCREMENT 1
  MINVALUE 1
@@ -172,7 +181,7 @@ SELECT setval('"public"."logistica_id_logistica_seq"', 36, true);
 -- ----------------------------
 -- Sequence structure for resultado_id_resultado_seq
 -- ----------------------------
-DROP SEQUENCE "public"."resultado_id_resultado_seq";
+--DROP SEQUENCE "public"."resultado_id_resultado_seq";
 CREATE SEQUENCE "public"."resultado_id_resultado_seq"
  INCREMENT 1
  MINVALUE 1
@@ -184,19 +193,19 @@ SELECT setval('"public"."resultado_id_resultado_seq"', 28, true);
 -- ----------------------------
 -- Sequence structure for usuario_id_usuario_seq
 -- ----------------------------
-DROP SEQUENCE "public"."usuario_id_usuario_seq";
+--DROP SEQUENCE "public"."usuario_id_usuario_seq";
 CREATE SEQUENCE "public"."usuario_id_usuario_seq"
  INCREMENT 1
  MINVALUE 1
  MAXVALUE 9223372036854775807
- START 24
+ START 25
  CACHE 1;
-SELECT setval('"public"."usuario_id_usuario_seq"', 24, true);
+SELECT setval('"public"."usuario_id_usuario_seq"', 25, true);
 
 -- ----------------------------
 -- Table structure for archivo
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."archivo";
+--DROP TABLE IF EXISTS "public"."archivo";
 CREATE TABLE "public"."archivo" (
 "id_archivo" int8 DEFAULT nextval('archivo_id_archivo_seq'::regclass) NOT NULL,
 "id_evento" int4,
@@ -216,7 +225,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for bitacora_accesos
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."bitacora_accesos";
+--DROP TABLE IF EXISTS "public"."bitacora_accesos";
 CREATE TABLE "public"."bitacora_accesos" (
 "id_bitacora" int8 DEFAULT nextval('bitacora_accesos_id_bitacora_seq'::regclass) NOT NULL,
 "id_usuario" int2 NOT NULL,
@@ -231,119 +240,11 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of bitacora_accesos
 -- ----------------------------
-INSERT INTO "public"."bitacora_accesos" VALUES ('131', '2', 'nsanchezm', '2015-10-29 17:41:09.819', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('132', '3', 'director', '2015-10-29 18:50:46.025', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('133', '3', 'director', '2015-10-30 10:01:10.939', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('134', '2', 'nsanchezm', '2015-10-30 10:07:14.942', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('135', '4', 'icony', '2015-10-30 10:27:29.404', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('136', '3', 'director', '2015-10-30 15:21:37.623', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('137', '3', 'director', '2015-11-02 10:28:04.343', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('138', '3', 'director', '2015-11-02 13:04:20.342', '192.168.50.105');
-INSERT INTO "public"."bitacora_accesos" VALUES ('139', '3', 'director', '2015-11-02 13:20:17.81', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('140', '3', 'director', '2015-11-03 11:30:57.905', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('141', '3', 'director', '2015-11-04 10:49:39.016', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('142', '4', 'icony', '2015-11-04 11:23:31.648', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('143', '3', 'director', '2015-11-05 10:30:34.175', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('144', '4', 'icony', '2015-11-05 11:23:44.54', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('145', '3', 'director', '2015-11-06 11:09:44.181', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('146', '4', 'icony', '2015-11-06 12:20:19.71', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('147', '3', 'director', '2015-11-09 10:38:48.904', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('148', '3', 'director', '2015-11-09 13:27:37.104', '192.168.50.105');
-INSERT INTO "public"."bitacora_accesos" VALUES ('149', '3', 'director', '2015-11-09 13:45:52.142', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('150', '3', 'director', '2015-11-09 18:04:01.627', '192.168.50.105');
-INSERT INTO "public"."bitacora_accesos" VALUES ('151', '3', 'director', '2015-11-09 18:45:20.236', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('152', '4', 'icony', '2015-11-10 11:34:09.895', '192.168.30.95');
-INSERT INTO "public"."bitacora_accesos" VALUES ('153', '3', 'director', '2015-11-10 12:58:49.882', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('154', '4', 'icony', '2015-11-10 14:20:13.067', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('155', '3', 'director', '2015-11-10 14:38:40.298', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('156', '4', 'icony', '2015-11-10 14:41:38.543', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('157', '4', 'icony', '2015-11-10 15:01:34.534', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('158', '4', 'icony', '2015-11-10 16:24:11.665', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('159', '4', 'icony', '2015-11-10 16:57:52.677', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('160', '2', 'nsanchezm', '2015-11-10 17:31:27.538', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('161', '4', 'icony', '2015-11-11 11:07:53.23', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('162', '3', 'director', '2015-11-11 12:38:06.112', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('163', '3', 'director', '2015-11-11 12:57:28.696', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('164', '3', 'director', '2015-11-12 10:38:29.008', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('165', '4', 'icony', '2015-11-12 18:06:23.603', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('166', '4', 'icony', '2015-11-13 11:18:42.638', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('167', '3', 'director', '2015-11-17 10:54:24.468', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('168', '3', 'director', '2015-11-17 11:21:14.006', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('169', '3', 'director', '2015-11-17 11:52:55.054', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('170', '3', 'director', '2015-11-17 12:25:25.267', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('171', '3', 'director', '2015-11-17 12:59:29.396', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('172', '3', 'director', '2015-11-17 13:30:35.042', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('173', '3', 'director', '2015-11-17 14:00:38.404', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('174', '3', 'director', '2015-11-17 14:40:56.002', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('175', '3', 'director', '2015-11-17 16:23:23.324', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('176', '3', 'director', '2015-11-17 16:53:56.209', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('177', '3', 'director', '2015-11-17 17:28:24.026', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('178', '3', 'director', '2015-11-17 17:58:03.477', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('179', '3', 'director', '2015-11-17 18:41:01.615', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('180', '3', 'director', '2015-11-17 18:46:33.075', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('181', '3', 'director', '2015-11-18 11:53:40.125', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('182', '3', 'director', '2015-11-18 12:23:52.037', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('183', '4', 'icony', '2015-11-18 12:34:34.386', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('184', '4', 'icony', '2015-11-18 13:25:33.821', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('185', '4', 'icony', '2015-11-18 13:39:38.311', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('186', '4', 'icony', '2015-11-18 17:43:48.353', '192.168.50.105');
-INSERT INTO "public"."bitacora_accesos" VALUES ('187', '3', 'director', '2015-11-18 17:50:43.205', '192.168.50.105');
-INSERT INTO "public"."bitacora_accesos" VALUES ('188', '4', 'icony', '2015-11-18 18:46:28.06', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('189', '3', 'director', '2015-11-18 18:54:59.528', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('190', '3', 'director', '2015-11-19 10:41:29.857', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('191', '3', 'director', '2015-11-19 11:21:30.321', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('192', '3', 'director', '2015-11-19 11:59:42.659', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('193', '4', 'icony', '2015-11-19 12:30:48.65', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('194', '3', 'director', '2015-11-19 12:57:31.784', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('195', '4', 'icony', '2015-11-19 12:59:54.099', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('196', '3', 'director', '2015-11-19 13:30:57.38', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('197', '3', 'director', '2015-11-19 14:01:37.811', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('198', '3', 'director', '2015-11-19 14:45:24.931', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('199', '3', 'director', '2015-11-19 16:04:22.729', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('200', '3', 'director', '2015-11-19 17:46:20.64', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('201', '3', 'director', '2015-11-19 18:16:18.38', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('202', '3', 'director', '2015-11-19 18:49:08.011', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('203', '3', 'director', '2015-11-20 13:03:36.988', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('204', '3', 'director', '2015-11-20 13:52:13.784', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('205', '3', 'director', '2015-11-20 14:29:43.558', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('206', '3', 'director', '2015-11-20 15:00:40.29', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('207', '3', 'director', '2015-11-20 16:34:07.278', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('208', '3', 'director', '2015-11-20 17:34:58.684', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('209', '3', 'director', '2015-11-20 18:09:28.292', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('210', '3', 'director', '2015-11-20 18:43:07.062', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('211', '3', 'director', '2015-11-23 10:52:55.57', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('212', '3', 'director', '2015-11-23 11:30:53.511', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('213', '3', 'director', '2015-11-23 12:01:14.982', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('214', '3', 'director', '2015-11-23 12:36:22.621', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('215', '3', 'director', '2015-11-23 13:07:39.96', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('216', '3', 'director', '2015-11-23 13:38:03.597', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('217', '3', 'director', '2015-11-23 14:08:38.94', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('218', '3', 'director', '2015-11-23 14:40:23.859', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('219', '3', 'director', '2015-11-23 18:05:01.884', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('220', '3', 'director', '2015-11-23 18:41:03.618', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('221', '3', 'director', '2015-11-24 10:14:36.71', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('222', '3', 'director', '2015-11-24 10:52:42.896', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('223', '3', 'director', '2015-11-24 11:25:02.994', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('224', '3', 'director', '2015-11-24 12:36:46.991', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('225', '3', 'director', '2015-11-24 13:18:09.949', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('226', '3', 'director', '2015-11-24 13:52:48.831', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('227', '3', 'director', '2015-11-24 14:59:20.688', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('228', '3', 'director', '2015-11-24 16:24:50.406', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('229', '3', 'director', '2015-11-24 16:57:07.902', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('230', '3', 'director', '2015-11-24 17:28:15.698', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('231', '3', 'director', '2015-11-24 18:07:05.262', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('232', '3', 'director', '2015-11-24 18:37:39.305', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('233', '3', 'director', '2015-11-25 10:35:16.813', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('234', '3', 'director', '2015-11-25 11:42:25.648', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('235', '3', 'director', '2015-11-25 12:21:54.359', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('236', '3', 'director', '2015-11-25 12:54:56.569', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('237', '1', 'admin', '2015-11-25 13:09:47.897', '::1');
-INSERT INTO "public"."bitacora_accesos" VALUES ('238', '1', 'admin', '2015-11-25 13:43:16.763', '::1');
 
 -- ----------------------------
 -- Table structure for cat_coordinacion
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_coordinacion";
+--DROP TABLE IF EXISTS "public"."cat_coordinacion";
 CREATE TABLE "public"."cat_coordinacion" (
 "id_coordinacion" numeric(32) DEFAULT nextval('cat_coordinacion_id_coordinacion_seq'::regclass) NOT NULL,
 "coordinacion" varchar(200) COLLATE "default",
@@ -421,7 +322,7 @@ INSERT INTO "public"."cat_coordinacion" VALUES ('61', 'Evento Prepa Sí', 't', n
 -- ----------------------------
 -- Table structure for cat_delegacion
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_delegacion";
+--DROP TABLE IF EXISTS "public"."cat_delegacion";
 CREATE TABLE "public"."cat_delegacion" (
 "id_delegacion" numeric(10) NOT NULL,
 "delegacion" varchar(150) COLLATE "default",
@@ -458,7 +359,7 @@ INSERT INTO "public"."cat_delegacion" VALUES ('18', 'Universitarios', 'UNI', '0'
 -- ----------------------------
 -- Table structure for cat_eje
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_eje";
+--DROP TABLE IF EXISTS "public"."cat_eje";
 CREATE TABLE "public"."cat_eje" (
 "id_eje" numeric(32) DEFAULT nextval('cat_eje_id_eje_seq'::regclass) NOT NULL,
 "eje_tematico" varchar(200) COLLATE "default",
@@ -482,7 +383,7 @@ INSERT INTO "public"."cat_eje" VALUES ('8', 'Salud', 't');
 -- ----------------------------
 -- Table structure for cat_escuelasadultosm
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_escuelasadultosm";
+--DROP TABLE IF EXISTS "public"."cat_escuelasadultosm";
 CREATE TABLE "public"."cat_escuelasadultosm" (
 "id_escuela_adulto" int4 DEFAULT nextval('cat_escuelasadultosm_id_escuela_adulto_seq'::regclass) NOT NULL,
 "escuela" varchar(200) COLLATE "default",
@@ -633,7 +534,7 @@ INSERT INTO "public"."cat_escuelasadultosm" VALUES ('131', 'Arcoíris', 'Calle F
 -- ----------------------------
 -- Table structure for cat_espacio_publico
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_espacio_publico";
+--DROP TABLE IF EXISTS "public"."cat_espacio_publico";
 CREATE TABLE "public"."cat_espacio_publico" (
 "id_espacio_publico" int4 DEFAULT nextval('cat_espacio_publico_id_espacio_publico_seq'::regclass) NOT NULL,
 "espacio_publico" varchar COLLATE "default",
@@ -874,7 +775,7 @@ INSERT INTO "public"."cat_espacio_publico" VALUES ('221', 'Explanada Del Centro 
 -- ----------------------------
 -- Table structure for cat_institucion
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_institucion";
+--DROP TABLE IF EXISTS "public"."cat_institucion";
 CREATE TABLE "public"."cat_institucion" (
 "id_institucion" numeric(32) DEFAULT nextval('cat_institucion_id_institucion_seq'::regclass) NOT NULL,
 "institucion" varchar(150) COLLATE "default",
@@ -926,7 +827,7 @@ INSERT INTO "public"."cat_institucion" VALUES ('37', 'PREPA EN LINEA-SEP', 'PL-S
 -- ----------------------------
 -- Table structure for cat_museos
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_museos";
+--DROP TABLE IF EXISTS "public"."cat_museos";
 CREATE TABLE "public"."cat_museos" (
 "id_museo" int4 DEFAULT nextval('cat_museos_id_museo_seq'::regclass) NOT NULL,
 "museo" varchar(200) COLLATE "default",
@@ -1002,7 +903,7 @@ INSERT INTO "public"."cat_museos" VALUES ('56', 'Museo  Del Cine Mexicano ', 'La
 -- ----------------------------
 -- Table structure for cat_nivel
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_nivel";
+--DROP TABLE IF EXISTS "public"."cat_nivel";
 CREATE TABLE "public"."cat_nivel" (
 "id_nivel" numeric(32) DEFAULT nextval('cat_nivel_id_nivel_seq'::regclass) NOT NULL,
 "nivel" varchar(20) COLLATE "default",
@@ -1023,7 +924,7 @@ INSERT INTO "public"."cat_nivel" VALUES ('3', 'OTRO', 't');
 -- ----------------------------
 -- Table structure for cat_perfil
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_perfil";
+--DROP TABLE IF EXISTS "public"."cat_perfil";
 CREATE TABLE "public"."cat_perfil" (
 "id_perfil" numeric(32) DEFAULT nextval('cat_perfil_id_perfil_seq'::regclass) NOT NULL,
 "perfil" varchar(50) COLLATE "default",
@@ -1044,7 +945,7 @@ INSERT INTO "public"."cat_perfil" VALUES ('4', 'Operador Especial', 't');
 -- ----------------------------
 -- Table structure for cat_plantel
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_plantel";
+--DROP TABLE IF EXISTS "public"."cat_plantel";
 CREATE TABLE "public"."cat_plantel" (
 "id_plantel" numeric(32) DEFAULT nextval('cat_plantel_id_plantel_seq'::regclass) NOT NULL,
 "id_institucion" int2 NOT NULL,
@@ -1302,9 +1203,52 @@ INSERT INTO "public"."cat_plantel" VALUES ('268', '21', 'ESCUELA NACIONAL DE ATR
 INSERT INTO "public"."cat_plantel" VALUES ('269', '36', 'CENTRO MULTIMODAL DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS DEL MAR Y AGUAS CONTINENTALES', 't', '6');
 
 -- ----------------------------
+-- Table structure for cat_tipo_actividad
+-- ----------------------------
+--DROP TABLE IF EXISTS "public"."cat_tipo_actividad";
+CREATE TABLE "public"."cat_tipo_actividad" (
+"id_tipo_actividad" int8 DEFAULT nextval('cat_tipo_actividad_id_tipo_actividad_seq'::regclass) NOT NULL,
+"tipo_actividad" varchar(255) COLLATE "default",
+"activo" bool DEFAULT true
+)
+WITH (OIDS=FALSE)
+
+;
+
+-- ----------------------------
+-- Records of cat_tipo_actividad
+-- ----------------------------
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('1', 'Actividades Culturales', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('2', 'Activación Física y Zumba', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('3', 'Actividad en Plantel', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('4', 'Cine Club Prepa Sí', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('5', 'Círculos de Lectura ', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('6', 'Educación Medioambiental', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('7', 'Emprendedores Prepa Sí', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('8', 'Encuentro Intergeneracional', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('9', 'Entrega de condones', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('10', 'Eventos Especiales', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('11', 'Feria de Ciencias', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('12', 'Ferias de Salud', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('13', 'Huertos Urbanos', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('14', 'Juegos Recreativos', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('15', 'Módulo Informativo', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('16', 'Paseo Ciclista Prepa Sí', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('17', 'Pláticas, Talleres y Conferencias', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('18', 'Proyectos científicos y Club de ciencias', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('19', 'Reduce, Recicla, Reusa', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('20', 'Retas Deportivas', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('21', 'Reuniones Organizativas', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('22', 'Salud Sexual y Reproductiva', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('23', 'Teatro Prepa Sí', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('24', 'Trueque Prepa Sí', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('25', 'Visitas a Museos', 't');
+INSERT INTO "public"."cat_tipo_actividad" VALUES ('26', 'Andar bici 3', 't');
+
+-- ----------------------------
 -- Table structure for cat_zona
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."cat_zona";
+--DROP TABLE IF EXISTS "public"."cat_zona";
 CREATE TABLE "public"."cat_zona" (
 "id_zona" numeric(10) NOT NULL,
 "zona" varchar(100) COLLATE "default",
@@ -1323,7 +1267,7 @@ INSERT INTO "public"."cat_zona" VALUES ('2', 'Zona Sur', 't');
 -- ----------------------------
 -- Table structure for ci_sessions
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."ci_sessions";
+--DROP TABLE IF EXISTS "public"."ci_sessions";
 CREATE TABLE "public"."ci_sessions" (
 "session_id" varchar(32) COLLATE "default" DEFAULT ''::character varying NOT NULL,
 "user_agent" varchar(255) COLLATE "default" DEFAULT NULL::character varying,
@@ -1338,12 +1282,11 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO "public"."ci_sessions" VALUES ('4ecab34a7c6e7e477af6d6db811444bf', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0', '::1', '1448480587', 'a:12:{s:9:"user_data";s:0:"";s:9:"logged_in";b:1;s:10:"id_usuario";s:1:"1";s:7:"usuario";s:5:"admin";s:9:"id_perfil";s:1:"1";s:6:"nombre";s:13:"Administrador";s:15:"nombre_completo";s:25:"Administrador del Sistema";s:6:"perfil";s:13:"Administrador";s:13:"id_delegacion";s:1:"0";s:10:"delegacion";N;s:8:"pageSize";i:20;s:7:"externo";b:0;}');
 
 -- ----------------------------
 -- Table structure for evento
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."evento";
+--DROP TABLE IF EXISTS "public"."evento";
 CREATE TABLE "public"."evento" (
 "id_evento" int8 DEFAULT nextval('evento_id_evento_seq'::regclass) NOT NULL,
 "id_tipo_evento" int4,
@@ -1382,7 +1325,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for involucrados
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."involucrados";
+--DROP TABLE IF EXISTS "public"."involucrados";
 CREATE TABLE "public"."involucrados" (
 "id_evento" int4,
 "id_delegacion" int4
@@ -1398,7 +1341,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for logistica
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."logistica";
+--DROP TABLE IF EXISTS "public"."logistica";
 CREATE TABLE "public"."logistica" (
 "id_logistica" int4 DEFAULT nextval('logistica_id_logistica_seq'::regclass) NOT NULL,
 "logistica" varchar(200) COLLATE "default",
@@ -1451,7 +1394,7 @@ INSERT INTO "public"."logistica" VALUES ('36', 'Templete/Tarima', 't');
 -- ----------------------------
 -- Table structure for logistica_x_evento
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."logistica_x_evento";
+--DROP TABLE IF EXISTS "public"."logistica_x_evento";
 CREATE TABLE "public"."logistica_x_evento" (
 "id_evento" int4,
 "id_logistica" int4,
@@ -1468,7 +1411,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for resultado
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."resultado";
+--DROP TABLE IF EXISTS "public"."resultado";
 CREATE TABLE "public"."resultado" (
 "id_resultado" int8 DEFAULT nextval('resultado_id_resultado_seq'::regclass) NOT NULL,
 "id_evento" int4,
@@ -1491,7 +1434,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Table structure for seriada
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."seriada";
+--DROP TABLE IF EXISTS "public"."seriada";
 CREATE TABLE "public"."seriada" (
 "id_seriada" numeric(2) NOT NULL,
 "seriada" varchar(2) COLLATE "default"
@@ -1507,51 +1450,9 @@ INSERT INTO "public"."seriada" VALUES ('1', 'Si');
 INSERT INTO "public"."seriada" VALUES ('2', 'No');
 
 -- ----------------------------
--- Table structure for tipo_actividad
--- ----------------------------
-DROP TABLE IF EXISTS "public"."tipo_actividad";
-CREATE TABLE "public"."tipo_actividad" (
-"id_tipo_actividad" numeric(16),
-"tipo_actividad" varchar(100) COLLATE "default",
-"activo" bool
-)
-WITH (OIDS=FALSE)
-
-;
-
--- ----------------------------
--- Records of tipo_actividad
--- ----------------------------
-INSERT INTO "public"."tipo_actividad" VALUES ('1', 'Actividades Culturales', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('2', 'Activación Física y Zumba', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('3', 'Actividad en Plantel', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('4', 'Cine Club Prepa Sí', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('5', 'Círculos de Lectura ', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('6', 'Educación Medioambiental', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('7', 'Emprendedores Prepa Sí', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('8', 'Encuentro Intergeneracional', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('9', 'Entrega de condones', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('10', 'Eventos Especiales', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('11', 'Feria de Ciencias', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('12', 'Ferias de Salud', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('13', 'Huertos Urbanos', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('14', 'Juegos Recreativos', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('15', 'Módulo Informativo', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('16', 'Paseo Ciclista Prepa Sí', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('17', 'Pláticas, Talleres y Conferencias', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('18', 'Proyectos científicos y Club de ciencias', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('19', 'Reduce, Recicla, Reusa', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('20', 'Retas Deportivas', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('21', 'Reuniones Organizativas', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('22', 'Salud Sexual y Reproductiva', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('23', 'Teatro Prepa Sí', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('24', 'Trueque Prepa Sí', 't');
-INSERT INTO "public"."tipo_actividad" VALUES ('25', 'Visitas a Museos', 't');
-
--- ----------------------------
 -- Table structure for usuario
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."usuario";
+--DROP TABLE IF EXISTS "public"."usuario";
 CREATE TABLE "public"."usuario" (
 "id_usuario" int4 DEFAULT nextval('usuario_id_usuario_seq'::regclass) NOT NULL,
 "nombre" varchar(50) COLLATE "default",
@@ -1571,10 +1472,10 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
-INSERT INTO "public"."usuario" VALUES ('1', 'Administrador', 'del', 'Sistema', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'nsanchezma@df.gob.mx', '0', '1', 't');
+INSERT INTO "public"."usuario" VALUES ('1', 'Administrador', 'del', 'Sistema', 'admin', '498c071d0cdf0b906fb3a752be06f873', 'nsanchezma@df.gob.mx', '0', '1', 't');
 INSERT INTO "public"."usuario" VALUES ('2', 'Nazareth', 'Sánchez', 'Martínez', 'nsanchezm', '363f9b03b8b9701de6dee5994c1b1822', 'ing.naz@gmail.com', '13', '2', 't');
 INSERT INTO "public"."usuario" VALUES ('3', 'Director', 'de', 'Zona Norte', 'director', '3d4e992d8d8a7d848724aa26ed7f4176', 'nazareth.sanchez.fidegar@gmail.com', '0', '3', 't');
-INSERT INTO "public"."usuario" VALUES ('4', 'cony', 'jaramillo', 'montalvan', 'icony', 'c628078c6689b3f92cc5f0a0abc770fb', 'icony@gmail.com', '14', '2', 'f');
+INSERT INTO "public"."usuario" VALUES ('4', 'cony', 'jaramillo', 'montalvan', 'icony', 'c628078c6689b3f92cc5f0a0abc770fb', 'icony@gmail.com', '14', '2', 't');
 INSERT INTO "public"."usuario" VALUES ('5', 'Alfredo', 'Dominguez', 'Marrufo', 'ce.prebu', 'fb6f13b31bc4e8e829346daa2b3c1853', 'alfredo.dominguez@fideicomisoed.df.gob.mx', '0', '3', 't');
 INSERT INTO "public"."usuario" VALUES ('6', 'Mariana Perla', 'Rojas', 'Martínez', 'dc.prebu', 'e60404a5e8f2c164e2a27ffeabfd7f27', 'perladumas@gmail.com', '0', '3', 't');
 INSERT INTO "public"."usuario" VALUES ('7', 'César', 'Martínez', 'Alvarez', 'dzs.prebu', 'e71d46b99b71dd6b827e00d0d8edc27c', 'cesar.martinez@fideicomisoed.df.gob.mx', '0', '3', 't');
@@ -1595,6 +1496,7 @@ INSERT INTO "public"."usuario" VALUES ('21', 'Yessica', 'Hernández', 'Pompeyo',
 INSERT INTO "public"."usuario" VALUES ('22', 'Gonzalo', 'González', 'Escobar', 'mhi.dzn', 'cde03f57984eb8c66ebd83c7bae6bc6c', 'gonzalo.alberto@hotmail.com', '16', '2', 't');
 INSERT INTO "public"."usuario" VALUES ('23', 'Wendy Concepción', 'Flores', 'Samper', 'vca.dzn', '7a32bea49b90a21067767d52ecd1ebf6', 'wfsprebu@gmail.com', '17', '2', 't');
 INSERT INTO "public"."usuario" VALUES ('24', 'Rosa Emma', 'Noches', 'Guzmán', 'uni.prebu', 'a158a620de1185a8e754092f862b3fe9', 'emmanoches@gmail.com', '18', '2', 't');
+INSERT INTO "public"."usuario" VALUES ('25', 'BJU', 'Benito', 'Juarez', 'bju.dzn', '4ab6a236939baf14b3d520bf19daeee4', 'bju@gmail.com', '14', '2', 't');
 
 -- ----------------------------
 -- Alter Sequences Owned By 
@@ -1610,6 +1512,7 @@ ALTER SEQUENCE "public"."cat_museos_id_museo_seq" OWNED BY "cat_museos"."id_muse
 ALTER SEQUENCE "public"."cat_nivel_id_nivel_seq" OWNED BY "cat_nivel"."id_nivel";
 ALTER SEQUENCE "public"."cat_perfil_id_perfil_seq" OWNED BY "cat_perfil"."id_perfil";
 ALTER SEQUENCE "public"."cat_plantel_id_plantel_seq" OWNED BY "cat_plantel"."id_plantel";
+ALTER SEQUENCE "public"."cat_tipo_actividad_id_tipo_actividad_seq" OWNED BY "cat_tipo_actividad"."id_tipo_actividad";
 ALTER SEQUENCE "public"."evento_id_evento_seq" OWNED BY "evento"."id_evento";
 ALTER SEQUENCE "public"."logistica_id_logistica_seq" OWNED BY "logistica"."id_logistica";
 ALTER SEQUENCE "public"."resultado_id_resultado_seq" OWNED BY "resultado"."id_resultado";
