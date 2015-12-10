@@ -11,17 +11,35 @@
 <script>
 
 $(document).ready(function() {
-    $('#dtUsuarios').DataTable({
+    $('#Exportar_a_Excel').DataTable({
     	"columnDefs": [
                        {"searchable": true},
                        {"sortable": true}
                    ]
 
     });
+    $(document).tooltip({
+	      position: {
+	        my: "right bottom-10",
+	        at: "right top",
+	        using: function( position, feedback ) {
+	          $( this ).css( position );
+	          $( "<div>" )
+	            .addClass( "arrow" )
+	            .addClass( feedback.vertical )
+	            .addClass( feedback.horizontal )
+	            .appendTo( this );
+	        }
+	      }
+	 });
+
+	$(".botonExcel").click(function(event) {
+		$("#datos_a_enviar").val( $("<div>").append( $("#Exportar_a_Excel").eq(0).clone()).html());
+		$("#FormularioExportacion").submit();
+	});
 
     
 });
-
 
 </script>
 <?php /* 
@@ -35,12 +53,17 @@ echo "</pre>";
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-solid box-success" style="width:100%; text-align:left !important; min-height:260px; height:100%;">
+            		<form action="index.php/operador/exportaExcel" method="post" target="_blank" id="FormularioExportacion">
+						<p align="right"><img src="resources/images/btn_excel.png" class="botonExcel" style="cursor:pointer;" title="De click aquí para descargar en formato .xls"/></p>
+						<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
+					</form>
  					<div>DELEGACIÓN  </div>           
-            		<table id ="dtUsuarios" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
+            		<table id="Exportar_a_Excel" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
             			<thead style="font-size:13px;">
 								<tr bgcolor="#808080">
 									<td>NOMBRE EVENTO</td>
 									<td width="76px">FECHA </td>
+									<td>RESPONSABLE ACTIVIDAD </td>
 									<td>COORDINACIÓN </td>
 									<td width="95px">DELEGACIÓN</td>
 									<td>PARTICIPANTES</td>
@@ -55,6 +78,7 @@ echo "</pre>";
 									<tr onClick="location.href='index.php/operador/modifica/<?php echo $value['id_evento']?>'" style="cursor:pointer;">
 										<td><?php echo $value['descripcion']?></td>
 										<td><?php echo $value['inicio']?></td>
+										<td><?php echo $value['responsable_actividad']?></td>
 										<td><?php echo $value['coordinacion']?></td>
 										<td  align="center"><?php echo $value['siglas']?></td>
 										

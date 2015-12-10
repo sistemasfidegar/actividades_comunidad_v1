@@ -853,7 +853,21 @@ class director extends CI_Controller {
     
     	return $string;
     }
-    
+    function exportaExcel()
+    {
+    	$archivo = 'tabla_'.date('dmY_hi').'.xls';
+    	 
+    	if( $_POST['datos_a_enviar']!=null)
+    	{
+    		header("Content-type: application/vnd.ms-excel; name='excel'");
+    		header("Content-Disposition: filename=$archivo");
+    		header("Pragma: no-cache");
+    		header("Expires: 0");
+    		 
+    		echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+    		echo $_POST['datos_a_enviar'];
+    	}
+    }
     function pruebas(){
     	$datos['content'] = $this->load->view('director/pruebas.php',true, true);
     	$this->load->view('director/v_template.php', $datos, false);
