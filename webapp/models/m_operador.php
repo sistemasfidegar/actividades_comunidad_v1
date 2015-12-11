@@ -5,6 +5,7 @@ class M_operador extends MY_Model {
     function M_operador() {
         parent::__construct();
     }
+    
     function getLogisticaEvento($id_evento){
     	$this->sql = "select * from logistica_x_evento where id_evento=$id_evento; ";
     	$results = $this->db->query($this->sql);
@@ -25,7 +26,7 @@ function updateEvento($datos){
     	$this->sql="UPDATE evento set  id_eje=:id_eje, descripcion=:descripcion, id_coordinacion=:id_coordinacion,id_tipo_lugar=:id_tipo_lugar, latitud=:latitud, longitud=:longitud,
 							id_lugar=:id_lugar, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_inicio, horario=:horario, num_horas=:num_horas, no_asistentes=:no_asistentes, no_coordinadores=:no_coordinadores,
 							no_promotores=:no_promotores, fecha_modificacion=now(), id_usuario_modifica=:id_usuario_registra, id_delegacion=:id_delegacion, id_responsable=:id_responsable, id_seriada=:id_seriada,
-    						id_actividad=:actividad	
+    						id_actividad=:actividad, responsable_actividad=:res_actividad	
 							WHERE id_evento=:id_evento;";
     	$this->bindParameters($datos);
     	$results = $this->db->query($this->sql, array(1));
@@ -140,8 +141,8 @@ function updateEvento($datos){
     }
 	function insertaEvento($data)
     {
-    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion,latitud,longitud, activo, id_actividad) values
-   			(1,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_inicio,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion,:latitud,:longitud,  't', :actividad) returning id_evento;";
+    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion,latitud,longitud, activo, id_actividad, responsable_actividad) values
+   			(1,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_inicio,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion,:latitud,:longitud,  't', :actividad, :res_actividad) returning id_evento;";
     	 
     	$this->bindParameters($data);
     	$results = $this->db->query($this->sql, array(1));

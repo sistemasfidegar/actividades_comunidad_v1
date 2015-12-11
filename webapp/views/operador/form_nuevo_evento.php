@@ -481,7 +481,7 @@ $().ready(function () {
                           	},
                           	function(isConfirm){
                           	  if (isConfirm) {
-                          		irA('operador/listado');
+                          		irA('index.php/operador/listado');
                           	  } 
                           	});
                      }
@@ -500,7 +500,7 @@ $().ready(function () {
                          	},
                          	function(isConfirm){
                          	  if (isConfirm) {
-                         		 irA('operador/listado');
+                         		 irA('index.php/operador/listado');
                          	  } 
                          	});
                      }
@@ -567,7 +567,10 @@ function irA(uri) {
 			            	</select>
 			           -->
 			            </div>
-			            
+			            <div class="form-group">
+			            	<label>Responsable Actividad:</label>
+				            <input type="text" name="res_actividad" id="res_actividad" value="" class="form-control">
+			            </div>
 			            <div class="form-group">
 			            	<label>Eje temático:</label>
 				            <select name="id_eje" id="id_eje" class="form-control" >

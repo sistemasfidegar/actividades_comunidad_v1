@@ -28,14 +28,32 @@
 <script>
 
 $(document).ready(function() {
-    $('#dtUsuarios').DataTable({
+    $('#Exportar_a_Excel').DataTable({
     	"columnDefs": [
                        {"searchable": false, "targets": [0, 1, 2,3,4,5,6]},
                        {"sortable": false, "targets": [0, 1, 2,3,4,5,6]}
                    ]
 
     });
+    $(document).tooltip({
+	      position: {
+	        my: "right bottom-10",
+	        at: "right top",
+	        using: function( position, feedback ) {
+	          $( this ).css( position );
+	          $( "<div>" )
+	            .addClass( "arrow" )
+	            .addClass( feedback.vertical )
+	            .addClass( feedback.horizontal )
+	            .appendTo( this );
+	        }
+	      }
+	 });
 
+	$(".botonExcel").click(function(event) {
+		$("#datos_a_enviar").val( $("<div>").append( $("#Exportar_a_Excel").eq(0).clone()).html());
+		$("#FormularioExportacion").submit();
+	});
     $("#Borrar").click(function ()
 			{ 
 				 if($('#BorrarE').valid())
@@ -113,8 +131,12 @@ echo "</pre>";
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
+            		<form action="index.php/director/exportaExcel" method="post" target="_blank" id="FormularioExportacion">
+						<p align="right"><img src="resources/images/btn_excel.png" class="botonExcel" style="cursor:pointer;" title="De click aquí para descargar en formato .xls"/></p>
+						<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
+					</form>
  					<div>DELEGACIÓN  </div>           
-            		<table id ="dtUsuarios" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
+            		<table id="Exportar_a_Excel" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
             			<thead style="font-size:13px;">
 								<tr bgcolor="#808080">
 									<td>NOMBRE EVENTO</td>

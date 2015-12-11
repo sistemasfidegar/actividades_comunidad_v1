@@ -150,7 +150,8 @@ public function updateEvento() {
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
     	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] =  $this->id_usuario;
-    
+    	$data['res_actividad']=$this->input->post('res_actividad');
+    	
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
     
@@ -250,7 +251,7 @@ public function guardaEvento() {
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
     	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = $this->id_usuario;
-    	 
+    	$data['res_actividad']=$this->input->post('res_actividad'); 
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
     	 
@@ -723,7 +724,21 @@ function eventoNuevo(){
     	
     		return $string;
     	}
-    	 
+    	function exportaExcel()
+    	{
+    		$archivo = 'tabla_'.date('dmY_hi').'.xls';
+    	
+    		if( $_POST['datos_a_enviar']!=null)
+    		{
+    			header("Content-type: application/vnd.ms-excel; name='excel'");
+    			header("Content-Disposition: filename=$archivo");
+    			header("Pragma: no-cache");
+    			header("Expires: 0");
+    	
+    			echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+    			echo $_POST['datos_a_enviar'];
+    		}
+    	}
 	function pruebas(){
 		$id_evento= 6;
 		$datos['evento']=$id_evento;
