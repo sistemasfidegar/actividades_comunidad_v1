@@ -599,7 +599,7 @@ $().ready(function () {
                           	},
                           	function(isConfirm){
                           	  if (isConfirm) {
-                          		irA('operador/listado');
+                          		irA('index.php/operador/listado');
                           	  } 
                           	});
                      }
@@ -618,7 +618,7 @@ $().ready(function () {
                          	},
                          	function(isConfirm){
                          	  if (isConfirm) {
-                         		 irA('operador/listado');
+                         		 irA('index.php/operador/listado');
                          	  } 
                          	});
                      }
