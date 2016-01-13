@@ -44,6 +44,11 @@ class M_catalogos extends MY_Model{
 		$results = $this->db->query($this->sql);
 		return $results->result_array();
 	}
+	function getLogisticaxEvanto($id_evento){
+		$this->sql="select cantidad, logistica from logistica_x_evento x INNER JOIN logistica l on x.id_logistica=l.id_logistica where x.id_evento=$id_evento;";
+		$results = $this->db->query($this->sql);
+		return $results->result_array();
+	}
 	function getLugar($tipoLugar,$lugar){
 		if($tipoLugar==1){
 			$this->sql = "SELECT plantel as lugar FROM cat_plantel WHERE activo is true and id_plantel=$lugar;";
@@ -157,14 +162,16 @@ UNION
 	
 	
 	function getAllEventos(){
-		$this->sql="SELECT e.id_evento,  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin
-					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas
+		$this->sql="SELECT e.id_evento,  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.no_asistentes
+					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
 					FROM evento e 
 					LEFT JOIN involucrados i on e.id_evento= i.id_evento
 					INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
 					INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+					INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
 					LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 					LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
+				
 					WHERE  e.activo is true;";
 		$results = $this->db->query($this->sql);
 		return $results->result_array();
