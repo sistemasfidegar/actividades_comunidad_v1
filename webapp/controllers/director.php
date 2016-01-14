@@ -46,6 +46,7 @@ class director extends CI_Controller {
     	$listado['lista']= $aux;
     	$participantes= array();
     	$lugar=array();
+    	$logistica=array();
     	 
     	foreach ($aux as $dato){
     		$lugar[$dato['id_evento']]=$this->m_catalogos->getLugar($dato['id_tipo_lugar'], $dato['id_lugar']);
@@ -54,6 +55,10 @@ class director extends CI_Controller {
     	foreach ($aux as $dato){
     		$participantes[$dato['id_evento']]=$this->m_catalogos->getDelegacionInvolucradas($dato['id_evento']);
     	}
+    	foreach ($aux as $dato){
+    		$logistica[$dato['id_evento']]=$this->m_catalogos->getLogisticaxEvanto($dato['id_evento']);
+    	}
+    	$listado['logistica']=$logistica;
     	$listado['participantes']=$participantes;
     	$listado['lugar']=$lugar;
     

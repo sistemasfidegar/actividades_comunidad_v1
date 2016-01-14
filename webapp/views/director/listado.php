@@ -140,10 +140,15 @@ echo "</pre>";
             			<thead style="font-size:13px;">
 								<tr bgcolor="#808080">
 									<td>NOMBRE EVENTO</td>
-									<td width="76px">FECHA </td>
+									<td>EJE TEMÁTICO</td>
+									<td>FECHA </td>
+									<td>ASISTENTES </td>
+									<td>RESPONSABLE</td>
+									
 									<td>COORDINACIÓN </td>
-									<td width="95px">DELEGACIÓN</td>
+									<td>DELEGACIÓN</td>
 									<td>PARTICIPANTES</td>
+									<td>LOGISTICA</td>
 									<td>SEDE</td>
 									<td>UBICACI&Oacute;N</td>
 									<td></td>
@@ -157,13 +162,22 @@ echo "</pre>";
 									
 										
 										<td><?php echo $value['descripcion']?></td>
-										<td><?php echo $value['inicio']?></td>
+										<td><?php echo $value['eje_tematico']?></td>
+										<td><?php echo $value['inicio'].'<br>'.$value['horario']?></td>
+										<td><?php echo $value['no_asistentes']?></td>
+										<td><?php echo $value['responsable_actividad']?></td>
 										<td><?php echo $value['coordinacion']?></td>
+										
 										<td  align="center"><?php echo $value['siglas']?></td>
 										
 										<td><ul>
 											<?php foreach ($participantes[$value['id_evento']] as $delegacion){?>
-												<li value="" ><?php echo $delegacion['delegacion']; ?></li>				                  
+												<li ><?php echo $delegacion['delegacion']; ?></li>				                  
+				            				<?php }?>
+				            			</ul></td>
+				            			<td><ul>
+											<?php foreach ($logistica[$value['id_evento']] as $log){?>
+												<li ><?php echo $log['logistica'].' - '.$log['cantidad']; ?></li>				                  
 				            				<?php }?>
 				            			</ul></td>
 				            			<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
