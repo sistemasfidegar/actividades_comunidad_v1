@@ -42,7 +42,10 @@ class director extends CI_Controller {
     }
     function listado() {
     	 
-    	$aux=$this->m_catalogos->getAllEventos();
+    	$mes=$this->input->post('mes');
+    	$anio=$this->input->post('anio');
+    	
+    	$aux=$this->m_director->getAllEventos($mes, $anio);
     	$listado['lista']= $aux;
     	$participantes= array();
     	$lugar=array();

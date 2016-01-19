@@ -114,7 +114,64 @@ $(document).ready(function() {
     function irA(uri) {
 	    window.location.href = '<?php echo base_url(); ?>' + uri;
 	}
+    var rules_form = {
+	        rules: {		        	
+	        	mes: "selectNone",
+	        	id_tipo_reporte: "selectNone"
+	        },
+	        messages: {		        	
+	        	
+	        },
+	        ignore: ":not(:visible)",
+	        showErrors: function (map, list) {
+	            // there's probably a way to simplify this
+	            var focussed = document.activeElement;
+	            
+	           /* if (focussed && $(focussed).is("input, textarea")) {
+	                $(this.currentForm).tooltip("close", {
+	                    currentTarget: focussed
+	                }, true);
+	            }*/
+	            
+	            this.currentElements.removeAttr("title").removeClass("ui-state-error");
+	            
+	            $.each(list, function (index, error) {
+	                $(error.element).attr("title", error.message).addClass("ui-state-error");
+	            });
+	            
+	            /*if (focussed && $(focussed).is("input, textarea")) {
+	                $(this.currentForm).tooltip("open", {
+	                    target: focussed
+	                });
+	            }*/
+	        }
+	    };
 
+ jQuery.validator.addMethod(
+            "selectNone",
+            function (value, element) {
+                if (element.value == "0")
+                    return false;
+                else
+                    return true;
+            },
+            "Debe seleccionar una opción"
+ );
+
+
+ $("#filtros").validate(rules_form);
+
+    
+	$("#generar").click(function ()
+	{ 					
+		 if($('#filtros').valid())
+	     {
+
+			 $("#filtros").submit();
+	     }
+
+	});
+	
     
 });
 
@@ -127,8 +184,74 @@ echo "</pre>";
 */
 ?>
     <div class="row">
+    
+    <div class="col-md-12">
+    <form id="filtros" name="filtros" method="post" action="index.php/director/listado">
+	<div class="row">        	
+        	<div class="col-md-12">
+        		<div class="box box-solid box-success" style="text-align:left !important;  height:100%;">
+   			     	<div class="box-body">
+   			     	
+   			     	       <div class="row">  
+   			     	       
+   			     	       		<div class="col-md-2">
+						          
+					            </div>
+					            
+	   			     	       <div class="col-md-2">
+		   			     			<div class="form-group">
+						              <label>Selecciona el año:</label>
+							            <select name="anio" id="anio" class="form-control" >
+							            	<?php for($i=date('Y');$i>=2015;$i--){?>
+							            		<option value="<?php echo $i;?>"><?php echo $i;?></option>
+							            	<?php }?>			            					            				          
+						            	</select>
+						            </div>
+					            </div>
+					            
+					             <div class="col-md-4">
+						            <div class="form-group">
+						              <label>Selecciona el mes:</label>
+							            <select name="mes" id="mes" class="form-control" >
+							            	<option value="0">[Seleccionar]</option>
+						            		<option value="01">Enero</option>
+									        <option value="02">Febrero</option>
+									        <option value="03">Marzo</option>
+									        <option value="04">Abril</option>
+									        <option value="05">Mayo</option>
+									        <option value="06">Junio</option>
+									        <option value="07">Julio</option>
+									        <option value="08">Agosto</option>
+									        <option value="09">Septiembre</option>
+									        <option value="10">Octubre</option>
+									        <option value="11">Noviembre</option>
+									        <option value="12">Diciembre</option>					            				           
+						            	</select>
+						            </div>
+						            
+					            </div>
+					            				            
+				            </div>
+							<div class="box-footer" style="text-align: right;" >
+					     			<button id="generar" name="generar" type="button" class="btn btn-primary">Enviar</button>
+					     	</div> 
+				             
+   			     	
+   			     	
+   			     	</div>
+   			     </div>
+   			 </div>
+    </div>
+</form>
+    </div>
+    <?php 
+ 		$display ="none";
+ 		if(isset($lista) && $lista!=null)
+ 			$display ="block";
+ 		?>
+			    
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-12" style="display:<?php echo $display;?>;">
             <!-- general form elements -->
             <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
             		<form action="index.php/director/exportaExcel" method="post" target="_blank" id="FormularioExportacion">
@@ -180,7 +303,7 @@ echo "</pre>";
 												<li ><?php echo $log['logistica'].' - '.$log['cantidad']; ?></li>				                  
 				            				<?php }?>
 				            			</ul></td>
-				            			<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
+				            				<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
 				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'].'<br>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==2){echo 'Espacio Público <br>'.$lu['lugar'].'<br>Direccion: '.$lu['direccion'];}elseif ($value['id_tipo_lugar']==3){echo 'Museo <br>'.$lu['lugar'].'<br>Direccion: '.$lu['direccion'];}elseif ($value['id_tipo_lugar']==4){echo 'Escuela para adultos <br>'.$lu['lugar'].'<br>Direccion: '.$lu['direccion'];}}?></td>
 					            			
 					            		<td align="center"><a href='index.php/director/BorrarEvento/<?php echo $value['id_evento']?>'" ><img src="resources/images/tache.png" border="0" /></a> </td>
