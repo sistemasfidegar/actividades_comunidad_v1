@@ -134,24 +134,26 @@ class M_catalogos extends MY_Model{
 	
 	function getEventoLista($id_usuario){
 		$this->sql="(
-	SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin
-					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, e.responsable_actividad 
+	SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin,ce.eje_tematico, e.horario
+					,e.no_asistentes,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, e.responsable_actividad,e.nombre
 	FROM evento e 
 	LEFT JOIN involucrados i on e.id_evento= i.id_evento
 	INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
 	INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+	INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
 	LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 	LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
 	WHERE e.id_responsable=$id_usuario and e.activo is true
 )
 UNION
 (
-		SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin
-					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas,e.responsable_actividad
+		SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, ce.eje_tematico, e.horario
+					,e.no_asistentes,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas,e.responsable_actividad,e.nombre
 	FROM evento e 
 	LEFT JOIN involucrados i on e.id_evento= i.id_evento
 	INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
 	INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+	INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
 	LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 	LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
 	WHERE i.id_delegacion= (select id_delegacion from usuario where id_usuario=$id_usuario) and e.activo is true	
@@ -190,7 +192,7 @@ UNION
 		$this->sql="SELECT d.id_delegacion, d.delegacion, ce.eje_tematico, n.nivel, co.coordinacion, e.id_evento, s.seriada, 
 					to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.descripcion, e.horario, 
 					e.no_asistentes, e.no_coordinadores, e.num_horas, e.no_promotores, e.fecha_registro, e.id_evento,e.id_tipo_lugar, e.id_lugar, a.id_tipo_actividad, a.tipo_actividad,
-					e.id_responsable, ur.usuario,ep.espacio_publico, cp.plantel, e.id_tipo_evento, e.id_seriada, cm.museo, ea.escuela,e.latitud,e.longitud, e.responsable_actividad  	
+					e.id_responsable, ur.usuario,ep.espacio_publico, cp.plantel, e.id_tipo_evento, e.id_seriada, cm.museo, ea.escuela,e.latitud,e.longitud, e.responsable_actividad, e.nombre, e.fin_reg  	
 					FROM evento e 
 					INNER JOIN cat_delegacion d ON e.id_delegacion = d.id_delegacion
 					INNER JOIN cat_eje ce ON ce.id_eje = e.id_eje

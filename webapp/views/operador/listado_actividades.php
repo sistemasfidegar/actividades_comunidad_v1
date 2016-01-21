@@ -62,12 +62,14 @@ echo "</pre>";
             			<thead style="font-size:13px;">
 								<tr bgcolor="#808080">
 									<td>NOMBRE EVENTO</td>
-									<td width="76px">FECHA </td>
+									<td>EJE TEMÁTICO</td>
+									<td>FECHA/HORA </td>
+									<td>ASISTENTES </td>
 									<td>RESPONSABLE ACTIVIDAD </td>
 									<td>COORDINACIÓN </td>
-									<td width="95px">DELEGACIÓN</td>
+									<td>DELEGACIÓN</td>
 									<td>PARTICIPANTES</td>
-									<td>SEDE</td>
+									<td>LOGISTICA</td>
 									<td>UBICACI&Oacute;N</td>									
 								</tr>
 								</thead>
@@ -76,8 +78,10 @@ echo "</pre>";
 															
 									<?php foreach ($lista as $value){?>
 									<tr onClick="location.href='index.php/operador/modifica/<?php echo $value['id_evento']?>'" style="cursor:pointer;">
-										<td><?php echo $value['descripcion']?></td>
-										<td><?php echo $value['inicio']?></td>
+										<td><?php echo $value['nombre']?></td>
+										<td><?php echo $value['eje_tematico']?></td>
+										<td><?php echo $value['inicio'].'<br>'.$value['horario']?></td>
+										<td><?php echo $value['no_asistentes']?></td>
 										<td><?php echo $value['responsable_actividad']?></td>
 										<td><?php echo $value['coordinacion']?></td>
 										<td  align="center"><?php echo $value['siglas']?></td>
@@ -87,9 +91,14 @@ echo "</pre>";
 												<li value="" ><?php echo $delegacion['delegacion']; ?></li>				                  
 				            				<?php }?>
 				            			</ul></td>
+				            			<td><ul>
+											<?php foreach ($logistica[$value['id_evento']] as $log){?>
+												<li ><?php echo $log['logistica'].' - '.$log['cantidad']; ?></li>				                  
+				            				<?php }?>
+				            			</ul></td>
 				            			<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
-				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==2){echo 'Espacio Público <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==3){echo 'Museo <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==4){echo 'Escuela para adultos <br>'.$lu['lugar'];}}    ?></td>
-					            		<td> <?php if ($value['id_tipo_lugar']==1){echo '';}else {echo $lu['direccion'];}?></td>
+				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==2){echo '<b>Espacio Público</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==3){echo '<b>Museo</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==4){echo '<b>Escuela para adultos </b><br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}}?></td>
+					            			
 					            		<?php }?>
 				  					</tr>
 						</tbody>	

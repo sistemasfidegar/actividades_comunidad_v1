@@ -16,6 +16,7 @@
               
         <script src="resources/js/jquery-2.1.1.min.js"></script>
      
+       
         
 		<script src="resources/js/ligth/js/lightbox-2.6.min.js"></script>
 		<link rel="stylesheet" href="resources/js/ligth/css/lightbox.css" media="screen"/>
@@ -141,7 +142,8 @@
                             <ul class="treeview-menu">
                                 <li <?php if ($this->uri->segment(2) === 'agenda' || $this->uri->segment(2) ==='detalleEvento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/agenda"><i class="fa fa-angle-double-right"></i> Eventos registrados</a></li>                                                               
                                 <li <?php if ($this->uri->segment(2) === 'registro_evento') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/registro_evento"><i class="fa fa-angle-double-right"></i> Nuevo evento</a></li>                                                                                          
-                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>                                                                                          
+                            	<li <?php if ($this->uri->segment(2) === 'listado') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/listado"><i class="fa fa-angle-double-right"></i> Listado</a></li>
+                            	<li <?php if ($this->uri->segment(2) === 'actividadesARealizar') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/director/actividadesARealizar"><i class="fa fa-angle-double-right"></i> Actividades a Realizar</a></li>                                                                                          
                             </ul>
                         </li>
                         
@@ -155,6 +157,7 @@
                                 <li <?php if ($this->uri->segment(2) === 'generaSemanal') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaSemanal"><i class="fa fa-angle-double-right"></i> Semanal</a></li>                                                               
                                 <li <?php if ($this->uri->segment(2) === 'generaMensual') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaMensual"><i class="fa fa-angle-double-right"></i> Mensual</a></li>
                                 <li <?php if ($this->uri->segment(2) === 'generaTrimestral') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/generaTrimestral"><i class="fa fa-angle-double-right"></i> Trimestral</a></li>                                                                                                                                               
+                            	<li <?php if ($this->uri->segment(2) === 'actividadesRealizadas') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>index.php/reportes/actividadesRealizadas"><i class="fa fa-angle-double-right"></i> Actividades Realizadas</a></li>
                             </ul>
                         </li>    
                         

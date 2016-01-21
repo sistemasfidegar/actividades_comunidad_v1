@@ -1,7 +1,7 @@
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDB2X_xfuwffmcKei_-IQGwbWX4MpaOQjk&sensor=false">
 </script>
-
+<script src="resources/js/date.js"></script>
 <style>
 .btn-custom {
   background-color: hsl(312, 80%, 43%) !important;
@@ -77,11 +77,12 @@ var marker = null;
 jQuery(document).ready(function(){
 
 	$('#hora_inicio').timepicker({
+		 
 		'minTime': '09:00',
 		'maxTime': '15:00',
 		'showDuration': false,
 		'timeFormat': 'H:i',
-		'step': 60
+		'step': 15
 	});
 	
      //obtenemos los valores en caso de tenerlos en un formulario ya guardado en la base de datos
@@ -287,13 +288,16 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio: "required",
+		        	fecha_inicio: "fecha_valida",
 		        	fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
 		        	noPromotores: "required",
-		        	noCoordinadores: "required",		                   
+		        	noCoordinadores: "required",
+		        	res_actividad: "required",
+		        	 
+		        	nombre:"required",	                   
 		            "involucrados[]": "required"
 		           
 		            
@@ -335,8 +339,7 @@ $().ready(function () {
 		        }
 		    };
 
-	 jQuery.validator.addMethod(
-	            "selectNone",
+	 jQuery.validator.addMethod("selectNone",
 	            function (value, element) {
 	                if (element.value == "0")
 	                    return false;
@@ -346,11 +349,19 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
-
-	$("#id_tipo").change(function () {
+	 jQuery.validator.addMethod("fecha_valida",function(value, element) {
+		 var r=document.getElementById("fecha_inicio").value;
+		 if( r<= Date.today().add(14).day().toString('dd/MM/yyyy') && r!=null)
+			 return true;
+		else
+			return false;
+				 
+	        
+	    }, "Debes reportar tu evento con 2 semanas de anticipacion");
+	    
+	 
+	
+		$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
         if (tipo == 2)
         {
@@ -537,8 +548,9 @@ $().ready(function () {
 	           '</div>'+
 	           '</td></tr>');
     });
-
-
+    
+    
+   
 });
 
 function irA(uri) {
@@ -566,6 +578,10 @@ function irA(uri) {
 				            <?php }?>				            
 			            	</select>
 			           -->
+			            </div>
+			            <div class="form-group">
+			            	<label>Nombre Actividad:</label>
+				            <input type="text" name="nombre" id="nombre" value="" class="form-control">
 			            </div>
 			            <div class="form-group">
 			            	<label>Responsable Actividad:</label>

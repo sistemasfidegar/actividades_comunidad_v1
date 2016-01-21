@@ -45,7 +45,7 @@ class director extends CI_Controller {
     	$mes=$this->input->post('mes');
     	$anio=$this->input->post('anio');
     	
-    	$aux=$this->m_director->getAllEventos($mes, $anio);
+    	$aux=$this->m_director->getAllActividades();
     	$listado['lista']= $aux;
     	$participantes= array();
     	$lugar=array();
@@ -69,6 +69,34 @@ class director extends CI_Controller {
     	$datos['content'] = $this->load->view('director/listado.php',$listado, true);
     	$this->load->view('director/v_template.php', $datos, false);
     }
+    function actividadesARealizar()
+    {
+    	$mes=$this->input->post('mes');
+    	$anio=$this->input->post('anio');
+    	$aux=$this->m_director->getActividadesARealizar($mes,$anio);
+    	$listado['lista']= $aux;
+    	$participantes= array();
+    	$lugar=array();
+    	$logistica=array();
+    	 
+    	foreach ($aux as $dato){
+    		$lugar[$dato['id_evento']]=$this->m_catalogos->getLugar($dato['id_tipo_lugar'], $dato['id_lugar']);
+    	}
+    	 
+    	foreach ($aux as $dato){
+    		$participantes[$dato['id_evento']]=$this->m_catalogos->getDelegacionInvolucradas($dato['id_evento']);
+    	}
+    	foreach ($aux as $dato){
+    		$logistica[$dato['id_evento']]=$this->m_catalogos->getLogisticaxEvanto($dato['id_evento']);
+    	}
+    	$listado['logistica']=$logistica;
+    	$listado['participantes']=$participantes;
+    	$listado['lugar']=$lugar;
+    	 
+    	$datos['content'] = $this->load->view('director/ActividadesARealizar.php', $listado, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    	 
+    }
     function BorrarEvento($id_evento){
     	
     	
@@ -85,6 +113,8 @@ class director extends CI_Controller {
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
     	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = (int) $this->input->post('id_responsable');
+    	$data['fecha_termino'] =  $this->input->post('fecha_termino');
+    	$data['nombre'] =  $this->input->post('nombre');
     	
     	$aux=$this->m_director->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
@@ -165,7 +195,7 @@ class director extends CI_Controller {
     	$data['id_tipo'] = (int) $this->input->post('id_tipo');
     	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] = (int) $this->input->post('id_responsable');
-    	 
+    	$data['nombre'] =  $this->input->post('nombre');
     	$aux=$this->m_director->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
     	 

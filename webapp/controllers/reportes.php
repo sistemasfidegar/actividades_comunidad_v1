@@ -936,6 +936,35 @@ class reportes extends CI_Controller {
     	$datos['content'] = $this->load->view('reportes/v_trimestral.php', $data, true);
     	$this->load->view('director/v_template.php', $datos, false);
     }
+    
+    function actividadesRealizadas()
+    {
+    	$mes=$this->input->post('mes');
+    	$anio=$this->input->post('anio');
+    	$aux=$this->m_reportes->getActividadesRealizadas($mes,$anio);
+    	$listado['lista']= $aux;
+    	$participantes= array();
+    	$lugar=array();
+    	$logistica=array();
+    	
+    	foreach ($aux as $dato){
+    		$lugar[$dato['id_evento']]=$this->m_catalogos->getLugar($dato['id_tipo_lugar'], $dato['id_lugar']);
+    	}
+    	
+    	foreach ($aux as $dato){
+    		$participantes[$dato['id_evento']]=$this->m_catalogos->getDelegacionInvolucradas($dato['id_evento']);
+    	}
+    	foreach ($aux as $dato){
+    		$logistica[$dato['id_evento']]=$this->m_catalogos->getLogisticaxEvanto($dato['id_evento']);
+    	}
+    	$listado['logistica']=$logistica;
+    	$listado['participantes']=$participantes;
+    	$listado['lugar']=$lugar;
+    	
+    	$datos['content'] = $this->load->view('reportes/listado.php', $listado, true);
+    	$this->load->view('director/v_template.php', $datos, false);
+    	
+    }
     function exportaExcel()
     {
     	$archivo = 'tabla_'.date('dmY_hi').'.xls';

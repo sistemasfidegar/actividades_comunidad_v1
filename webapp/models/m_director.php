@@ -34,18 +34,35 @@ class M_director extends MY_Model {
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
-    function getAllEventos($mes, $anio){
-    	$this->sql="SELECT e.id_evento,  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.no_asistentes
-					,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
+    function getAllActividades(){
+    	$this->sql="SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.no_asistentes, e.nombre
+    						,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
 					FROM evento e 
 					LEFT JOIN involucrados i on e.id_evento= i.id_evento
 					INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
 					INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
 					INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
+					
 					LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
 					LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
 				
-					WHERE  TO_CHAR(FECHA_INICIO,'MM') = '$mes' and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio' and e.activo is true;";
+					WHERE  e.activo is true ;";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
+    function getActividadesARealizar($mes, $anio){
+    	$this->sql="SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.no_asistentes, e.no_coordinadores,
+    	e.no_promotores, e.nombre,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
+    	FROM evento e
+    	LEFT JOIN involucrados i on e.id_evento= i.id_evento
+    	INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
+    	INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+    	INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
+    		
+    	LEFT JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
+    	LEFT JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
+    
+    	WHERE  TO_CHAR(FECHA_INICIO,'MM') = '$mes' and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio' and e.activo is true and fecha_fin>=CURRENT_DATE;";
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
@@ -118,7 +135,7 @@ class M_director extends MY_Model {
    	$this->sql="UPDATE evento set id_tipo_evento=:id_tipo, id_eje=:id_eje, descripcion=:descripcion, id_coordinacion=:id_coordinacion, id_tipo_lugar=:id_tipo_lugar,
 							id_lugar=:id_lugar, fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin, horario=:horario, num_horas=:num_horas, no_asistentes=:no_asistentes, no_coordinadores=:no_coordinadores,
 							no_promotores=:no_promotores, fecha_modificacion=now(), id_usuario_modifica=:id_usuario_registra, id_delegacion=:id_delegacion, id_responsable=:id_responsable, id_seriada=:id_seriada,
-   							latitud=:latbox, longitud=:lonbox, id_actividad=:actividad
+   							latitud=:latbox, longitud=:lonbox, id_actividad=:actividad, nombre=:nombre
 							WHERE id_evento=:id_evento;";
    	$this->bindParameters($datos);
    	$results = $this->db->query($this->sql, array(1));
@@ -126,7 +143,7 @@ class M_director extends MY_Model {
    	 
    }
     function getEventos() {
-    	$this->sql = "select e.id_evento, e.descripcion, e.fecha_inicio, e.fecha_fin, e.id_delegacion, ca.siglas 
+    	$this->sql = "select e.id_evento, e.nombre, e.fecha_inicio, e.fecha_fin, e.id_delegacion, ca.siglas 
 						from evento e JOIN cat_delegacion ca  on e.id_delegacion= ca.id_delegacion
 						where e.activo='t';";
     	$results = $this->db->query($this->sql);
@@ -144,8 +161,8 @@ class M_director extends MY_Model {
     
     function insertaEvento($data)
     {
-    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion, activo, latitud, longitud, id_actividad) values 
-   			(:id_tipo,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_fin,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion, 't',:latitud,:longitud, :actividad) returning id_evento;";
+    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion, activo, latitud, longitud, id_actividad,nombre,fin_reg) values 
+   			(:id_tipo,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_fin,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion, 't',:latitud,:longitud, :actividad,:nombre, :fecha_termino) returning id_evento;";
     	
     	$this->bindParameters($data);
     	$results = $this->db->query($this->sql, array(1));

@@ -183,12 +183,10 @@ print_r($lugar);
 echo "</pre>";
 */
 ?>
-<!-- 
-
     <div class="row">
     
     <div class="col-md-12">
-    <form id="filtros" name="filtros" method="post" action="index.php/director/listado">
+    <form id="filtros" name="filtros" method="post" action="index.php/director/actividadesARealizar">
 	<div class="row">        	
         	<div class="col-md-12">
         		<div class="box box-solid box-success" style="text-align:left !important;  height:100%;">
@@ -246,10 +244,9 @@ echo "</pre>";
     </div>
 </form>
     </div>
- -->
     <?php 
- /*		$display ="none";
- 		if(isset($lista) && $lista!=null)*/
+ 		$display ="none";
+ 		if(isset($lista) && $lista!=null)
  			$display ="block";
  		?>
 			    
@@ -268,7 +265,10 @@ echo "</pre>";
 									<td>NOMBRE EVENTO</td>
 									<td>EJE TEMÁTICO</td>
 									<td>FECHA/HORA </td>
-									<td>ASISTENTES </td>
+									<td >ASISTENTES </td>
+									<td >COORDINADORES</td>
+									<td >PROMOTORES</td>
+									
 									<td>RESPONSABLE</td>
 									
 									<td>COORDINACIÓN </td>
@@ -277,20 +277,22 @@ echo "</pre>";
 									<td>LOGISTICA</td>
 									<td>SEDE</td>
 									
-									<td></td>
 								</tr>
 								</thead>
 								
 			        			<tbody style="font-size:12px;">
 																
 									<?php foreach ($lista as $value){?>
-									<tr>
+									<tr class="otro">
 									
 										
 										<td><?php echo $value['nombre']?></td>
 										<td><?php echo $value['eje_tematico']?></td>
 										<td><?php echo $value['inicio'].'<br>'.$value['horario']?></td>
 										<td><?php echo $value['no_asistentes']?></td>
+										<td><?php echo $value['no_coordinadores']?></td>
+										<td><?php echo $value['no_promotores']?></td>
+										
 										<td><?php echo $value['responsable_actividad']?></td>
 										<td><?php echo $value['coordinacion']?></td>
 										
@@ -308,10 +310,7 @@ echo "</pre>";
 				            			</ul></td>
 				            				<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
 				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==2){echo '<b>Espacio Público</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==3){echo '<b>Museo</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==4){echo '<b>Escuela para adultos </b><br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}}?></td>
-					            			
-					            		<td align="center"><a href='index.php/director/BorrarEvento/<?php echo $value['id_evento']?>'" ><img src="resources/images/tache.png" border="0" /></a> </td>
-					            		
-										<?php }?>
+					            		<?php }?>
 				            	</form>
 								</tr>
 								
