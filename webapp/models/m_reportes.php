@@ -420,6 +420,22 @@ class M_reportes extends MY_Model {
     	$results = $this->db->query($this->sql);
     	return $results->result_array();
     }
+    function getActividadesRealizadas($mes, $anio){
+    	$this->sql="SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.nombre,
+    					 r.no_asistentes, r.no_coordinadores,r.no_promotores ,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion,
+    					 cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
+    	FROM evento e
+    	LEFT JOIN involucrados i on e.id_evento= i.id_evento
+    	INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
+    	INNER JOIN cat_coordinacion co on co.id_coordinacion=e.id_coordinacion
+    	INNER JOIN	cat_eje ce on ce.id_eje=e.id_eje
+    	FULL JOIN resultado r on r.id_evento=e.id_evento  	
+    	FULL JOIN cat_espacio_publico ep on ep.id_espacio_publico = e.id_lugar
+    	FULL JOIN cat_plantel cp on cp.id_plantel= e.id_lugar
     
+    	WHERE  TO_CHAR(FECHA_INICIO,'MM') = '$mes' and TO_CHAR(FECHA_INICIO,'YYYY') = '$anio' and e.activo is true and e.fecha_fin <=CURRENT_DATE;";
+    	$results = $this->db->query($this->sql);
+    	return $results->result_array();
+    }
 }   
 ?>

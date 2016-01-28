@@ -1,7 +1,7 @@
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDB2X_xfuwffmcKei_-IQGwbWX4MpaOQjk&sensor=false">
 </script>
-   
+<script src="resources/js/date.js"></script>   
 <script>
  /*****CARGA DE ARCHIVO****/ 
 $().ready(function () {
@@ -366,7 +366,11 @@ function recargar_mapa(){
 }
 </script>     
 <script>
+
+
+
 $().ready(function () {
+
 
 	$( document ).tooltip({
 	      position: {
@@ -395,7 +399,7 @@ $().ready(function () {
 		        	descripcion: "required",
 		        	fecha_inicio: "required",
 		        	fecha_fin: "required",
-		        	hora_inicio: "required",
+		        	hora_inicio: "fecha_valida",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
 		        	noPromotores: "required",
@@ -403,7 +407,8 @@ $().ready(function () {
 		        	Asistentes: "required",
 		        	Promotores: "required",
 		        	Coordinadores: "required",
-		        	noValidado: "required",		                   
+		        	noValidado: "required",
+		        	nombre:"required",		                   
 		            "involucrados[]": "required"
 		           
 		            
@@ -460,10 +465,24 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	function irA(uri) {
-        window.location.href = '<?php echo base_url(); ?>' + uri;
-    }
+	
+	jQuery.validator.addMethod("fecha_valida",function(value, element){
 
+		
+		 var r=document.getElementById("fecha_inicio").value;
+		 var rf=document.getElementById("fecha_ultima").value;
+		 if( r <= Date.today().add(14).day().toString('dd/MM/yyyy'))
+		 {
+			 return true;
+		 }
+		 else if (r==rf){
+			 return true;
+		 }
+		 else
+			return false;
+				 
+       
+   }, "Debes reportar tu evento con 2 semanas de anticipacion");
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
         if (tipo == 2)
@@ -656,13 +675,56 @@ $().ready(function () {
 	           '</td></tr>');
     });
 
-
+    
+       
+   	  	
 });
-</script>
-<section class="content">
-<h1> ACTIVIDAD EN COMUNIDAD <?php   ?></h1> 
 
- 		
+
+var fecha_evento, fecha_valida, hoy, variablejs;
+$(document).ready(function() {
+	
+   	fecha_evento=document.getElementById("fecha_ultima").value;
+   	fecha_valida= Date.parse(fecha_evento).add(7).day().toString('dd/MM/yyyy');       
+   	hoy = Date.today().toString('dd/MM/yyyy');
+
+   	if(hoy >=fecha_valida ){
+   		swal({
+        	  title: "¡El tiempo de registro termino!",
+        	  text: "",
+        	  type: "error",
+        	  showCancelButton: false,
+        	  confirmButtonColor: "#FF0040",
+        	  confirmButtonText: "Ok",
+        	  //cancelButtonText: "No, cancel plx!",
+        	  closeOnConfirm: false
+        	  //closeOnCancel: false
+        	},
+        	function(isConfirm){
+        	  if (isConfirm) {
+        		irA('index.php/operador/listado');
+        	  } 
+        	});
+   		
+   	}
+   	
+   	
+});
+
+
+function irA(uri) {
+    window.location.href = '<?php echo base_url(); ?>' + uri;
+}
+
+
+
+</script>
+
+<section class="content">
+<h1> ACTIVIDAD EN COMUNIDAD <?php  ?></h1> 
+
+
+
 	<form id="registro" action="operador/updateEvento" method="post">
 		<input type="hidden" name="latbox" id="latbox" value="<?php echo $dato['latitud'];?>" />
  		<input type="hidden" name="lonbox" id="lonbox" value="<?php echo $dato['longitud'];?>" />
@@ -692,6 +754,10 @@ $().ready(function () {
 			            	</select>
 			            </div>
 			            -->
+			            <div class="form-group">
+			            	<label>Nombre Actividad:</label>
+				            <input type="text" name="nombre" id="nombre" value="<?php echo $dato['nombre'];?>" class="form-control">
+			            </div>
 			            <div class="form-group">
 			            	<label>Responsable Actividad:</label>
 				            <input type="text" name="res_actividad" id="res_actividad" value="<?php echo $dato['responsable_actividad'];?>" class="form-control">
@@ -931,6 +997,7 @@ $().ready(function () {
 		                       		<i class="fa fa-calendar"></i>
 		                       	</div>
 		                       	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();"/>
+		                       	<input name="fecha_ultima" id="fecha_ultima" type="hidden" value="<?php echo $dato['inicio'];?>" />
 	                        </div>
 			            </div>
 			            <div class="col-md-4">
@@ -1000,8 +1067,10 @@ $().ready(function () {
      		   </div>
     	 	</div>
 	 	</div>
-	 </div>
+	 
 	</form>
+
+	</div>
 </section>
 
 

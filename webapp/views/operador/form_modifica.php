@@ -1,6 +1,7 @@
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDB2X_xfuwffmcKei_-IQGwbWX4MpaOQjk&sensor=false">
 </script>
+<script src="resources/js/date.js"></script>
 <script>
  /*****CARGA DE ARCHIVO****/ 
 $().ready(function () {
@@ -383,7 +384,7 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio: "required",
+		        	fecha_inicio: "fecha_valida",
 		        	fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
@@ -450,8 +451,24 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
+	 jQuery.validator.addMethod("fecha_valida",function(value, element){
 
-
+			
+		 var r=document.getElementById("fecha_inicio").value;
+		 var rf=document.getElementById("fecha_ultima").value;
+		 if( r <= Date.today().add(14).day().toString('dd/MM/yyyy'))
+		 {
+			 return true;
+		 }
+		 else if (r==rf){
+			 return true;
+		 }
+		 else
+			return false;
+				 
+        
+    }, "Debes reportar tu evento con 2 semanas de anticipacion");
+	    
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
         if (tipo == 2)
@@ -667,7 +684,11 @@ $().ready(function () {
 			            	<input type="text" name="id_tipo" id="id_tipo" value="<?php echo $dato['nivel'];?>" class="form-control" readonly/>
 				            
 			            </div>
-			          -->  
+			          -->
+			          	<div class="form-group">
+			            	<label>Nombre Actividad:</label>
+				            <input type="text" name="nombre" id="nombre" value="<?php echo $dato['nombre'];?>" class="form-control" readonly>
+			            </div>  
 			            <div class="form-group">
 			            	<label>Delegación que reporta la actividad:</label>
 				            <input type="text"  name="nombre_delegacion" id="nombre_delegacion" value="<?php echo $dato['delegacion'];?>" class="form-control" readonly/>

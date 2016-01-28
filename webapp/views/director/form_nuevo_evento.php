@@ -1,5 +1,5 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDB2X_xfuwffmcKei_-IQGwbWX4MpaOQjk&sensor=false"></script>
-
+ <script src="resources/js/date.js"></script>
 <style>
    .ui-tooltip, .arrow:after {
         background: white;
@@ -258,13 +258,15 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio: "required",
+		        	fecha_inicio: "fecha_valida",
 		        	fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
 		        	noPromotores: "required",
-		        	noCoordinadores: "required",		                   
+		        	noCoordinadores: "required",
+		        	nombre:"required",	
+		        	id_actividad:"required",	                   
 		            "involucrados[]": "required"
 		           
 		            
@@ -317,7 +319,15 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	
+	 jQuery.validator.addMethod("fecha_valida",function(value, element) {
+		 var r=document.getElementById("fecha_inicio").value;
+		 if( r<= Date.today().add(14).day().toString('dd/MM/yyyy') && r!=null)
+			 return true;
+		else
+			return false;
+				 
+	        
+	    }, "Debes reportar tu evento con 2 semanas de anticipacion");
 
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
@@ -508,13 +518,14 @@ $().ready(function () {
 	           '</td></tr>');
     });
 
-
+    document.getElementById("fecha_termino").value = Date.today().add(10).day().toString('yyyy-M-d');
 });
 
 
 function irA(uri) {
         window.location.href = '<?php echo base_url(); ?>' + uri;
     }
+
 </script>
 
 <section class="content">
@@ -523,13 +534,16 @@ function irA(uri) {
  		
  		<input type="hidden" name="latbox" id="latbox" value="19.432571529390096" />
  		<input type="hidden" name="lonbox" id="lonbox" value="-99.13318316931151" />
- 		
+ 		<input type="hidden" name="fecha_termino" id="fecha_termino" value="" />
 		<div class="row">        	
         	<div class="col-md-6">
         	<legend>Información del evento</legend>
                 <div class="box box-solid box-success" style="text-align:left !important; min-height:260px; height:100%;">
    			     	<div class="box-body">
-   			     	
+   			     		<div class="form-group">
+			            	<label>Nombre Actividad:</label>
+				            <input type="text" name="nombre" id="nombre" value="" class="form-control">
+			            </div>
    			     		<div class="form-group">
 			            	<label>Tipo de evento:</label>
 				            <select name="id_tipo" id="id_tipo" class="form-control" >

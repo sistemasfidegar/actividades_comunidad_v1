@@ -54,6 +54,10 @@ class operador extends CI_Controller {
     	foreach ($aux as $dato){
     		$participantes[$dato['id_evento']]=$this->m_catalogos->getDelegacionInvolucradas($dato['id_evento']);
     	}
+    	foreach ($aux as $dato){
+    		$logistica[$dato['id_evento']]=$this->m_catalogos->getLogisticaxEvanto($dato['id_evento']);
+    	}
+    	$listado['logistica']=$logistica;
     	$listado['participantes']=$participantes;
     	$listado['lugar']=$lugar;
     	 
@@ -64,8 +68,16 @@ class operador extends CI_Controller {
     
 function modifica($id_evento)
 {
+	
+	
     	$aux = $this->m_catalogos->getOperador($id_evento);
+    	
+    	
+    	//$hoy=date("Y-m-d");
+    	
+    	
     	$datos['dato'] = $aux[0];
+    		
     	$aux1=$this->m_operador->getDelegacionEvento($id_evento);
     	$datos['delegacion_evento']=$aux1;
     	$datos['actividad'] = $this->m_catalogos->getActividad();
@@ -112,6 +124,7 @@ function modifica($id_evento)
     		$datos['imagen']=$this->m_operador->getImagen($id_evento);
     		
     	 	$data['content'] = $this->load->view('operador/form_operador.php', $datos, true);
+    	 
     	 } 	
     	 else {
     		$f1=$aux[0];
@@ -134,9 +147,20 @@ function modifica($id_evento)
     		$datos['delegacion']=$participantes;
     		$datos['imagen']=$this->m_operador->getImagen($id_evento);
     	 	$data['content'] = $this->load->view('operador/form_modifica.php', $datos, true);
-    	}
-    	 
-    	$this->load->view('operador/v_template.php', $data, false);
+    		}
+    		$this->load->view('operador/v_template.php', $data, false);
+    	
+    	/*else 
+    	 * 
+    	$hoy=date("Y-m-d");
+    	
+    	{	
+    		echo '<script type="text/javascript">alert("Ya no puedes ingresar al evento");</script>';
+    		
+    		$this->listado();
+    		
+    	}*/
+    	
     	
     }
 public function updateEvento() {
@@ -151,7 +175,7 @@ public function updateEvento() {
     	$data['actividad'] = (int) $this->input->post('id_actividad');
     	$data['id_responsable'] =  $this->id_usuario;
     	$data['res_actividad']=$this->input->post('res_actividad');
-    	
+    	$data['nombre']=$this->input->post('nombre');
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
     
@@ -255,6 +279,9 @@ public function guardaEvento() {
     	$aux=$this->m_operador->getDelUsuario($data['id_responsable']);
     	$data['id_delegacion'] = $aux[0]['id_delegacion'];
     	 
+    	
+    	
+    	
     	$data['id_eje'] = (int) $this->input->post('id_eje');
     	$data['id_coordinacion'] = (int) $this->input->post('id_coordinacion');
     	
@@ -268,7 +295,8 @@ public function guardaEvento() {
     	$data['no_coordinadores'] = (int) $this->input->post('noCoordinadores');
     	 
     	$data['descripcion'] = $this->input->post('descripcion');
-    
+    	$data['nombre']=$this->input->post('nombre');
+    	
     	$data['fecha_inicio'] = misql($this->input->post('fecha_inicio'));
     	$data['fecha_fin'] = misql($this->input->post('fecha_fin'));
     	$data['horario'] = $this->input->post('hora_inicio');
@@ -740,14 +768,11 @@ function eventoNuevo(){
     		}
     	}
 	function pruebas(){
-		$id_evento= 6;
-		$datos['evento']=$id_evento;
-		$datos['usuario']=$this->id_usuario;
+		$id_evento=3;
+		$aux = $this->m_catalogos->getOperador($id_evento);
+		$data['datos']=$aux[0];
 		
-		$datos['imagen']=$this->m_operador->getImagen($datos);
-		
-		
-		$data['content'] = $this->load->view('operador/pruebas.php', $datos, true);
+		$data['content'] = $this->load->view('operador/pruebas.php', $data, true);
 		$this->load->view('operador/v_template.php', $data, false);
 	}
    

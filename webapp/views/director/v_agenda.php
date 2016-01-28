@@ -41,7 +41,7 @@
    foreach($registros as $valor)
    {
    
-   		$eventos[] = "{title: '[".$valor['siglas'].'] '.$valor['descripcion']."', start: '".$valor['fecha_inicio']."', end: '".$valor['fecha_fin']."', backgroundColor:'" . $colors[$valor['id_delegacion']] . "', url:'index.php/director/detalleEvento/".$valor['id_evento']."'}";
+   		$eventos[] = "{title: '[".$valor['siglas'].'] '.$valor['nombre']."', start: '".$valor['fecha_inicio']."', end: '".$valor['fecha_fin']."', backgroundColor:'" . $colors[$valor['id_delegacion']] . "', url:'index.php/director/detalleEvento/".$valor['id_evento']."'}";
    
    }
     /*$eventos[] = "{ title: 'evento1', start: '2015-09-21', end: '2015-09-25', url:'index.php/director/detalleEvento/1'}";

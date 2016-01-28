@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Actividades en comunidad a realizar     
+        Actividades en comunidad realizadas      
     </h1>   
     <ol class="breadcrumb">
         <li><a href="javascript:history.back(-1);"><i class="fa fa-angle-double-left"></i> Regresar</a></li>        
@@ -177,18 +177,12 @@ $(document).ready(function() {
 
 
 </script>
-<?php /* 
-echo "<pre>";
-print_r($lugar);
-echo "</pre>";
-*/
-?>
-<!-- 
 
-    <div class="row">
+
+ <div class="row">
     
     <div class="col-md-12">
-    <form id="filtros" name="filtros" method="post" action="index.php/director/listado">
+    <form id="filtros" name="filtros" method="post" action="index.php/reportes/actividadesRealizadas">
 	<div class="row">        	
         	<div class="col-md-12">
         		<div class="box box-solid box-success" style="text-align:left !important;  height:100%;">
@@ -246,10 +240,9 @@ echo "</pre>";
     </div>
 </form>
     </div>
- -->
     <?php 
- /*		$display ="none";
- 		if(isset($lista) && $lista!=null)*/
+ 		$display ="none";
+ 		if(isset($lista) && $lista!=null)
  			$display ="block";
  		?>
 			    
@@ -268,7 +261,9 @@ echo "</pre>";
 									<td>NOMBRE EVENTO</td>
 									<td>EJE TEMÁTICO</td>
 									<td>FECHA/HORA </td>
-									<td>ASISTENTES </td>
+									<td >ASISTENTES </td>
+									<td >COORDINADORES</td>
+									<td >PROMOTORES</td>
 									<td>RESPONSABLE</td>
 									
 									<td>COORDINACIÓN </td>
@@ -277,20 +272,21 @@ echo "</pre>";
 									<td>LOGISTICA</td>
 									<td>SEDE</td>
 									
-									<td></td>
 								</tr>
 								</thead>
 								
 			        			<tbody style="font-size:12px;">
 																
 									<?php foreach ($lista as $value){?>
-									<tr>
+									<tr class="otro">
 									
 										
 										<td><?php echo $value['nombre']?></td>
 										<td><?php echo $value['eje_tematico']?></td>
 										<td><?php echo $value['inicio'].'<br>'.$value['horario']?></td>
-										<td><?php echo $value['no_asistentes']?></td>
+										<td><?php if($value['no_asistentes']!=null){echo $value['no_asistentes'];}else{echo 'sin dato';}?></td>
+										<td><?php if($value['no_coordinadores']!=null){echo $value['no_asistentes'];}else{echo 'sin dato';}?></td>
+										<td><?php if($value['no_promotores']!=null){echo $value['no_asistentes'];}else{echo 'sin dato';}?></td>
 										<td><?php echo $value['responsable_actividad']?></td>
 										<td><?php echo $value['coordinacion']?></td>
 										
@@ -309,7 +305,6 @@ echo "</pre>";
 				            				<?php foreach ($lugar[$value['id_evento']] as $lu){ ?>
 				            			<td><?php if($value['id_tipo_lugar']==1){echo 'Plantel <br>'.$lu['lugar'];}elseif ($value['id_tipo_lugar']==2){echo '<b>Espacio Público</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==3){echo '<b>Museo</b> <br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}elseif ($value['id_tipo_lugar']==4){echo '<b>Escuela para adultos </b><br>'.$lu['lugar'].'<br><b>Direccion: </b>'.$lu['direccion'];}}?></td>
 					            			
-					            		<td align="center"><a href='index.php/director/BorrarEvento/<?php echo $value['id_evento']?>'" ><img src="resources/images/tache.png" border="0" /></a> </td>
 					            		
 										<?php }?>
 				            	</form>
@@ -322,4 +317,3 @@ echo "</pre>";
             </div>
         </div>
      </div>
-</section>
