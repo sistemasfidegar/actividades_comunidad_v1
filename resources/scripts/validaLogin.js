@@ -1,11 +1,21 @@
-            cad = navigator.appName;
+           /* cad = navigator.appName;
             ruta = 'index.php/main/';
 
-            if (cad == 'Microsoft Internet Explorer')
+          
+            if(cad == 'Microsoft Internet Explorer')
             {
-                ruta = '';
-                popup('recomendacion', 812, 461);
+                //ruta = '';
+                //popup('recomendacion', 812, 461);
+            	
+            	             	
+            	document.getElementById('campos').style.display="none";
+            	document.getElementById('mensaje').style.display="block";
 
+            }
+            else
+            {
+            	document.getElementById('campos').style.display="block";
+            	document.getElementById('mensaje').style.display="none";            	
             }
 
             function popup(url, ancho, alto) {
@@ -14,7 +24,7 @@
                 posicion_x = (screen.width / 2) - (ancho / 2);
                 posicion_y = (screen.height / 2) - (alto / 2);
                 window.open(ruta + url, "msg", 'width=' + ancho + ',height=' + alto + ',menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left=' + posicion_x + ',top=' + posicion_y + '\'');
-            }
+            }*/
 
             function irA(uri) {
                 window.location.href = '<?php echo base_url(); ?>' + uri;

@@ -192,7 +192,7 @@ UNION
 		$this->sql="SELECT d.id_delegacion, d.delegacion, ce.eje_tematico, n.nivel, co.coordinacion, e.id_evento, s.seriada, 
 					to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.descripcion, e.horario, 
 					e.no_asistentes, e.no_coordinadores, e.num_horas, e.no_promotores, e.fecha_registro, e.id_evento,e.id_tipo_lugar, e.id_lugar, a.id_tipo_actividad, a.tipo_actividad,
-					e.id_responsable, ur.usuario,ep.espacio_publico, cp.plantel, e.id_tipo_evento, e.id_seriada, cm.museo, ea.escuela,e.latitud,e.longitud, e.responsable_actividad, e.nombre, e.fin_reg  	
+					e.id_responsable, ur.usuario,ep.espacio_publico, cp.plantel, e.id_tipo_evento, e.id_seriada, cm.museo, ea.escuela,e.latitud,e.longitud, e.responsable_actividad, e.nombre  	
 					FROM evento e 
 					INNER JOIN cat_delegacion d ON e.id_delegacion = d.id_delegacion
 					INNER JOIN cat_eje ce ON ce.id_eje = e.id_eje

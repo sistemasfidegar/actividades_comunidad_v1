@@ -65,7 +65,7 @@
 			'maxTime': '15:00',
 			'showDuration': false,
 			'timeFormat': 'H:i',
-			'step': 60
+			'step': 15
 		});
 		
 	     //obtenemos los valores en caso de tenerlos en un formulario ya guardado en la base de datos
@@ -258,8 +258,8 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio: "fecha_valida",
-		        	fecha_fin: "required",
+		        	fecha_inicio: {fecha_valida: true, required: true},
+		        	//fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
@@ -274,7 +274,7 @@ $().ready(function () {
 		        messages: {
 		        	descripcion: {required: "Campo obligatorio"},
 		        	fecha_inicio: {required: "Campo obligatorio"},
-		        	fecha_fin: {required: "Campo obligatorio"},
+		        	//fecha_fin: {required: "Campo obligatorio"},
 		        	hora_inicio: {required: "Campo obligatorio"},
 		        	num_horas: {required: "Campo obligatorio"},
 		        	noAsistentes: {required: "Campo obligatorio"},
@@ -319,15 +319,29 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	 jQuery.validator.addMethod("fecha_valida",function(value, element) {
-		 var r=document.getElementById("fecha_inicio").value;
-		 if( r<= Date.today().add(14).day().toString('dd/MM/yyyy') && r!=null)
-			 return true;
-		else
-			return false;
+	 jQuery.validator.addMethod("fecha_valida",
+	    	    function(value, element) {
+
+ 	    	var cad = element.value;
+ 	    	arregloDeSubCadenas = cad.split("/");
+ 	    	cad = arregloDeSubCadenas[2]+'-'+arregloDeSubCadenas[1]+'-'+arregloDeSubCadenas[0];
+ 	    	ms = Date.parse(cad);
+ 	    	fecha = new Date(ms);
+ 	    	//console.log(fecha);
+ 	    	//console.log(Date.today().add(14).day());
+ 	    	
+				 if(fecha >= Date.today().add(14).day())
+				 {
+					 return true;
+				 }
+				 else
+				 {
+					return false;
+				 }
 				 
 	        
-	    }, "Debes reportar tu evento con 2 semanas de anticipacion");
+	    }, 
+	    "Debes reportar tu evento con al menos 2 semanas de anticipación");
 
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();

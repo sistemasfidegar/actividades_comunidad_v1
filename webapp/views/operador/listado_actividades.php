@@ -11,13 +11,14 @@
 <script>
 
 $(document).ready(function() {
-    $('#Exportar_a_Excel').DataTable({
+   /* $('#Exportar_a_Excel').DataTable({
     	"columnDefs": [
                        {"searchable": true},
                        {"sortable": true}
                    ]
 
-    });
+    });*/
+    
     $(document).tooltip({
 	      position: {
 	        my: "right bottom-10",
@@ -57,7 +58,7 @@ echo "</pre>";
 						<p align="right"><img src="resources/images/btn_excel.png" class="botonExcel" style="cursor:pointer;" title="De click aquí para descargar en formato .xls"/></p>
 						<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
 					</form>
- 					<div>DELEGACIÓN  </div>           
+ 					          
             		<table id="Exportar_a_Excel" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1" style="width:100%;"> <!-- table-hover table-condensed -->
             			<thead style="font-size:13px;">
 								<tr bgcolor="#808080">

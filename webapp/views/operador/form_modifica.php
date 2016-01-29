@@ -177,7 +177,7 @@ jQuery(document).ready(function(){
 		'maxTime': '15:00',
 		'showDuration': false,
 		'timeFormat': 'H:i',
-		'step': 60
+		'step': 15
 	});
 	
      //obtenemos los valores en caso de tenerlos en un formulario ya guardado en la base de datos
@@ -384,8 +384,8 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio: "fecha_valida",
-		        	fecha_fin: "required",
+		        	fecha_inicio: "required",
+		        	//fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
@@ -402,7 +402,7 @@ $().ready(function () {
 		        messages: {
 		        	descripcion: {required: "Campo obligatorio"},
 		        	fecha_inicio: {required: "Campo obligatorio"},
-		        	fecha_fin: {required: "Campo obligatorio"},
+		        	//fecha_fin: {required: "Campo obligatorio"},
 		        	hora_inicio: {required: "Campo obligatorio"},
 		        	num_horas: {required: "Campo obligatorio"},
 		        	noAsistentes: {required: "Campo obligatorio"},
@@ -451,23 +451,7 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	 jQuery.validator.addMethod("fecha_valida",function(value, element){
-
-			
-		 var r=document.getElementById("fecha_inicio").value;
-		 var rf=document.getElementById("fecha_ultima").value;
-		 if( r <= Date.today().add(14).day().toString('dd/MM/yyyy'))
-		 {
-			 return true;
-		 }
-		 else if (r==rf){
-			 return true;
-		 }
-		 else
-			return false;
-				 
-        
-    }, "Debes reportar tu evento con 2 semanas de anticipacion");
+	
 	    
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
@@ -513,7 +497,8 @@ $().ready(function () {
 	                $("#id_lugar").html(data);	               
 	            }
 	        });            
-        }else if(tipo == 3)
+        }
+        else if(tipo == 3)
         {            
         	$("#id_lugar").html('<option value="0">Cargando...</option>');
         	jQuery.ajax({
@@ -546,16 +531,13 @@ $().ready(function () {
         
     });
 
-	 $(".dateP").datepicker({
+	/*$(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
-         defaultDate: "05/10/2015",
+         defaultDate: "<?php echo date('d/m/Y');?>",
          autoclose: true
-     });
+     });*/
 
-    
-
-  
     	   
     	  
 

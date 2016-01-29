@@ -1,7 +1,9 @@
 <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDB2X_xfuwffmcKei_-IQGwbWX4MpaOQjk&sensor=false">
 </script>
-<script src="resources/js/date.js"></script>   
+    
+<script src="resources/js/date.js"></script>
+ 
 <script>
  /*****CARGA DE ARCHIVO****/ 
 $().ready(function () {
@@ -398,7 +400,7 @@ $().ready(function () {
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
 		        	fecha_inicio: "required",
-		        	fecha_fin: "required",
+		        	//fecha_fin: "required",
 		        	hora_inicio: "fecha_valida",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
@@ -416,7 +418,7 @@ $().ready(function () {
 		        messages: {
 		        	descripcion: {required: "Campo obligatorio"},
 		        	fecha_inicio: {required: "Campo obligatorio"},
-		        	fecha_fin: {required: "Campo obligatorio"},
+		        	//fecha_fin: {required: "Campo obligatorio"},
 		        	hora_inicio: {required: "Campo obligatorio"},
 		        	num_horas: {required: "Campo obligatorio"},
 		        	noAsistentes: {required: "Campo obligatorio"},
@@ -466,7 +468,7 @@ $().ready(function () {
 	 );
 
 	
-	jQuery.validator.addMethod("fecha_valida",function(value, element){
+	/*jQuery.validator.addMethod("fecha_valida",function(value, element){
 
 		
 		 var r=document.getElementById("fecha_inicio").value;
@@ -482,7 +484,9 @@ $().ready(function () {
 			return false;
 				 
        
-   }, "Debes reportar tu evento con 2 semanas de anticipacion");
+   }, "Debes reportar tu evento con 2 semanas de anticipacion");*/
+
+	   
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
         if (tipo == 2)
@@ -560,12 +564,12 @@ $().ready(function () {
         
     });
 
-	 $(".dateP").datepicker({
+	/* $(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
-         defaultDate: "05/10/2015",
+         defaultDate: "<?php echo date('d/m/Y');?>",
          autoclose: true
-     });
+     });*/
 
     
 
@@ -684,13 +688,24 @@ $().ready(function () {
 var fecha_evento, fecha_valida, hoy, variablejs;
 $(document).ready(function() {
 	
-   	fecha_evento=document.getElementById("fecha_ultima").value;
-   	fecha_valida= Date.parse(fecha_evento).add(7).day().toString('dd/MM/yyyy');       
-   	hoy = Date.today().toString('dd/MM/yyyy');
+	var cad = document.getElementById("fecha_ultima").value;
+	arregloDeSubCadenas = cad.split("/");
+	cad = arregloDeSubCadenas[2]+'-'+arregloDeSubCadenas[1]+'-'+arregloDeSubCadenas[0];
+	ms = Date.parse(cad);
+	fecha_evento = new Date(ms);
+	fecha_eventoi = new Date(ms);
+   	
+   	fecha_tope = fecha_evento.add(7).day(); 
+   	
+   	hoy = Date.today();
 
-   	if(hoy >=fecha_valida ){
+
+   	if(hoy>fecha_tope)
+   	{
+   	   	$('#guardar').hide('fast');
+   	   	
    		swal({
-        	  title: "¡El tiempo de registro termino!",
+        	  title: "¡Ya no puedes reportar información!",
         	  text: "",
         	  type: "error",
         	  showCancelButton: false,
@@ -706,7 +721,29 @@ $(document).ready(function() {
         	  } 
         	});
    		
-   	}
+   	}   	
+   	else if(hoy<=fecha_eventoi)
+   	{
+		$('#guardar').hide('fast');
+   	   	
+   		swal({
+        	  title: "¡Aún no es tiempo de reportar información!",
+        	  text: "",
+        	  type: "error",
+        	  showCancelButton: false,
+        	  confirmButtonColor: "#FF0040",
+        	  confirmButtonText: "Ok",
+        	  //cancelButtonText: "No, cancel plx!",
+        	  closeOnConfirm: false
+        	  //closeOnCancel: false
+        	},
+        	function(isConfirm){
+        	  if (isConfirm) {
+        		irA('index.php/operador/listado');
+        	  } 
+        	});
+
+   	 }
    	
    	
 });
@@ -996,7 +1033,7 @@ function irA(uri) {
 		                       	<div class="input-group-addon">
 		                       		<i class="fa fa-calendar"></i>
 		                       	</div>
-		                       	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();"/>
+		                       	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" readonly/>
 		                       	<input name="fecha_ultima" id="fecha_ultima" type="hidden" value="<?php echo $dato['inicio'];?>" />
 	                        </div>
 			            </div>
@@ -1034,7 +1071,7 @@ function irA(uri) {
 			         	</div> -->
 			            <br />
 			        	 
-			       <legend>Valores obtenidos</legend>	
+			            <legend>Valores obtenidos</legend>	
 			        	<div class="row">
 		            	 
 			            	<div class="col-md-3">

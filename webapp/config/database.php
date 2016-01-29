@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'postgres';
-$db['default']['password'] = 'F1d3gAr;';
-$db['default']['database'] = 'actividades_comunidad_des';
+$db['default']['password'] = '241280.';
+$db['default']['database'] = 'actividades_comunidad_v1';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;

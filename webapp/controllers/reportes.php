@@ -965,6 +965,7 @@ class reportes extends CI_Controller {
     	$this->load->view('director/v_template.php', $datos, false);
     	
     }
+    
     function exportaExcel()
     {
     	$archivo = 'tabla_'.date('dmY_hi').'.xls';

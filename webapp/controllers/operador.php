@@ -2,8 +2,7 @@
 
 class operador extends CI_Controller {
 
-    var $id_usuario = null;
-    
+    var $id_usuario = null;    
    	var $id_delegacion= null;
   
     public function __construct() {
@@ -126,7 +125,8 @@ function modifica($id_evento)
     	 	$data['content'] = $this->load->view('operador/form_operador.php', $datos, true);
     	 
     	 } 	
-    	 else {
+    	 else 
+    	 {
     		$f1=$aux[0];
     		
     		$f1=$this->m_operador->verificaResultado($f1);
@@ -147,23 +147,15 @@ function modifica($id_evento)
     		$datos['delegacion']=$participantes;
     		$datos['imagen']=$this->m_operador->getImagen($id_evento);
     	 	$data['content'] = $this->load->view('operador/form_modifica.php', $datos, true);
-    		}
-    		$this->load->view('operador/v_template.php', $data, false);
+    	}
+        
+    	$this->load->view('operador/v_template.php', $data, false);
     	
-    	/*else 
-    	 * 
-    	$hoy=date("Y-m-d");
-    	
-    	{	
-    		echo '<script type="text/javascript">alert("Ya no puedes ingresar al evento");</script>';
-    		
-    		$this->listado();
-    		
-    	}*/
-    	
+    
     	
     }
-public function updateEvento() {
+    
+	public function updateEvento() {
     
     	$data['id_evento']=(int)$this->input->post('id_evento');
     	 

@@ -52,7 +52,7 @@ class M_director extends MY_Model {
     }
     function getActividadesARealizar($mes, $anio){
     	$this->sql="SELECT DISTINCT(e.id_evento),  e.descripcion, to_char(e.fecha_inicio,'DD/MM/YYYY') as inicio, to_char(e.fecha_fin,'DD/MM/YYYY') as fin, e.no_asistentes, e.no_coordinadores,
-    	e.no_promotores, e.nombre,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, e.responsable_actividad
+    	e.no_promotores, UPPER(e.nombre) nombre,cd.delegacion, e.id_lugar, e.id_tipo_lugar, ep.espacio_publico, cp.plantel,co.coordinacion, cd.siglas, ce.eje_tematico, e.horario, upper(e.responsable_actividad) responsable_actividad
     	FROM evento e
     	LEFT JOIN involucrados i on e.id_evento= i.id_evento
     	INNER JOIN cat_delegacion cd on cd.id_delegacion=e.id_delegacion
@@ -161,8 +161,8 @@ class M_director extends MY_Model {
     
     function insertaEvento($data)
     {
-    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion, activo, latitud, longitud, id_actividad,nombre,fin_reg) values 
-   			(:id_tipo,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_fin,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion, 't',:latitud,:longitud, :actividad,:nombre, :fecha_termino) returning id_evento;";
+    	$this->sql = "INSERT INTO evento (id_tipo_evento,id_eje,descripcion,id_coordinacion,id_seriada,id_tipo_lugar,id_lugar,fecha_inicio,fecha_fin,horario,num_horas,no_asistentes,no_coordinadores,no_promotores,id_usuario_registra, id_responsable,id_delegacion, activo, latitud, longitud, id_actividad,nombre) values 
+   			(:id_tipo,:id_eje,:descripcion,:id_coordinacion,:id_seriada,:id_tipo_lugar,:id_lugar,:fecha_inicio,:fecha_fin,:horario,:num_horas,:no_asistentes,:no_coordinadores,:no_promotores,:id_usuario_registra, :id_responsable,:id_delegacion, 't',:latitud,:longitud, :actividad,:nombre) returning id_evento;";
     	
     	$this->bindParameters($data);
     	$results = $this->db->query($this->sql, array(1));

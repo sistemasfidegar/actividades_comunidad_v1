@@ -359,8 +359,8 @@ $().ready(function () {
 		        	id_tipo_lugar: "selectNone",
 		        	id_lugar: "selectNone",		           
 		        	descripcion: "required",
-		        	fecha_inicio:"fecha_valida",
-		        	fecha_fin: "required",
+		        	fecha_inicio:"required",
+		        	//fecha_fin: "required",
 		        	hora_inicio: "required",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
@@ -372,7 +372,7 @@ $().ready(function () {
 		        messages: {
 		        	descripcion: {required: "Campo obligatorio"},
 		        	fecha_inicio: {required: "Campo obligatorio"},
-		        	fecha_fin: {required: "Campo obligatorio"},
+		        	//fecha_fin: {required: "Campo obligatorio"},
 		        	hora_inicio: {required: "Campo obligatorio"},
 		        	num_horas: {required: "Campo obligatorio"},
 		        	noAsistentes: {required: "Campo obligatorio"},
@@ -416,23 +416,7 @@ $().ready(function () {
 	            "Debe seleccionar una opción"
 	 );
 
-	 jQuery.validator.addMethod("fecha_valida",function(value, element){
-
-		
-			 var r=document.getElementById("fecha_inicio").value;
-			 var rf=document.getElementById("fecha_ultima").value;
-			 if( r <= Date.today().add(14).day().toString('dd/MM/yyyy'))
-			 {
-				 return true;
-			 }
-			 else if (r==rf){
-				 return true;
-			 }
-			 else
-				return false;
-					 
-	        
-	    }, "Debes reportar tu evento con 2 semanas de anticipacion");
+	
 
 		
 	 
@@ -515,12 +499,12 @@ $().ready(function () {
         
     });
 
-	 $(".dateP").datepicker({
+	 /*$(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
          defaultDate: "05/11/2015",
          autoclose: true
-     });
+     });*/
 
     
 	 $("#num_horas").numeric({decimal: true, negative: false});
@@ -918,7 +902,7 @@ function irA(uri) {
 		                        	<div class="input-group-addon">
 		                        		<i class="fa fa-calendar"></i>
 		                        	</div>
-		                        	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();"/>
+		                        	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" readonly/>
 		                        	<input name="fecha_ultima" id="fecha_ultima" type="hidden" value="<?php echo $dato['inicio'];?>" />
 		                        	
 	                        	</div>
@@ -968,5 +952,3 @@ function irA(uri) {
 	</form>
  </div>
 </section>
-
-

@@ -250,7 +250,7 @@ $config['encryption_key'] = '$#_KJHKJ#$';
   |
  */
 $config['sess_cookie_name'] = 'actividades_comunidad';
-$config['sess_expiration'] = 1800;
+$config['sess_expiration'] = 3600;
 $config['sess_expire_on_close'] = TRUE;
 $config['sess_encrypt_cookie'] = TRUE;
 $config['sess_use_database'] = TRUE;

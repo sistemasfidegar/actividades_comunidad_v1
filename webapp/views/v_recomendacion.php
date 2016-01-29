@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!-- End of Meta -->
 		
-		<title>Sistema de Acuerdos de la CGDF</title>
+		<title>Registro de Actividades en Comunidad del Programa "Prepa Sí"</title>
 			
 		<link rel="shortcut icon" href="resources/images/favicon.ico">    
                 
@@ -28,7 +28,9 @@
 	                    <table width="500px" cellpadding="0" cellspacing="0" border="0">		                    		                   
 		                    <tr>
 		                    	<td colspan="2" align="center" valign="middle" style="color:#000000; font-size:17px;">
-		                    		Detectamos que esta utilizando el navegador Internet Explorer, para evitar contratiempos al utilizar el sistema le recomendamos que utilice el navegador <a href="https://download.mozilla.org/?product=firefox-stub&os=win&lang=es-MX" style="color:#E6007E;">Mozilla Firefox</a> o <a href="http://www.google.com/intl/es/chrome/browser/" style="color:#E6007E;" target="_blank">Google Chrome.</a>
+		                    		Detectamos que estas utilizando el navegador Internet Explorer, para evitar contratiempos al utilizar el sistema te recomendamos que utilices el navegador 
+		                    		<a href="https://download.mozilla.org/?product=firefox-stub&os=win&lang=es-MX" style="color:#E6007E;">Mozilla Firefox</a> o 
+		                    		<a href="https://www.google.com.mx/chrome/browser/desktop/#" style="color:#E6007E;" target="_blank">Google Chrome.</a>
 		                    	</td>
 		                    </tr>	                    	                    
 	                    </table>

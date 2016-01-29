@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- End of Meta -->
 
-        <title>Actividades en Comunidad</title>
+        <title>Registro de Actividades en Comunidad del Programa "Prepa Sí"</title>
 
         <link rel="shortcut icon" href="resources/images/favicon.ico">   
 
@@ -99,7 +99,37 @@
 			div.growlUI h2, div.growlUI h3 {
 			    color: white; padding: 5px 5px 5px 75px; text-align: left
 			}	        
-        </style>			
+        </style>
+        
+       <?php 
+       $user_agent = $_SERVER['HTTP_USER_AGENT'];
+       
+       function getBrowser($user_agent){
+       
+       	if(strpos($user_agent, 'MSIE') !== FALSE)
+       	return 'IE';
+       	elseif(strpos($user_agent, 'Trident') !== FALSE) //IE 11
+       	return 'IE';
+       	elseif(strpos($user_agent, 'Firefox') !== FALSE)
+       	return 'Mozilla Firefox';
+       	elseif(strpos($user_agent, 'Chrome') !== FALSE)
+       	return 'Google Chrome';
+       	elseif(strpos($user_agent, 'Opera Mini') !== FALSE)
+       	return "Opera Mini";
+       	elseif(strpos($user_agent, 'Opera') !== FALSE)
+       	return "Opera";
+       	elseif(strpos($user_agent, 'Safari') !== FALSE)
+       	return "Safari";
+       	else
+       		return 'OTROr';
+              
+       }
+       
+       
+       $navegador =  getBrowser($user_agent);
+       
+       
+       ?>
     </head>
     <!-- <body style="background-image:url('<?php echo base_url(); ?>resources/images/fondo_df.png'); background-repeat: no-repeat no-repeat; background-attachment: fixed;"> -->
     <body style="background-image:url('<?php echo base_url(); ?>resources/images/login.jpg'); background-repeat: no-repeat no-repeat; background-size:cover; background-attachment:fixed;">
@@ -159,11 +189,11 @@
             	<br /><br /><br />
             	
                 <div class="transbox" style="border: 1px solid #9D9CA1;">
-                    <h1>Actividades en Comunidad</h1>
+                    <h1>Registro de Actividades en Comunidad</h1>
                     <form id="formulario" action="index.php/main/login" method="POST">
-                        <table style=" width: 70%;" border="0">
+                        <table style="width: 70%; <?php if($navegador=='IE'){ echo "display:none;"; }?>" border="0" id="campos">
                             <tr>
-                                <td>
+                                <td align="center">
                                     <img src="<?php echo base_url(); ?>resources/images/ico_person.png">
                                 </td>
                                 <td>
@@ -175,7 +205,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>
+                                <td align="center">
                                     <img src="<?php echo base_url(); ?>resources/images/ico_key.png">
                                 </td>
                                 <td>
@@ -195,9 +225,22 @@
                                 	<br />
                                     <span style="color: #E3157D;">Fideicomiso Educación Garantizada del Distrito Federal<br />Coordinación Ejecutiva del Programa de Estímulos para el Bachillerato Universal<br />Tel: 1102 1730 &nbsp;&nbsp;Ext. 4081, 4005, 4089, 4128 y 4039.</span>
                                 </td>	
-                            </tr>   
+                            </tr>
+                            
+                            
                         </table>
                         
+                        <table style=" width: 85%; <?php if($navegador!='IE'){ echo "display:none;";}?>" border="0" id="mensaje">
+                        	 <tr>
+                                <td align="center" colspan="2" style="font-size:19px;" >                                	
+                                    <span style="color: #E3157D;">
+                                    Para evitar contratiempos en el funcionamiento del sistema es necesario utilizarlo con alguno de los siguientes navegadores.<br /><br />
+                                    <a href="https://download.mozilla.org/?product=firefox-stub&os=win&lang=es-MX" style="color:#E6007E;"><img src="resources/images/firefox.png" align="middle" title="Mozilla Firefox"/></a>&nbsp;&nbsp; 
+                                    <a href="https://www.google.com.mx/chrome/browser/desktop/#" style="color:#E6007E;" target="_blank"><img src="resources/images/chrome.png" align="middle" title="Google Chrome"/></a> 
+                                    </span>
+                                </td>	
+                            </tr>      
+                        </table>
 
                        
                 </div><!-- end transbox1 -->
@@ -205,9 +248,5 @@
                 
             </center>	
         </div>
-
-
-        <!-- <div style="text-align:center; color:#8a8a8d; font-size:12px;">Dirección General de Auditoría Cibernética y Proyectos Tecnológicos</div> -->
-
     </body>
 </html>
