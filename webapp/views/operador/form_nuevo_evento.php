@@ -354,13 +354,12 @@ $().ready(function () {
 	    jQuery.validator.addMethod("fecha_valida",
 	    	    function(value, element) {
 
-    	    	var cad = element.value;
+    	    	/*var cad = element.value;
     	    	arregloDeSubCadenas = cad.split("/");
     	    	cad = arregloDeSubCadenas[2]+'-'+arregloDeSubCadenas[1]+'-'+arregloDeSubCadenas[0];
     	    	ms = Date.parse(cad);
     	    	fecha = new Date(ms);
-    	    	//console.log(fecha);
-    	    	//console.log(Date.today().add(14).day());
+    	    	
     	    	
 				 if(fecha >= Date.today().add(14).day())
 				 {
@@ -369,7 +368,8 @@ $().ready(function () {
 				 else
 				 {
 					return false;
-				 }
+				 }*/
+					 return true;
 				 
 	        
 	    }, 

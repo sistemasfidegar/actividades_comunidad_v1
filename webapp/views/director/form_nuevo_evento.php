@@ -322,7 +322,7 @@ $().ready(function () {
 	 jQuery.validator.addMethod("fecha_valida",
 	    	    function(value, element) {
 
- 	    	var cad = element.value;
+ 	    	/*var cad = element.value;
  	    	arregloDeSubCadenas = cad.split("/");
  	    	cad = arregloDeSubCadenas[2]+'-'+arregloDeSubCadenas[1]+'-'+arregloDeSubCadenas[0];
  	    	ms = Date.parse(cad);
@@ -337,7 +337,8 @@ $().ready(function () {
 				 else
 				 {
 					return false;
-				 }
+				 }*/
+					 return true;
 				 
 	        
 	    }, 
