@@ -401,7 +401,7 @@ $().ready(function () {
 		        	descripcion: "required",
 		        	fecha_inicio: "required",
 		        	//fecha_fin: "required",
-		        	hora_inicio: "fecha_valida",
+		        	//hora_inicio: "fecha_valida",
 		        	num_horas: "required",
 		        	noAsistentes: "required",
 		        	noPromotores: "required",
@@ -468,8 +468,8 @@ $().ready(function () {
 	 );
 
 	
-	/*jQuery.validator.addMethod("fecha_valida",function(value, element){
-
+	 /*jQuery.validator.addMethod("fecha_valida",function(value, element){
+		
 		
 		 var r=document.getElementById("fecha_inicio").value;
 		 var rf=document.getElementById("fecha_ultima").value;
@@ -483,9 +483,9 @@ $().ready(function () {
 		 else
 			return false;
 				 
-       
-   }, "Debes reportar tu evento con 2 semanas de anticipacion");*/
-
+		
+   }, "Debes reportar tu evento con 2 semanas de anticipacion");
+*/
 	   
 	$("#id_tipo").change(function () {
         var tipo = $("#id_tipo option:selected").val();
@@ -564,12 +564,13 @@ $().ready(function () {
         
     });
 
-	/* $(".dateP").datepicker({
+	$(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
          defaultDate: "<?php echo date('d/m/Y');?>",
          autoclose: true
-     });*/
+     });
+     
 
     
 
@@ -686,7 +687,9 @@ $().ready(function () {
 
 
 var fecha_evento, fecha_valida, hoy, variablejs;
-$(document).ready(function() {
+/*
+
+ $(document).ready(function() {
 	
 	var cad = document.getElementById("fecha_ultima").value;
 	arregloDeSubCadenas = cad.split("/");
@@ -748,7 +751,7 @@ $(document).ready(function() {
    	
 });
 
-
+*/
 function irA(uri) {
     window.location.href = '<?php echo base_url(); ?>' + uri;
 }
@@ -946,6 +949,7 @@ function irA(uri) {
 				            </div>	            			            							
 		            	</div>	
 		            	<br>
+		      <!--  
 		            	<legend>Cargar imagenes</legend>
 		            	<div class="row">
 				            <div class="col-md-6">
@@ -963,8 +967,9 @@ function irA(uri) {
 									</div>
 								</div>	
 							</div>
-							
-							</div>
+						</div>
+						
+				-->
 							<div class="row">
 								<div class="image-set" id="central">
 								
@@ -1033,7 +1038,7 @@ function irA(uri) {
 		                       	<div class="input-group-addon">
 		                       		<i class="fa fa-calendar"></i>
 		                       	</div>
-		                       	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" readonly/>
+		                       	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" />
 		                       	<input name="fecha_ultima" id="fecha_ultima" type="hidden" value="<?php echo $dato['inicio'];?>" />
 	                        </div>
 			            </div>

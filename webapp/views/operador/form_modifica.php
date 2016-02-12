@@ -536,7 +536,9 @@ $().ready(function () {
          format: 'dd/mm/yyyy',
          defaultDate: "<?php echo date('d/m/Y');?>",
          autoclose: true
-     });*/
+     });
+     
+     */
 
     	   
     	  
@@ -778,6 +780,7 @@ $().ready(function () {
 				            			            			            							
 		            	</div>
 		            	<br />
+			<!-- 
 			        	<legend>Cargar imagenes</legend>
 		            	<div class="row">
 				            <div class="col-md-6">
@@ -813,10 +816,9 @@ $().ready(function () {
 								
 								</div>
 							</div>
+			 -->
 				       </div>			            			            							
-		            
-		            		
-			     	</div>
+		            </div>
 	            
 	       </div>
 	       

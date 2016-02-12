@@ -499,12 +499,12 @@ $().ready(function () {
         
     });
 
-	 /*$(".dateP").datepicker({
+	 $(".dateP").datepicker({
          language: 'es',
          format: 'dd/mm/yyyy',
          defaultDate: "05/11/2015",
          autoclose: true
-     });*/
+     });
 
     
 	 $("#num_horas").numeric({decimal: true, negative: false});
@@ -785,6 +785,7 @@ function irA(uri) {
 					          <input type="text" name="noPromotores" id="noPromotores" value="<?php echo $dato['no_promotores'];?>" class="form-control" maxlength="4"/>
 				       		</div>	
 			     		</div>
+			    <!--
 			     		<legend>Cargar imagenes</legend>
 		            	<div class="row">
 				            <div class="col-md-12">
@@ -799,8 +800,9 @@ function irA(uri) {
 										<input type="hidden" name="nombre_archivo" id="nombre_archivo"  />
 									</div>
 									</div>
-								</div>	
-							</div>
+							</div>	
+						</div>
+				  -->	
 							<div class="row">
 								<div class="image-set" id="central">
 								
@@ -902,7 +904,7 @@ function irA(uri) {
 		                        	<div class="input-group-addon">
 		                        		<i class="fa fa-calendar"></i>
 		                        	</div>
-		                        	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" readonly/>
+		                        	<input name="fecha_inicio" id="fecha_inicio" type="text" value="<?php echo $dato['inicio'];?>" class="form-control pull-right dateP" onFocus="this.blur();" />
 		                        	<input name="fecha_ultima" id="fecha_ultima" type="hidden" value="<?php echo $dato['inicio'];?>" />
 		                        	
 	                        	</div>
